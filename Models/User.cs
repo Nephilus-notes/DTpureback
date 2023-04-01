@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Dragon_s_Tail_Portfolio.Models
+namespace DTpureback.Models
 {
     public class User
     {

@@ -1,6 +1,8 @@
-﻿namespace Dragon_s_Tail_Portfolio.Models
+﻿using DTpureback.Models;
+
+namespace DTpureback.Interfaces
 {
-    public class Equipment
+    public interface IEquipment
     {
         public Item Head { get; set; }
         public Item Body { get; set; }

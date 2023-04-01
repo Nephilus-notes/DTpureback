@@ -1,4 +1,4 @@
-﻿namespace Dragon_s_Tail_Portfolio.Models
+﻿namespace DTpureback.Models
 {
     public class SaveFile
     {
@@ -6,7 +6,7 @@
 
         // Foreign Keys
         public int UserID { get; set; }
-        public int CharacterID { get; set; }
+        public int PlayerCharacterID { get; set; }
         public string LocationID { get; set; }
     }
 }
