@@ -12,11 +12,11 @@ namespace DTpureback.Controllers
 {
     [Route($"api/{"take2"}")]
     [ApiController]
-    public class Locations1Controller : ControllerBase
+    public class LocationsController : ControllerBase
     {
         private readonly DragonsTailContext _context;
 
-        public Locations1Controller(DragonsTailContext context)
+        public LocationsController(DragonsTailContext context)
         {
             _context = context;
         }
@@ -34,15 +34,34 @@ namespace DTpureback.Controllers
 
         // GET: api/Locations1/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Location>> GetLocation(string id)
+        public async Task<ActionResult<LocationDTO>> GetLocation(string id)
         {
             var location = await _context.Locations.FindAsync(id.ToUpper());
             if (location == null)
             {
                 return NotFound();
             }
+            var returnLocation = new LocationDTO
+                {
+                    ID = location.ID,
+                    Name = location.Name,
+                    EnterText = location.EnterText,
+                    ExitText = location.ExitText,
+                };
 
-            return location;
+            if(location.MoveOptions != null)
+            {
+
+                List<string> list = new List<string>();
+                var moveOptions = list;
+                    foreach ( var moveOption in location.MoveOptions )
+                {
+                    moveOptions.Add(moveOption.ToString());
+                }
+                returnLocation.MoveOptions = moveOptions;
+            }
+           
+            return returnLocation;
         }
 
         // PUT: api/Locations1/5
