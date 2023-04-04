@@ -5,37 +5,39 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DTpureback.Models;
 using DTpureback.Data;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using DTpureback.Models;
 
 namespace DTpureback.Controllers
 {
-    [Route($"api/{"Location"}")]
+    [Route($"api/{"take2"}")]
     [ApiController]
-    public class LocationController : ControllerBase
+    public class Locations1Controller : ControllerBase
     {
         private readonly DragonsTailContext _context;
 
-        public LocationController(DragonsTailContext context)
+        public Locations1Controller(DragonsTailContext context)
         {
             _context = context;
         }
-        // GET: api/<ValuesController>
+
+        // GET: api/Locations1
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Location>>> GetAllLocations()
+        public async Task<ActionResult<IEnumerable<Location>>> GetLocations()
         {
-            return await _context.Locations
-              .ToListAsync();
+          if (_context.Locations == null)
+          {
+              return NotFound();
+          }
+            return await _context.Locations.ToListAsync();
         }
 
-        // GET api/location/t
+        // GET: api/Locations1/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Location>> GetLocation(string id)
         {
             var location = await _context.Locations.FindAsync(id.ToUpper());
-            if(location == null)
+            if (location == null)
             {
                 return NotFound();
             }
@@ -43,22 +45,89 @@ namespace DTpureback.Controllers
             return location;
         }
 
-        // POST api/<ValuesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<ValuesController>/5
+        // PUT: api/Locations1/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> PutLocation(string id, Location location)
         {
+            if (id != location.ID)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(location).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!LocationExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // POST: api/Locations1
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Location>> PostLocation(Location location)
         {
+          if (_context.Locations == null)
+          {
+              return Problem("Entity set 'DragonsTailContext.Locations'  is null.");
+          }
+            _context.Locations.Add(location);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (LocationExists(location.ID))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtAction("GetLocation", new { id = location.ID }, location);
+        }
+
+        // DELETE: api/Locations1/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteLocation(string id)
+        {
+            if (_context.Locations == null)
+            {
+                return NotFound();
+            }
+            var location = await _context.Locations.FindAsync(id);
+            if (location == null)
+            {
+                return NotFound();
+            }
+
+            _context.Locations.Remove(location);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool LocationExists(string id)
+        {
+            return (_context.Locations?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

@@ -112,7 +112,7 @@ namespace DTpureback.Data
                 Name = "Town",
                 EnterText = "Here we are in town",
                 ExitText = "",
-               // MoveOptions = { "B", "A", "I", "U", "S" },
+                MoveOptions = "B,A,I,U,S",
             };
 
             var blacksmith = new Location
@@ -123,7 +123,7 @@ namespace DTpureback.Data
                 "all around as arms and armor coat the walls. " +
                 "The blacksmith's face shines at you from over the counter.",
                 ExitText = "",
-              //  MoveOptions = {"T", "O"},
+                MoveOptions = "T,O",
             };
 
             //{ id: "A", name: "Alchemist's Shop", enterText: "Welcome to the alchemist's shop", exitText: "", options: ["T", "O"], enemies: []},
