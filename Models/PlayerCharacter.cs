@@ -1,4 +1,5 @@
 ﻿using DTpureback.Interfaces;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DTpureback.Models
 {
@@ -7,7 +8,8 @@ namespace DTpureback.Models
         // Items and Currency
         public int LifeTimeCurrency { get; set; }
         public ICollection<Item>? Backpack { get; set; }
-        //public IEquipment? EquippedItems { get; set; }
+        [NotMapped]
+        public IEquipment? EquippedItems { get; set; }
         public Item? Weapon { get; set; }
 
         // EXP Counters Alpha
