@@ -335,12 +335,6 @@ namespace DTpureback.Data
                 MoveOptions = "T,C",
             };
 
-
-            //{ id: "D", name: "Dripping Death", enterText: "Entering the Dripping Death", exitText: "", options: ["T", "P"], enemies: []},
-            //{
-            //            id: "P", name: `{ character.name}
-            //                's Respite`, enterText: "Enjoying a Brief Respite", exitText: "", options:["T", "TTD"], enemies: []},
-            //{ id: "TTD", name: "Tail of the Dragon", enterText: "Tail of the Dragon", exitText: "", options: ["T", "C"], enemies: []},
             //{ id: "combat?", name: "Combat", enterText: "", exitText: "", options: [""], enemies: []}
             var locations = new Location[]
             {
