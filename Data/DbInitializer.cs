@@ -56,20 +56,96 @@ namespace DTpureback.Data
                 Description = "A red potion that smells of cinnamon and nutmeg. Heals a little."
             };
 
+            var HealthPot = new Item
+            {
+                name = "Health Potion",
+                ItemStat = 5,
+                Price = 200,
+                Slot = "consumable",
+                Description = "An orange potion that smells of mint and orange. Heals some health."
+            };
+            var majHealthPot = new Item
+            {
+                name = "Major Health Potion",
+                ItemStat = 8,
+                Price = 40,
+                Slot = "consumable",
+                Description = "A yellow potion that smells of lemon and fresh air. Heals a lot!"
+            };
+
             var chainmail = new Item
             {
                 name = "Chainmail Armor",
                 ItemStat = 3,
                 Price = 60,
                 Slot = "body",
+                Description = "Long steel shirt that provides great protection without limiting movement."
+            };
+            var dagger = new Item
+            {
+                name = "Dagger",
+                ItemStat = 1,
+                Price = 10,
+                Slot = "hand",
+                Description = "A small dagger, good for cutting things and taking on large rodents."
+            };
+            var sword = new Item
+            {
+                name = "Sword",
+                ItemStat = 3,
+                Price = 50,
+                Slot = "hand",
+                Description = "A well-made sword used to fight many foes."
+            };
+            var axe = new Item
+            {
+                name = "Axe",
+                ItemStat = 4,
+                Price = 90,
+                Slot = "hand",
+                Description = "Polished axe that can easily take chunks out of full grown trees."
+            };
+            var leather = new Item
+            {
+                name = "Leather Armor",
+                ItemStat = 1,
+                Price = 20,
+                Slot = "body",
                 Description = "Toughened leather that protects against both elements and enemies."
+            };
+
+            var brigandine = new Item
+            {
+                name = "Brigandine",
+                ItemStat = 4,
+                Price = 100,
+                Slot = "body",
+                Description = "Steel and leather combined for unparellelled protection and great mobility."
+            };
+            var bone = new Item
+            {
+                name = "Bone Mail",
+                ItemStat = 6,
+                Price = 150,
+                Slot = "body",
+                Description = "Someone's prized posession, armor made from the the bonesof their ancestors. Stronger than steel and very intimidating."
             };
 
             var items = new Item[]
             {
+                dagger,
+                sword,
+                axe,
                 scythe,
+
+                leather, 
+                chainmail, 
+                brigandine,
+                bone, 
                 minHealthPot,
-                chainmail
+                HealthPot,
+                majHealthPot
+
             };
             context.Items.AddRange(items);
 
