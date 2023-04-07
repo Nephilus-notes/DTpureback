@@ -12,11 +12,11 @@ namespace DTpureback.Controllers
 {
     [Route($"api/{"take2"}")]
     [ApiController]
-    public class LocationsController : ControllerBase
+    public class LocationController : ControllerBase
     {
         private readonly DragonsTailContext _context;
 
-        public LocationsController(DragonsTailContext context)
+        public LocationController(DragonsTailContext context)
         {
             _context = context;
         }
