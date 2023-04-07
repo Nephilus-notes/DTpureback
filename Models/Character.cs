@@ -8,7 +8,7 @@
         // Items and Currency
         public int CurrentCurrency { get; set; }
 
-
+        public int Level { get; set; }
 
         // Stats
         // I can remove armor from the DB and instead calculate it in browser based on equipment
@@ -20,25 +20,25 @@
         public int Constitution { get; set; }
 
         // Max hp and mp can also be removed if I add logic to calculate it in browser
-        public int MaxHP { get; set; }
-        public int MaxMP { get; set; }
+        //public int MaxHP { get; set; }
+        //public int MaxMP { get; set; }
         // Weapon Damage and damage also does not need to be a separate field
 
 
-        public int Damage { get; set; }
-        public int WeaponDamage { get; set; } = 0;
+        //public int Damage { get; set; }
+        //public int WeaponDamage { get; set; } = 0;
 
 
 
         // Persistent mutable stats
-        public int CurrentHP { get; set; }
-        public int CurrentMP { get; set; }
+        //public int CurrentHP { get; set; }
+        //public int CurrentMP { get; set; }
 
         // Temp Stats
         public int ArmorValue { get; set; }
-        public int ResistanceValue { get; set; }
+        //public int ResistanceValue { get; set; }
         public int EvadePercentage { get; set; }
-        public int AttackValue { get; set; }
+        //public int AttackValue { get; set; }
         public int DamageValue { get; set; }
 
         // /* Statuses */ 
@@ -82,12 +82,12 @@
 
             if (attack == 100)
             {
-                int damage = self.Damage * 2;
+                int damage = self.DamageValue * 2;
                 return damage;
             }
             else if (attack > target.EvadePercentage)
             {
-                int totalDamage = self.Damage - target.ArmorValue;
+                int totalDamage = self.DamageValue - target.ArmorValue;
                 if (totalDamage > 0)
                 {
                     return totalDamage;

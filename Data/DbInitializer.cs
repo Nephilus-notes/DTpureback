@@ -167,29 +167,186 @@ namespace DTpureback.Data
             };
             context.Items.AddRange(items);
 
+            var kraktRat = new Character
+            {
+                Name = "Kratkt Rat",
+                Level = 1,
+                CurrentCurrency = 0,
+                Strength = 0,
+                Dexterity = 10,
+                Intelligence = 0,
+                Constitution = 4,
+                Armor = 0,
+                EvadePercentage = 10,
+                DamageValue = 2,
+                Resistance = 3
+            };
+
+            var brabaBat = new Character
+            {
+                Name = "Braba Bat",
+                Level = 1,
+                CurrentCurrency = 0,
+                Strength = 0,
+                Dexterity = 10,
+                Intelligence = 0,
+                Constitution = 4,
+                Armor = 0,
+                EvadePercentage = 10,
+                DamageValue = 2,
+                Resistance = 3
+            };
+
+            var venKtathSpider = new Character
+            {
+                Name = "Ven'ktath Spider",
+                Level = 2,
+                CurrentCurrency = 0,
+                Strength = 4,
+                Dexterity = 10,
+                Intelligence = 0,
+                Constitution = 4,
+                Armor = 0,
+                EvadePercentage = 10,
+                DamageValue = 2,
+                Resistance = 3
+            };
+
+            var graithGeshLizard = new Character
+            {
+                Name = "Graith'Gesh Lizard",
+                Level = 5,
+                CurrentCurrency = 0,
+                Strength = 14,
+                Dexterity = 4,
+                Intelligence = 0,
+                Constitution = 10,
+                Armor = 4,
+                EvadePercentage = 4,
+                DamageValue = 7,
+                Resistance = 3
+            };
+
+            var graithGeshQueen = new Character
+            {
+                Name = "Graith'Gesh Queen",
+                Level = 6,
+                CurrentCurrency = 0,
+                Strength = 18,
+                Dexterity = 14,
+                Intelligence = 0,
+                Constitution = 14,
+                Armor = 6,
+                EvadePercentage = 4,
+                DamageValue = 7,
+                Resistance = 3
+            };
+
+            var graktaWolf = new Character
+            {
+                Name = "Grakta Wolf",
+                Level = 4,
+                CurrentCurrency = 0,
+                Strength = 10,
+                Dexterity = 10,
+                Intelligence = 4,
+                Constitution = 10,
+                Armor = 6,
+                EvadePercentage = 4,
+                DamageValue = 7,
+                Resistance = 3
+            };
+
+            var graithTree = new Character
+            {
+                Name = "Graith Tree",
+                Level = 4,
+                CurrentCurrency = 0,
+                Strength = 14,
+                Dexterity = 4,
+                Intelligence = 0,
+                Constitution = 14,
+                Armor = 4,
+                EvadePercentage = 4,
+                DamageValue = 7,
+                Resistance = 1
+            };
+            var graithAppleTree = new Character
+            {
+                Name = "Grakta Wolf",
+                Level = 6,
+                CurrentCurrency = 0,
+                Strength = 18,
+                Dexterity = 18,
+                Intelligence = 10,
+                Constitution = 18,
+                Armor = 4,
+                EvadePercentage = 18,
+                DamageValue = 7,
+                Resistance = 3
+            };
+            var shadeFireFox = new Character
+            {
+                Name = "Shadefire Fox",
+                Level = 6,
+                CurrentCurrency = 0,
+                Strength = 10,
+                Dexterity = 18,
+                Intelligence = 10,
+                Constitution = 10,
+                Armor = 3,
+                EvadePercentage = 4,
+                DamageValue = 7,
+                Resistance = 6
+            };
+
+
+
+            var NPC = new Character[]
+            {
+                kraktRat,
+                brabaBat,
+                venKtathSpider,
+                graithGeshLizard,
+                graithGeshQueen,
+                graktaWolf,
+                graithTree,
+                graithAppleTree,
+                shadeFireFox
+            };
+
+            context.Characters.AddRange(NPC);
+
+            var backpack = new Item [] {
+                dagger, majHealthPot
+            };
+
             var crae = new PlayerCharacter
             {
                 Name = "Craelios",
                 LifeTimeCurrency = 0,
                 CurrentCurrency = 0,
-                Backpack = null,
+                Level = 4,
+                Backpack = backpack,
                 //EquippedItems = null,
                 Strength = 13,
                 Dexterity = 15,
                 Intelligence = 13,
                 Constitution = 16,
-                MaxHP = 32,
-                MaxMP = 26,
+
                 Weapon = scythe,
-                WeaponDamage = scythe.ItemStat,
-                Damage = scythe.ItemStat + 6,
+
                 CurrentHP = 31,
                 CurrentMP = 25,
+                DamageValue = 21, 
                 ArmorValue = 0,
-                ResistanceValue = 0,
-                EvadePercentage = 15,
-                AttackValue = 0,
-                DamageValue = 21,
+                //MaxHP = 32,
+                //MaxMP = 26,  
+                //ResistanceValue = 0,
+                //EvadePercentage = 15,
+                //AttackValue = 0,
+                //WeaponDamage = scythe.ItemStat,
+                //Damage = scythe.ItemStat + 6,               
             };
 
            var playerCharacters = new PlayerCharacter[]

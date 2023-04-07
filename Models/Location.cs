@@ -9,7 +9,14 @@ namespace DTpureback.Models
         public string EnterText { get; set; }
         public string ExitText { get; set; }
         public string? MoveOptions { get; set; }
-        public string? NPCOptions { get; set; }
+        public int? CommonNPC { get; set; }
+        public int? UncommonNPC { get; set; }
+
+        public int? RareNPC { get; set; }
+        public int? SecretNPC { get; set; }
+
         public string? Next { get; set; }
+
+
     }
 }

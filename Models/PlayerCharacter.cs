@@ -18,6 +18,9 @@ namespace DTpureback.Models
         public int IntelligenceXP { get; set; } = 0;
         public int ConstitutionXP { get; set; } = 0;
 
+        public int CurrentHP { get; set; }
+        public int CurrentMP { get; set; }
+
 
 
         // Do I need this? ??

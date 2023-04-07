@@ -4,6 +4,7 @@ using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    partial class DragonsTailContextModelSnapshot : ModelSnapshot
+    [Migration("20230407214537_DroppedExcessAttributesOnPlayerAndCharacter")]
+    partial class DroppedExcessAttributesOnPlayerAndCharacter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,9 +104,6 @@ namespace DTpureback.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int>("Intelligence")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Level")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
