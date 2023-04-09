@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DTpureback.Data;
 using DTpureback.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace DTpureback.Controllers
 {
@@ -22,6 +23,7 @@ namespace DTpureback.Controllers
         }
 
         // GET: api/Locations1
+        [DisableCors]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Location>>> GetLocations()
         {
