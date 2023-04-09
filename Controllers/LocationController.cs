@@ -10,7 +10,7 @@ using DTpureback.Models;
 
 namespace DTpureback.Controllers
 {
-    [Route($"api/{"take2"}")]
+    [Route($"api/{"location"}")]
     [ApiController]
     public class LocationController : ControllerBase
     {

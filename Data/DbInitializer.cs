@@ -361,7 +361,9 @@ namespace DTpureback.Data
             {
                 ID = "T",
                 Name = "Town",
-                EnterText = "Here we are in town",
+                EnterText = "You have arrived back home in Grik'tath.  You can hear the beating of iron coming from the blacksmith, " +
+                "smell grass and sky coming from the dark windows of the alchemist's shop, and see the calming glow of people in the " +
+                "inn.  There's also a path deeper underground into The Underbelly, or the tunnel outside to the Shining Forest. ",
                 ExitText = "",
                 MoveOptions = "B,A,I,U,S",
             };
@@ -381,7 +383,9 @@ namespace DTpureback.Data
             {
                 ID = "A",
                 Name = "Alchemist's Shop",
-                EnterText = "Welcome to the alchemist's shop",
+                EnterText = "You duck your head as you step into the alchemists shop.  Dried bundles of fungi, sticks, " +
+                "and even flowers festoon the walls and Garthak the Brewer is humming to himself as he grinds " +
+                "something with a pestle. Looking up he flashes his sharp teeth in a smile.",
                 ExitText = "",
                 MoveOptions = "T,O",
             };
