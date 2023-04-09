@@ -402,6 +402,7 @@ namespace DTpureback.Data
                 EnterText = "You enter the Underbelly and wend your way through the crevasses and crags of Thagrag's Hope.",
                 ExitText = "",
                 MoveOptions = "T,O",
+                Next = "W"
             };
 
             var webOfDepths = new Location
@@ -412,6 +413,7 @@ namespace DTpureback.Data
                 "Every surface is slick with moisture in this series of interwoven tunnels created by underground rivers.",
                 ExitText = "",
                 MoveOptions = "T,G",
+                Next = "G"
             };
 
             var graithsGrotto = new Location
@@ -422,6 +424,7 @@ namespace DTpureback.Data
                 "Home to the lizards your people have learned to domesticate, none you might find here will be friendly.",
                 ExitText = "",
                 MoveOptions = "T,Q",
+                Next = "Q"
             };
             var graithQueensLair = new Location
             {
@@ -444,6 +447,7 @@ namespace DTpureback.Data
                 "It will take some time before you can appreciate the savage beauty of the mountaintops as you do the roots of the mountain.",
                 ExitText = "",
                 MoveOptions = "T,D",
+                Next = "D"
             };
 
             var drippingDeath = new Location
@@ -459,6 +463,7 @@ namespace DTpureback.Data
                 "How long til the Graith Trees come for you? ",
                 ExitText = "",
                 MoveOptions = "T,P",
+                Next = "P"
             };
             var playersRespite = new Location
             {
@@ -473,6 +478,7 @@ namespace DTpureback.Data
                 "feels like a godsend,even if it holds demons.",
                 ExitText = "",
                 MoveOptions = "T,TTD",
+                Next = "TTD"
             };
 
             var tailOfTheDragon = new Location
