@@ -58,7 +58,10 @@ namespace DTpureback.Controllers
                 var moveOptions = list;
                     foreach ( var moveOption in location.MoveOptions )
                 {
-                    moveOptions.Add(moveOption.ToString());
+                    if(moveOption != ',')
+                    {
+                        moveOptions.Add(moveOption.ToString());
+                    }
                 }
                 returnLocation.MoveOptions = moveOptions;
             }

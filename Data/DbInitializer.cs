@@ -405,7 +405,7 @@ namespace DTpureback.Data
                 Name = "Thagrag's Hope",
                 EnterText = "You enter the Underbelly and wend your way through the crevasses and crags of Thagrag's Hope.",
                 ExitText = "",
-                MoveOptions = "T,O",
+                MoveOptions = "T,C",
                 Next = "W"
             };
 
@@ -416,7 +416,7 @@ namespace DTpureback.Data
                 EnterText = "A waterfall deafens you as you enter the Web of the Depths. "+
                 "Every surface is slick with moisture in this series of interwoven tunnels created by underground rivers.",
                 ExitText = "",
-                MoveOptions = "T,G",
+                MoveOptions = "T,C",
                 Next = "G"
             };
 
@@ -427,7 +427,7 @@ namespace DTpureback.Data
                 EnterText = "Out of range of any natural light you navigate purely by your own light as you enter Graith's Grotto. "+
                 "Home to the lizards your people have learned to domesticate, none you might find here will be friendly.",
                 ExitText = "",
-                MoveOptions = "T,Q",
+                MoveOptions = "T,C",
                 Next = "Q"
             };
             var graithQueensLair = new Location
@@ -450,7 +450,7 @@ namespace DTpureback.Data
                 "Towering mountains feel almost familiar but their twisted peaks point upwards into the vastness of the brilliant blue sky. " +
                 "It will take some time before you can appreciate the savage beauty of the mountaintops as you do the roots of the mountain.",
                 ExitText = "",
-                MoveOptions = "T,D",
+                MoveOptions = "T,C",
                 Next = "D"
             };
 
@@ -466,7 +466,7 @@ namespace DTpureback.Data
                 "The hanging moss swaying in the breeze almost causing you to bolt. " +
                 "How long til the Graith Trees come for you? ",
                 ExitText = "",
-                MoveOptions = "T,P",
+                MoveOptions = "T,C",
                 Next = "P"
             };
             var playersRespite = new Location
@@ -481,7 +481,7 @@ namespace DTpureback.Data
                 "glaring grey of the marsh the sunlit green of forest " +
                 "feels like a godsend,even if it holds demons.",
                 ExitText = "",
-                MoveOptions = "T,TTD",
+                MoveOptions = "T,C",
                 Next = "TTD"
             };
 
