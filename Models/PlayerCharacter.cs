@@ -21,6 +21,8 @@ namespace DTpureback.Models
         public int CurrentHP { get; set; }
         public int CurrentMP { get; set; }
 
+        public string? currentLocation { get; set; }
+
 
 
         // Do I need this? ??
