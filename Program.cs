@@ -11,8 +11,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
         policy =>
-        {
-            policy.WithOrigins("http://localhost:4200");
+        { //WithOrigins("http://localhost:4200/game")
+            policy.AllowAnyHeader()
+                                .AllowAnyOrigin()
+                                .AllowAnyMethod() 
+                                
+                                .AllowAnyMethod(); 
         });
 });
     
@@ -47,7 +51,7 @@ using (var scope = app.Services.CreateScope())
 
 app.UseHttpsRedirection();
 
-//app.UseCors(MyAllowSpecificOrigins);
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

@@ -22,8 +22,8 @@ namespace DTpureback.Controllers
             _context = context;
         }
 
-        // GET: api/Locations1
-        [DisableCors]
+        // GET: api/Location
+        [EnableCors]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Location>>> GetLocations()
         {
@@ -34,7 +34,7 @@ namespace DTpureback.Controllers
             return await _context.Locations.ToListAsync();
         }
 
-        // GET: api/Locations1/5
+        // GET: api/Location/5
         [HttpGet("{id}")]
         public async Task<ActionResult<LocationDTO>> GetLocation(string id)
         {
