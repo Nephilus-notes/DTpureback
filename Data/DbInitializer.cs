@@ -302,7 +302,7 @@ namespace DTpureback.Data
 
 
 
-            var NPC = new NPC[]
+            var NPCs = new NPC[]
             {
                 kraktRat,
                 brabaBat,
@@ -315,7 +315,7 @@ namespace DTpureback.Data
                 shadeFireFox
             };
 
-            context.Characters.AddRange(NPC);
+            context.NPC.AddRange(NPCs);
 
             var backpack = new Item [] {
                 dagger, majHealthPot

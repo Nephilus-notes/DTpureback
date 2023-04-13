@@ -34,5 +34,7 @@ namespace DTpureback.Data
             //modelBuilder.Entity<SongContributor>().ToTable(nameof(SongContributor));
             //modelBuilder.Entity<SongPedal>().ToTable(nameof(SongPedal));
         }
+
+        public DbSet<NPC>? NPC { get; set; }
     }
 }
