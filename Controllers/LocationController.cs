@@ -65,6 +65,30 @@ namespace DTpureback.Controllers
                 }
                 returnLocation.MoveOptions = moveOptions;
             }
+
+            if(location.Next != null)
+            {
+                returnLocation.Next = location.Next;
+            }
+
+            if (location.CommonNPC != null)
+            {
+                returnLocation.CommonNPC = location.CommonNPC;
+            }
+
+            if (location.UncommonNPC != null)
+            {
+                returnLocation.UncommonNPC = location.UncommonNPC;
+            }
+
+            if (location.RareNPC != null)
+            {
+                returnLocation.RareNPC = location.RareNPC;
+            }
+            if (location.SecretNPC != null)
+            {
+                returnLocation.SecretNPC = location.SecretNPC;
+            }
            
             return returnLocation;
         }
