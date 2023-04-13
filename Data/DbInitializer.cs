@@ -167,7 +167,7 @@ namespace DTpureback.Data
             };
             context.Items.AddRange(items);
 
-            var kraktRat = new Character
+            var kraktRat = new NPC
             {
                 Name = "Kratkt Rat",
                 Level = 1,
@@ -182,7 +182,7 @@ namespace DTpureback.Data
                 Resistance = 3
             };
 
-            var brabaBat = new Character
+            var brabaBat = new NPC
             {
                 Name = "Braba Bat",
                 Level = 1,
@@ -197,7 +197,7 @@ namespace DTpureback.Data
                 Resistance = 3
             };
 
-            var venKtathSpider = new Character
+            var venKtathSpider = new NPC
             {
                 Name = "Ven'ktath Spider",
                 Level = 2,
@@ -212,7 +212,7 @@ namespace DTpureback.Data
                 Resistance = 3
             };
 
-            var graithGeshLizard = new Character
+            var graithGeshLizard = new NPC
             {
                 Name = "Graith'Gesh Lizard",
                 Level = 5,
@@ -227,7 +227,7 @@ namespace DTpureback.Data
                 Resistance = 3
             };
 
-            var graithGeshQueen = new Character
+            var graithGeshQueen = new NPC
             {
                 Name = "Graith'Gesh Queen",
                 Level = 6,
@@ -242,7 +242,7 @@ namespace DTpureback.Data
                 Resistance = 3
             };
 
-            var graktaWolf = new Character
+            var graktaWolf = new NPC
             {
                 Name = "Grakta Wolf",
                 Level = 4,
@@ -257,7 +257,7 @@ namespace DTpureback.Data
                 Resistance = 3
             };
 
-            var graithTree = new Character
+            var graithTree = new NPC
             {
                 Name = "Graith Tree",
                 Level = 4,
@@ -271,7 +271,7 @@ namespace DTpureback.Data
                 DamageValue = 7,
                 Resistance = 1
             };
-            var graithAppleTree = new Character
+            var graithAppleTree = new NPC
             {
                 Name = "Grakta Wolf",
                 Level = 6,
@@ -285,7 +285,7 @@ namespace DTpureback.Data
                 DamageValue = 7,
                 Resistance = 3
             };
-            var shadeFireFox = new Character
+            var shadeFireFox = new NPC
             {
                 Name = "Shadefire Fox",
                 Level = 6,
@@ -302,7 +302,7 @@ namespace DTpureback.Data
 
 
 
-            var NPC = new Character[]
+            var NPC = new NPC[]
             {
                 kraktRat,
                 brabaBat,
