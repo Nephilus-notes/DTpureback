@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DTpureback.Data;
 using DTpureback.Models;
+using DTpureback.Interfaces;
 
 namespace DTpureback.Controllers
 {
@@ -46,6 +47,17 @@ namespace DTpureback.Controllers
             {
                 return NotFound();
             }
+
+            var returnPC = playerCharacter;
+
+            //if(returnPC.EquippedItems == null)
+            //{
+
+
+            //    returnPC.EquippedItems.Head = null;
+            //    returnPC.EquippedItems.Hand = null;
+            //    returnPC.EquippedItems.Body = null;
+            //}
 
             return playerCharacter;
         }

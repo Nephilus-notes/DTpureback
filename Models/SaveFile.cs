@@ -8,5 +8,6 @@
         public int UserID { get; set; }
         public int PlayerCharacterID { get; set; }
         public string LocationID { get; set; }
+        //public DateTime dateModified { get; set; }
     }
 }
