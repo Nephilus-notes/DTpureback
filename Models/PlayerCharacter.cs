@@ -18,6 +18,10 @@ namespace DTpureback.Models
         public int IntelligenceXP { get; set; } = 0;
         public int ConstitutionXP { get; set; } = 0;
 
+        // Max hp and mp can also be removed if I add logic to calculate it in browser
+        public int MaxHP { get; set; }
+        public int MaxMP { get; set; }
+
         public int CurrentHP { get; set; }
         public int CurrentMP { get; set; }
 

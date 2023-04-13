@@ -19,9 +19,7 @@
         public int Intelligence { get; set; }
         public int Constitution { get; set; }
 
-        // Max hp and mp can also be removed if I add logic to calculate it in browser
-        //public int MaxHP { get; set; }
-        //public int MaxMP { get; set; }
+
         // Weapon Damage and damage also does not need to be a separate field
 
 
