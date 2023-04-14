@@ -12,10 +12,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
         policy =>
         { //WithOrigins("http://localhost:4200/game")
-            policy.AllowAnyHeader()
+                                policy.AllowAnyHeader()
                                 .AllowAnyOrigin()
-                                .AllowAnyMethod() 
-                                
                                 .AllowAnyMethod(); 
         });
 });

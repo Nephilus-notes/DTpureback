@@ -520,33 +520,10 @@ namespace DTpureback.Data
             };
 
             context.Locations.AddRange(locations);
-            //System.Diagnostics.Debug.WriteLine(blues);
-            //System.Diagnostics.Debug.WriteLine(closer);
+                    //System.Diagnostics.Debug.WriteLine(blues);
+                    //System.Diagnostics.Debug.WriteLine(closer);
 
-
-            var save = new SaveFile
-            {
-                UserID = 5,
-                PlayerCharacterID = 10,
-                LocationID = "T"
-            };
-
-            var save2 = new SaveFile
-            {
-                UserID = 5,
-                PlayerCharacterID = 10,
-                LocationID = "I"
-            };
-
-            var saves = new SaveFile[]
-            {
-                save,
-                save2
-            };
-
-            context.SaveFiles.AddRange(saves);
-
-            context.SaveChanges();
+                    context.SaveChanges();
         }
     }
 }
