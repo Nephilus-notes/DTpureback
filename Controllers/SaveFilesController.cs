@@ -50,6 +50,27 @@ namespace DTpureback.Controllers
             return saveFile;
         }
 
+        // GET: api/SaveFiles/5
+        [HttpGet("{userid}")]
+        public async Task<ActionResult<SaveFile>> GetSaveFileByUser(int userid)
+        {
+            if (_context.SaveFiles == null)
+            {
+                return NotFound();
+            }
+            var save = await _context.SaveFiles.FindAsync(userid);
+            //var allSaves = await _context.SaveFiles.ToListAsync(save => save.userID == userid);
+            //var saveFile = new List<SaveFile>(allSaves(
+            //    save => save.userID == userid))
+
+            //if (saveFile == null)
+            //{
+            //    return NotFound();
+            //}
+
+            return save;
+        }
+
         // PUT: api/SaveFiles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
