@@ -12,11 +12,11 @@ namespace DTpureback.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NPCsController : ControllerBase
+    public class NPCController : ControllerBase
     {
         private readonly DragonsTailContext _context;
 
-        public NPCsController(DragonsTailContext context)
+        public NPCController(DragonsTailContext context)
         {
             _context = context;
         }
