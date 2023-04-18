@@ -58,20 +58,15 @@ namespace DTpureback.Controllers
             {
                 return NotFound("Context");
             }
-            var user = await _context.Users
-                .FindAsync(id);
 
             var saveFiles = await _context.SaveFiles
-                .Include(s => s.UserID == id)
+                .Where(s => s.UserID == id)
                 .ToListAsync();
-
             
             if (saveFiles == null)
             {
                 return NotFound("files are gone!");
             }
-
-            //var saveFiles = user.SaveFiles.ToList();
             
             return saveFiles;
         }

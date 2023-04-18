@@ -25,7 +25,7 @@ namespace DTpureback.Models
         public int CurrentHP { get; set; }
         public int CurrentMP { get; set; }
 
-        public string? currentLocation { get; set; }
+        public string? CurrentLocation { get; set; }
 
         public int KratabsFollyExplored { get; set; } = 0;
 
