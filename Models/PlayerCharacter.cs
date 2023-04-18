@@ -27,7 +27,16 @@ namespace DTpureback.Models
 
         public string? currentLocation { get; set; }
 
+        public int KratabsFollyExplored { get; set; } = 0;
 
+        public int DrippingDeathExplored { get; set; } = 0;
+        public int PlayersRespiteExplored { get; set; } = 0;
+        public int TailOfTheDragonExplored { get; set; } = 0;
+        public int ThagragsHopeExplored { get; set; } = 0;
+
+        public int WebOfDepthsExplored { get; set; } = 0;
+        public int GraithsGrottoExplored { get; set; } = 0;
+        public int GraithQueensLairExplored { get; set; } = 0;
 
         // Do I need this? ??
         //public List<string>? AttributeList { get; set; }

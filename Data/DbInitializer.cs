@@ -30,27 +30,7 @@ namespace DTpureback.Data
                 return;
             }
 
-            var charles = new User
-            {
-                Name = "Charles",
-                Email = "Cmhmcc@gmail.com",
-                Password = "Sup",
-            };
-
-            var shawn = new User
-            {
-                Name = "Shawn",
-                Email = "smoethin@s.com",
-                Password = "Sup",
-            };
-
-            var users = new User[]
-            {
-                charles,
-                shawn
-            };
-
-            context.Users.AddRange(users);
+            
 
             var scythe = new Item
             {
@@ -520,10 +500,58 @@ namespace DTpureback.Data
             };
 
             context.Locations.AddRange(locations);
-                    //System.Diagnostics.Debug.WriteLine(blues);
-                    //System.Diagnostics.Debug.WriteLine(closer);
+            //System.Diagnostics.Debug.WriteLine(blues);
+            //System.Diagnostics.Debug.WriteLine(closer);
 
-                    context.SaveChanges();
+            var save1 = new SaveFile
+            {
+                UserID = 5,
+                PlayerCharacterID = 28,
+                LocationID = "T"
+            };
+            var save2 = new SaveFile
+            {
+                UserID = 5,
+                PlayerCharacterID = 28,
+                LocationID = "I"
+            };
+
+            var saves = new SaveFile[]
+            {
+            save1,
+            save2
+            };
+
+            context.SaveFiles.AddRange(saves);
+
+            var charles = new User
+            {
+                Name = "Charles",
+                Email = "Cmhmcc@gmail.com",
+                Password = "Sup",
+                SaveFiles = new List<SaveFile>
+                { 
+                    save1, 
+                    save2 
+                }
+
+            };
+
+            var shawn = new User
+            {
+                Name = "Shawn",
+                Email = "smoethin@s.com",
+                Password = "Sup",
+            };
+
+            var users = new User[]
+            {
+                charles,
+                shawn
+            };
+
+            context.Users.AddRange(users);
+            context.SaveChanges();
         }
     }
 }
