@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DTpureback.Models
+namespace DTpureback.Models.Resources
 {
     public class Location
     {

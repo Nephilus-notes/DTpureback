@@ -1,4 +1,5 @@
 ﻿using DTpureback.Interfaces;
+using DTpureback.Models.Resources;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DTpureback.Models

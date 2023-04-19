@@ -1,6 +1,6 @@
-﻿namespace DTpureback.Models
+﻿namespace DTpureback.Models.Resources
 {
-    public class Character : BaseEntity 
+    public class Character : BaseEntity
     {
         public string Name { get; set; }
 

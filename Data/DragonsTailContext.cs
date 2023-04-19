@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DTpureback.Models;
+using DTpureback.Models.Resources;
 
 namespace DTpureback.Data
 {
@@ -29,7 +30,7 @@ namespace DTpureback.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable(nameof(User))
+            modelBuilder.Entity<SaveFile>().ToTable(nameof(User))
                 .HasMany(u => u.SaveFiles);
 
         }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DTpureback.Data;
-using DTpureback.Models;
+using DTpureback.Models.Resources;
 
 namespace DTpureback.Controllers
 {
