@@ -22,7 +22,6 @@ namespace DTpureback.Data
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get;set; }
-        public DbSet<Character> Characters { get; set; }
         public DbSet<PlayerCharacter> PlayerCharacters { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<SaveFile> SaveFiles { get; set; }

@@ -22,7 +22,276 @@ namespace DTpureback.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("DTpureback.Models.Resources.Character", b =>
+            modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("Armor")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ArmorValue")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Burning")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("BurningBlades")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("BurningBladesRounds")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BurningRounds")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Constitution")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ConstitutionXP")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CurrentCurrency")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CurrentHP")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CurrentLocation")
+                        .HasColumnType("text");
+
+                    b.Property<int>("CurrentMP")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DamageValue")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Defended")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("DefendingFounds")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Dexterity")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DexterityXP")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("DoubleArmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("DoubledArmedRounds")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DrippingDeathExplored")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("EvadePercentage")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Evading")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("EvadingRounds")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Fleeing")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("FleeingRounds")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Focusing")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("FocusingRounds")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("GraithQueensLairExplored")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("GraithsGrottoExplored")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("HitByWind")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("Intelligence")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IntelligenceXP")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("KratabsFollyExplored")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("LifeTimeCurrency")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MaxHP")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MaxMP")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("PlayersRespiteExplored")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Poisoned")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("PoisonedRounds")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Resistance")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Slowed")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("SlowedRounds")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("StoneArmored")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("StoneArmoredRounds")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("StoneFists")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("Strength")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StrengthXP")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Stunned")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("TailOfTheDragonExplored")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ThagragsHopeExplored")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Vulnerable")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("VulnerableRounds")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("WeaponID")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("WebOfDepthsExplored")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("WeaponID");
+
+                    b.ToTable("PlayerCharacters");
+                });
+
+            modelBuilder.Entity("DTpureback.Models.Resources.Item", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ItemStat")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("PlayerCharacterID")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Slot")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PlayerCharacterID");
+
+                    b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("DTpureback.Models.Resources.Location", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("CommonNPC")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("EnterText")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ExitText")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("MoveOptions")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Next")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("RareNPC")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("SecretNPC")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UncommonNPC")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("DTpureback.Models.Resources.NPC", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -71,10 +340,6 @@ namespace DTpureback.Migrations
 
                     b.Property<int>("Dexterity")
                         .HasColumnType("integer");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<bool>("DoubleArmed")
                         .HasColumnType("boolean");
@@ -157,87 +422,7 @@ namespace DTpureback.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Characters");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Character");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("DTpureback.Models.Resources.Item", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("ItemStat")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("PlayerCharacterID")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Slot")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("PlayerCharacterID");
-
-                    b.ToTable("Items");
-                });
-
-            modelBuilder.Entity("DTpureback.Models.Resources.Location", b =>
-                {
-                    b.Property<string>("ID")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("CommonNPC")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("EnterText")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("ExitText")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("MoveOptions")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Next")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("RareNPC")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("SecretNPC")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("UncommonNPC")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Locations");
+                    b.ToTable("NPC");
                 });
 
             modelBuilder.Entity("DTpureback.Models.SaveFile", b =>
@@ -310,75 +495,11 @@ namespace DTpureback.Migrations
 
             modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
                 {
-                    b.HasBaseType("DTpureback.Models.Resources.Character");
+                    b.HasOne("DTpureback.Models.Resources.Item", "Weapon")
+                        .WithMany()
+                        .HasForeignKey("WeaponID");
 
-                    b.Property<int>("ConstitutionXP")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CurrentHP")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("CurrentLocation")
-                        .HasColumnType("text");
-
-                    b.Property<int>("CurrentMP")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("DexterityXP")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("DrippingDeathExplored")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("GraithQueensLairExplored")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("GraithsGrottoExplored")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("IntelligenceXP")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("KratabsFollyExplored")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("LifeTimeCurrency")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MaxHP")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MaxMP")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("PlayersRespiteExplored")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("StrengthXP")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TailOfTheDragonExplored")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ThagragsHopeExplored")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("WeaponID")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("WebOfDepthsExplored")
-                        .HasColumnType("integer");
-
-                    b.HasIndex("WeaponID");
-
-                    b.HasDiscriminator().HasValue("PlayerCharacter");
-                });
-
-            modelBuilder.Entity("DTpureback.Models.Resources.NPC", b =>
-                {
-                    b.HasBaseType("DTpureback.Models.Resources.Character");
-
-                    b.HasDiscriminator().HasValue("NPC");
+                    b.Navigation("Weapon");
                 });
 
             modelBuilder.Entity("DTpureback.Models.Resources.Item", b =>
@@ -402,21 +523,12 @@ namespace DTpureback.Migrations
 
             modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
                 {
-                    b.HasOne("DTpureback.Models.Resources.Item", "Weapon")
-                        .WithMany()
-                        .HasForeignKey("WeaponID");
-
-                    b.Navigation("Weapon");
+                    b.Navigation("Backpack");
                 });
 
             modelBuilder.Entity("DTpureback.Models.User", b =>
                 {
                     b.Navigation("SaveFiles");
-                });
-
-            modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
-                {
-                    b.Navigation("Backpack");
                 });
 #pragma warning restore 612, 618
         }
