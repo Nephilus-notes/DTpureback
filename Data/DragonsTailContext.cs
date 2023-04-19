@@ -30,9 +30,18 @@ namespace DTpureback.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SaveFile>().ToTable(nameof(User))
-                .HasMany(u => u.SaveFiles);
+            modelBuilder.Entity<SaveFile>(entity =>
+            {
+                entity.HasOne(u => u.User)
+                .WithMany(s => s.SaveFiles)
+                .HasForeignKey(x => x.UserID)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("FK_User_SaveFile");
 
+            entity.HasOne(pc => pc.Character)
+                .WithOne(s => s.Save)
+                .HasForeignKey<PlayerCharacter>(x => x.ID);
+            });
         }
 
     }
