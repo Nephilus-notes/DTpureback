@@ -38,9 +38,9 @@ namespace DTpureback.Data
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("FK_User_SaveFile");
 
-            entity.HasOne(pc => pc.Character)
-                .WithOne(s => s.Save)
-                .HasForeignKey<PlayerCharacter>(x => x.ID);
+            //entity.HasOne(pc => pc.Character)
+            //    .WithOne(s => s.Save)
+            //    .HasForeignKey<PlayerCharacter>(x => x.ID);
             });
         }
 

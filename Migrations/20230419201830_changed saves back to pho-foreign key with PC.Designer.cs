@@ -3,6 +3,7 @@ using System;
 using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    partial class DragonsTailContextModelSnapshot : ModelSnapshot
+    [Migration("20230419201830_changed saves back to pho-foreign key with PC")]
+    partial class changedsavesbacktophoforeignkeywithPC
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,6 +272,9 @@ namespace DTpureback.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("PlayerCharacterID")
+                        .IsUnique();
+
                     b.HasIndex("UserID");
 
                     b.ToTable("SaveFiles");
@@ -390,12 +396,20 @@ namespace DTpureback.Migrations
 
             modelBuilder.Entity("DTpureback.Models.SaveFile", b =>
                 {
+                    b.HasOne("DTpureback.Models.PlayerCharacter", "Character")
+                        .WithOne("Save")
+                        .HasForeignKey("DTpureback.Models.SaveFile", "PlayerCharacterID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DTpureback.Models.User", "User")
                         .WithMany("SaveFiles")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("FK_User_SaveFile");
+
+                    b.Navigation("Character");
 
                     b.Navigation("User");
                 });
@@ -417,6 +431,8 @@ namespace DTpureback.Migrations
             modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
                 {
                     b.Navigation("Backpack");
+
+                    b.Navigation("Save");
                 });
 #pragma warning restore 612, 618
         }

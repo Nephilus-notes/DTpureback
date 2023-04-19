@@ -45,7 +45,7 @@ namespace DTpureback.Models
         // Abilities 
         //public List<string>? Abilities { get; set; }
 
-        public SaveFile Save { get; set; }
+        //public SaveFile? Save { get; set; }
 
 
     }

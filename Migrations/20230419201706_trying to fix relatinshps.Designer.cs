@@ -3,6 +3,7 @@ using System;
 using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    partial class DragonsTailContextModelSnapshot : ModelSnapshot
+    [Migration("20230419201706_trying to fix relatinshps")]
+    partial class tryingtofixrelatinshps
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,10 +28,7 @@ namespace DTpureback.Migrations
             modelBuilder.Entity("DTpureback.Models.Resources.Character", b =>
                 {
                     b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<int>("Armor")
                         .HasColumnType("integer");
@@ -402,11 +402,25 @@ namespace DTpureback.Migrations
 
             modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
                 {
+                    b.HasOne("DTpureback.Models.SaveFile", "Save")
+                        .WithOne("Character")
+                        .HasForeignKey("DTpureback.Models.PlayerCharacter", "ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DTpureback.Models.Resources.Item", "Weapon")
                         .WithMany()
                         .HasForeignKey("WeaponID");
 
+                    b.Navigation("Save");
+
                     b.Navigation("Weapon");
+                });
+
+            modelBuilder.Entity("DTpureback.Models.SaveFile", b =>
+                {
+                    b.Navigation("Character")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DTpureback.Models.User", b =>
