@@ -3,17 +3,17 @@ using System;
 using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    [Migration("20230413173039_AddedNPCOptionsToLocationDTO")]
-    partial class AddedNPCOptionsToLocationDTO
+    [Migration("20230419193653_restarting!")]
+    partial class restarting
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,133 +21,133 @@ namespace DTpureback.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.4")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("DTpureback.Models.Character", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<int>("Armor")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("ArmorValue")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("Burning")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("BurningBlades")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("BurningBladesRounds")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("BurningRounds")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("Constitution")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("CurrentCurrency")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("DamageValue")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("Defended")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("DefendingFounds")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("Dexterity")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("DoubleArmed")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("DoubledArmedRounds")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("EvadePercentage")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("Evading")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("EvadingRounds")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("Fleeing")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("FleeingRounds")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("Focusing")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("FocusingRounds")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("HitByWind")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("Intelligence")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("Level")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("Poisoned")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("PoisonedRounds")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("Resistance")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("Slowed")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("SlowedRounds")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("StoneArmored")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("StoneArmoredRounds")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("StoneFists")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("Strength")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("Stunned")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("Vulnerable")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("VulnerableRounds")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("ID");
 
@@ -162,30 +162,30 @@ namespace DTpureback.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("ItemStat")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("PlayerCharacterID")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("Price")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Slot")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("ID");
 
@@ -197,37 +197,37 @@ namespace DTpureback.Migrations
             modelBuilder.Entity("DTpureback.Models.Location", b =>
                 {
                     b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<int?>("CommonNPC")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("EnterText")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ExitText")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("MoveOptions")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Next")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int?>("RareNPC")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("SecretNPC")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("UncommonNPC")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("ID");
 
@@ -238,19 +238,19 @@ namespace DTpureback.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("LocationID")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("PlayerCharacterID")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("UserID")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("ID");
 
@@ -263,25 +263,32 @@ namespace DTpureback.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("ID");
 
                     b.ToTable("User", (string)null);
+                });
+
+            modelBuilder.Entity("DTpureback.Models.NPC", b =>
+                {
+                    b.HasBaseType("DTpureback.Models.Character");
+
+                    b.HasDiscriminator().HasValue("NPC");
                 });
 
             modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
@@ -289,28 +296,61 @@ namespace DTpureback.Migrations
                     b.HasBaseType("DTpureback.Models.Character");
 
                     b.Property<int>("ConstitutionXP")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("CurrentHP")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CurrentLocation")
+                        .HasColumnType("text");
 
                     b.Property<int>("CurrentMP")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("DexterityXP")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DrippingDeathExplored")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("GraithQueensLairExplored")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("GraithsGrottoExplored")
+                        .HasColumnType("integer");
 
                     b.Property<int>("IntelligenceXP")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    b.Property<int>("KratabsFollyExplored")
+                        .HasColumnType("integer");
 
                     b.Property<int>("LifeTimeCurrency")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MaxHP")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MaxMP")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PlayersRespiteExplored")
+                        .HasColumnType("integer");
 
                     b.Property<int>("StrengthXP")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TailOfTheDragonExplored")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ThagragsHopeExplored")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("WeaponID")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    b.Property<int>("WebOfDepthsExplored")
+                        .HasColumnType("integer");
 
                     b.HasIndex("WeaponID");
 

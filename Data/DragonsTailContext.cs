@@ -9,9 +9,15 @@ namespace DTpureback.Data
 {
     public class DragonsTailContext: DbContext
     {
-        public DragonsTailContext(DbContextOptions<DragonsTailContext> options)
-           : base(options)
+        protected readonly IConfiguration Configuration;
+        public DragonsTailContext(IConfiguration configuration)
         {
+          Configuration = configuration;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseNpgsql(Configuration.GetConnectionString("LocalDragonsTailContext"));
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get;set; }
@@ -19,22 +25,14 @@ namespace DTpureback.Data
         public DbSet<PlayerCharacter> PlayerCharacters { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<SaveFile> SaveFiles { get; set; }
+        public DbSet<NPC>? NPC { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable(nameof(User))
                 .HasMany(u => u.SaveFiles);
-            //modelBuilder.Entity<Song>().ToTable(nameof(Song))
-            //    .HasMany(s => s.Genres)
-            //    .WithMany(g => g.Songs);
-            //modelBuilder.Entity<User>().ToTable(nameof(User));
-            //modelBuilder.Entity<Contributor>().ToTable(nameof(Contributor));
-            //modelBuilder.Entity<Genre>().ToTable(nameof(Genre));
-            //modelBuilder.Entity<Pedal>().ToTable(nameof(Pedal));
-            //modelBuilder.Entity<SongContributor>().ToTable(nameof(SongContributor));
-            //modelBuilder.Entity<SongPedal>().ToTable(nameof(SongPedal));
+
         }
 
-        public DbSet<NPC>? NPC { get; set; }
     }
 }
