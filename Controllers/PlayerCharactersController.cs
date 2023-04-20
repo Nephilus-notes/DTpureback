@@ -52,7 +52,7 @@ namespace DTpureback.Controllers
 
         // PUT: api/PlayerCharacters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPatch("{id}")]
         public async Task<IActionResult> PutPlayerCharacter(int id, PlayerCharacter playerCharacter)
         {
             if (id != playerCharacter.ID)
