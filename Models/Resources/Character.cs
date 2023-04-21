@@ -1,8 +1,7 @@
-﻿namespace DTpureback.Models
+﻿namespace DTpureback.Models.Resources
 {
-    public class Character
+    public class Character : BaseEntity
     {
-        public int ID { get; set; }
         public string Name { get; set; }
 
         // Items and Currency

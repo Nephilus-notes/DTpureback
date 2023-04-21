@@ -1,4 +1,5 @@
 ﻿using DTpureback.Interfaces;
+using DTpureback.Models.Resources;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DTpureback.Models
@@ -44,7 +45,7 @@ namespace DTpureback.Models
         // Abilities 
         //public List<string>? Abilities { get; set; }
 
-
+        //public SaveFile? Save { get; set; }
 
 
     }

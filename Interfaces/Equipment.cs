@@ -1,4 +1,4 @@
-﻿using DTpureback.Models;
+﻿using DTpureback.Models.Resources;
 
 namespace DTpureback.Interfaces
 {

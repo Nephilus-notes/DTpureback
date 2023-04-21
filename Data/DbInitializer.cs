@@ -18,6 +18,7 @@ using System.Security.Cryptography;
 using NuGet.Protocol.Plugins;
 using System.Security.Policy;
 using System.Threading;
+using DTpureback.Models.Resources;
 
 namespace DTpureback.Data
 {
@@ -145,7 +146,12 @@ namespace DTpureback.Data
                 majHealthPot
 
             };
-            context.Items.AddRange(items);
+
+            for (var i = 0; i < items.Length;i++)
+            {
+                context.Items.Add(items[i]);
+                context.SaveChanges();
+            }
 
             var kraktRat = new NPC
             {
@@ -356,7 +362,7 @@ namespace DTpureback.Data
                 "all around as arms and armor coat the walls. " +
                 "The blacksmith's face shines at you from over the counter.",
                 ExitText = "",
-                MoveOptions = "T,O",
+                MoveOptions = "T,S",
             };
 
             var alchemist = new Location
@@ -367,7 +373,7 @@ namespace DTpureback.Data
                 "and even flowers festoon the walls and Garthak the Brewer is humming to himself as he grinds " +
                 "something with a pestle. Looking up he flashes his sharp teeth in a smile.",
                 ExitText = "",
-                MoveOptions = "T,O",
+                MoveOptions = "T,S",
             };
 
             var inn = new Location
@@ -505,14 +511,14 @@ namespace DTpureback.Data
 
             var save1 = new SaveFile
             {
-                UserID = 5,
-                PlayerCharacterID = 28,
+                UserID = 1,
+                PlayerCharacterID = 1,
                 LocationID = "T"
             };
             var save2 = new SaveFile
             {
-                UserID = 5,
-                PlayerCharacterID = 28,
+                UserID = 1,
+                PlayerCharacterID = 1,
                 LocationID = "I"
             };
 

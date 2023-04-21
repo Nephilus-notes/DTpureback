@@ -22,8 +22,8 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DragonsTailContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("DragonsTailContext") ?? throw new InvalidOperationException("Connection string 'DragonsTailContext' not found.")));
-
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("LocalDragonsTailContext")
+    ?? throw new InvalidOperationException("Connection string 'LocalDragonsTailContext' not found.")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

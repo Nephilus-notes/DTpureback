@@ -4,37 +4,44 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DTpureback.Models;
+using DTpureback.Models.Resources;
 
 namespace DTpureback.Data
 {
     public class DragonsTailContext: DbContext
     {
-        public DragonsTailContext(DbContextOptions<DragonsTailContext> options)
-           : base(options)
+        protected readonly IConfiguration Configuration;
+        public DragonsTailContext(IConfiguration configuration)
         {
+          Configuration = configuration;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseNpgsql(Configuration.GetConnectionString("LocalDragonsTailContext"));
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get;set; }
-        public DbSet<Character> Characters { get; set; }
         public DbSet<PlayerCharacter> PlayerCharacters { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<SaveFile> SaveFiles { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>().ToTable(nameof(User))
-                .HasMany(u => u.SaveFiles);
-            //modelBuilder.Entity<Song>().ToTable(nameof(Song))
-            //    .HasMany(s => s.Genres)
-            //    .WithMany(g => g.Songs);
-            //modelBuilder.Entity<User>().ToTable(nameof(User));
-            //modelBuilder.Entity<Contributor>().ToTable(nameof(Contributor));
-            //modelBuilder.Entity<Genre>().ToTable(nameof(Genre));
-            //modelBuilder.Entity<Pedal>().ToTable(nameof(Pedal));
-            //modelBuilder.Entity<SongContributor>().ToTable(nameof(SongContributor));
-            //modelBuilder.Entity<SongPedal>().ToTable(nameof(SongPedal));
-        }
-
         public DbSet<NPC>? NPC { get; set; }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<SaveFile>(entity =>
+        //    {
+        //        entity.HasOne(u => u.User)
+        //        .WithMany(s => s.SaveFiles)
+        //        .HasForeignKey(x => x.UserID)
+        //        .OnDelete(DeleteBehavior.Restrict)
+        //        .HasConstraintName("FK_User_SaveFile");
+
+        //    //entity.HasOne(pc => pc.Character)
+        //    //    .WithOne(s => s.Save)
+        //    //    .HasForeignKey<PlayerCharacter>(x => x.ID);
+        //    });
+        //}
+
     }
 }

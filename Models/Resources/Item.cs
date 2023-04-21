@@ -1,4 +1,4 @@
-﻿namespace DTpureback.Models
+﻿namespace DTpureback.Models.Resources
 {
     public class Item
     {
