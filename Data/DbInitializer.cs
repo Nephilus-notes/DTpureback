@@ -506,14 +506,14 @@ namespace DTpureback.Data
 
             var save1 = new SaveFile
             {
-                UserID = 5,
-                PlayerCharacterID = 28,
+                UserID = 1,
+                PlayerCharacterID = 1,
                 LocationID = "T"
             };
             var save2 = new SaveFile
             {
-                UserID = 5,
-                PlayerCharacterID = 28,
+                UserID = 1,
+                PlayerCharacterID = 1,
                 LocationID = "I"
             };
 
