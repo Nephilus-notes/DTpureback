@@ -146,7 +146,12 @@ namespace DTpureback.Data
                 majHealthPot
 
             };
-            context.Items.AddRange(items);
+
+            for (var i = 0; i < items.Length;i++)
+            {
+                context.Items.Add(items[i]);
+                context.SaveChanges();
+            }
 
             var kraktRat = new NPC
             {
