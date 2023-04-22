@@ -5,18 +5,10 @@
 namespace DTpureback.Migrations
 {
     /// <inheritdoc />
-    public partial class RemovedAllItemFromPC : Migration
+    public partial class removedExcessNotMapped : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "StrengthXP",
-                table: "PlayerCharacters");
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
                 name: "StrengthXP",
@@ -24,6 +16,14 @@ namespace DTpureback.Migrations
                 type: "integer",
                 nullable: false,
                 defaultValue: 0);
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropColumn(
+                name: "StrengthXP",
+                table: "PlayerCharacters");
         }
     }
 }

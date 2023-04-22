@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    [Migration("20230420155225_simplified DB")]
-    partial class simplifiedDB
+    [Migration("20230422213409_RemovedNullableOnNPC")]
+    partial class RemovedNullableOnNPC
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -205,15 +205,10 @@ namespace DTpureback.Migrations
                     b.Property<int>("VulnerableRounds")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("WeaponID")
-                        .HasColumnType("integer");
-
                     b.Property<int>("WebOfDepthsExplored")
                         .HasColumnType("integer");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("WeaponID");
 
                     b.ToTable("PlayerCharacters");
                 });
@@ -233,9 +228,6 @@ namespace DTpureback.Migrations
                     b.Property<int>("ItemStat")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("PlayerCharacterID")
-                        .HasColumnType("integer");
-
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 
@@ -248,8 +240,6 @@ namespace DTpureback.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("PlayerCharacterID");
 
                     b.ToTable("Items");
                 });
@@ -496,22 +486,6 @@ namespace DTpureback.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
-                {
-                    b.HasOne("DTpureback.Models.Resources.Item", "Weapon")
-                        .WithMany()
-                        .HasForeignKey("WeaponID");
-
-                    b.Navigation("Weapon");
-                });
-
-            modelBuilder.Entity("DTpureback.Models.Resources.Item", b =>
-                {
-                    b.HasOne("DTpureback.Models.PlayerCharacter", null)
-                        .WithMany("Backpack")
-                        .HasForeignKey("PlayerCharacterID");
-                });
-
             modelBuilder.Entity("DTpureback.Models.SaveFile", b =>
                 {
                     b.HasOne("DTpureback.Models.User", "User")
@@ -521,11 +495,6 @@ namespace DTpureback.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
-                {
-                    b.Navigation("Backpack");
                 });
 
             modelBuilder.Entity("DTpureback.Models.User", b =>

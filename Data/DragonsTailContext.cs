@@ -27,16 +27,16 @@ namespace DTpureback.Data
         public DbSet<PlayerCharacter> PlayerCharacters { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<SaveFile> SaveFiles { get; set; }
-        public DbSet<NPC>? NPC { get; set; }
+        public DbSet<NPC> NPC { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            var valueComparer = new ValueComparer<ICollection<Item>>(
-                (c1, c2) => c1.SequenceEqual(c2),
-                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-                c => c.ToList());
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    var valueComparer = new ValueComparer<ICollection<Item>>(
+        //        (c1, c2) => c1.SequenceEqual(c2),
+        //        c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+        //        c => c.ToList());
 
-            var ItemConverter = new JsonICollectionConverter();
+        //    var ItemConverter = new JsonICollectionConverter();
 
             //modelBuilder.Entity<PlayerCharacter>()
             //    .Property(x => x.Items)
@@ -48,6 +48,6 @@ namespace DTpureback.Data
             //    .Property(x => x.Items)
             //.HasConversion(IntValueConverter);
 
-        }
+        //}
     }
 }

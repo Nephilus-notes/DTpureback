@@ -5,7 +5,7 @@
 namespace DTpureback.Migrations
 {
     /// <inheritdoc />
-    public partial class FinallySavedEquipmentUpdate : Migration
+    public partial class removedOnModelCreating : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

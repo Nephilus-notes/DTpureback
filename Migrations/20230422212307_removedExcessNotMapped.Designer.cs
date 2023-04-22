@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    [Migration("20230422210735_ValueComparerSaved")]
-    partial class ValueComparerSaved
+    [Migration("20230422212307_removedExcessNotMapped")]
+    partial class removedExcessNotMapped
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -135,9 +135,6 @@ namespace DTpureback.Migrations
                     b.Property<int>("IntelligenceXP")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Items")
-                        .HasColumnType("text");
-
                     b.Property<int>("KratabsFollyExplored")
                         .HasColumnType("integer");
 
@@ -231,6 +228,9 @@ namespace DTpureback.Migrations
                     b.Property<int>("ItemStat")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("PlayerCharacterID")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 
@@ -243,6 +243,8 @@ namespace DTpureback.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("PlayerCharacterID");
 
                     b.ToTable("Items");
                 });
@@ -489,6 +491,13 @@ namespace DTpureback.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("DTpureback.Models.Resources.Item", b =>
+                {
+                    b.HasOne("DTpureback.Models.PlayerCharacter", null)
+                        .WithMany("Items")
+                        .HasForeignKey("PlayerCharacterID");
+                });
+
             modelBuilder.Entity("DTpureback.Models.SaveFile", b =>
                 {
                     b.HasOne("DTpureback.Models.User", "User")
@@ -498,6 +507,11 @@ namespace DTpureback.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
+                {
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("DTpureback.Models.User", b =>

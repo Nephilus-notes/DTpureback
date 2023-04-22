@@ -5,15 +5,27 @@
 namespace DTpureback.Migrations
 {
     /// <inheritdoc />
-    public partial class WithoutConverterAndComparer : Migration
+    public partial class RemoveItemsFromPC : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Items",
-                table: "PlayerCharacters");
+            migrationBuilder.DropForeignKey(
+                name: "FK_Items_PlayerCharacters_PlayerCharacterID",
+                table: "Items");
 
+            migrationBuilder.DropIndex(
+                name: "IX_Items_PlayerCharacterID",
+                table: "Items");
+
+            migrationBuilder.DropColumn(
+                name: "PlayerCharacterID",
+                table: "Items");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.AddColumn<int>(
                 name: "PlayerCharacterID",
                 table: "Items",
@@ -31,28 +43,6 @@ namespace DTpureback.Migrations
                 column: "PlayerCharacterID",
                 principalTable: "PlayerCharacters",
                 principalColumn: "ID");
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Items_PlayerCharacters_PlayerCharacterID",
-                table: "Items");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Items_PlayerCharacterID",
-                table: "Items");
-
-            migrationBuilder.DropColumn(
-                name: "PlayerCharacterID",
-                table: "Items");
-
-            migrationBuilder.AddColumn<string>(
-                name: "Items",
-                table: "PlayerCharacters",
-                type: "text",
-                nullable: true);
         }
     }
 }

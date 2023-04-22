@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    [Migration("20230422181913_FinalPCAdjust")]
-    partial class FinalPCAdjust
+    [Migration("20230422211358_CleanedSlate")]
+    partial class CleanedSlate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,9 +37,6 @@ namespace DTpureback.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("ArmorValue")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("BodyItemID")
                         .HasColumnType("integer");
 
                     b.Property<bool>("Burning")
@@ -129,12 +126,6 @@ namespace DTpureback.Migrations
                     b.Property<int>("GraithsGrottoExplored")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("HandItemID")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("HeadItemID")
-                        .HasColumnType("integer");
-
                     b.Property<bool>("HitByWind")
                         .HasColumnType("boolean");
 
@@ -196,9 +187,6 @@ namespace DTpureback.Migrations
                     b.Property<int>("Strength")
                         .HasColumnType("integer");
 
-                    b.Property<int>("StrengthXP")
-                        .HasColumnType("integer");
-
                     b.Property<bool>("Stunned")
                         .HasColumnType("boolean");
 
@@ -237,6 +225,9 @@ namespace DTpureback.Migrations
                     b.Property<int>("ItemStat")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("PlayerCharacterID")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 
@@ -249,6 +240,8 @@ namespace DTpureback.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("PlayerCharacterID");
 
                     b.ToTable("Items");
                 });
@@ -495,19 +488,11 @@ namespace DTpureback.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ItemPlayerCharacter", b =>
+            modelBuilder.Entity("DTpureback.Models.Resources.Item", b =>
                 {
-                    b.Property<int>("CharacterID")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ItemsID")
-                        .HasColumnType("integer");
-
-                    b.HasKey("CharacterID", "ItemsID");
-
-                    b.HasIndex("ItemsID");
-
-                    b.ToTable("ItemPlayerCharacter");
+                    b.HasOne("DTpureback.Models.PlayerCharacter", null)
+                        .WithMany("Items")
+                        .HasForeignKey("PlayerCharacterID");
                 });
 
             modelBuilder.Entity("DTpureback.Models.SaveFile", b =>
@@ -521,19 +506,9 @@ namespace DTpureback.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ItemPlayerCharacter", b =>
+            modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
                 {
-                    b.HasOne("DTpureback.Models.PlayerCharacter", null)
-                        .WithMany()
-                        .HasForeignKey("CharacterID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DTpureback.Models.Resources.Item", null)
-                        .WithMany()
-                        .HasForeignKey("ItemsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("DTpureback.Models.User", b =>

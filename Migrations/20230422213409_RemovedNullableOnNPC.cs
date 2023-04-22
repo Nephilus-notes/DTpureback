@@ -5,7 +5,7 @@
 namespace DTpureback.Migrations
 {
     /// <inheritdoc />
-    public partial class FinalPCAdjust : Migration
+    public partial class RemovedNullableOnNPC : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

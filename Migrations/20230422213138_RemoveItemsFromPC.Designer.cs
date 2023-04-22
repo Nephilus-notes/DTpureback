@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    [Migration("20230422210900_WithoutConverterAndComparer")]
-    partial class WithoutConverterAndComparer
+    [Migration("20230422213138_RemoveItemsFromPC")]
+    partial class RemoveItemsFromPC
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -228,9 +228,6 @@ namespace DTpureback.Migrations
                     b.Property<int>("ItemStat")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("PlayerCharacterID")
-                        .HasColumnType("integer");
-
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 
@@ -243,8 +240,6 @@ namespace DTpureback.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("PlayerCharacterID");
 
                     b.ToTable("Items");
                 });
@@ -491,13 +486,6 @@ namespace DTpureback.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DTpureback.Models.Resources.Item", b =>
-                {
-                    b.HasOne("DTpureback.Models.PlayerCharacter", null)
-                        .WithMany("Items")
-                        .HasForeignKey("PlayerCharacterID");
-                });
-
             modelBuilder.Entity("DTpureback.Models.SaveFile", b =>
                 {
                     b.HasOne("DTpureback.Models.User", "User")
@@ -507,11 +495,6 @@ namespace DTpureback.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
-                {
-                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("DTpureback.Models.User", b =>
