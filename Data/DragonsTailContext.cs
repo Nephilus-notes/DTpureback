@@ -27,21 +27,28 @@ namespace DTpureback.Data
         public DbSet<SaveFile> SaveFiles { get; set; }
         public DbSet<NPC>? NPC { get; set; }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<SaveFile>(entity =>
-        //    {
-        //        entity.HasOne(u => u.User)
-        //        .WithMany(s => s.SaveFiles)
-        //        .HasForeignKey(x => x.UserID)
-        //        .OnDelete(DeleteBehavior.Restrict)
-        //        .HasConstraintName("FK_User_SaveFile");
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PlayerCharacter>(Character =>
+            {
+                Character.HasMany(i => i.Items)
+                .WithMany(p => p.Character);
+            });
 
-        //    //entity.HasOne(pc => pc.Character)
-        //    //    .WithOne(s => s.Save)
-        //    //    .HasForeignKey<PlayerCharacter>(x => x.ID);
-        //    });
-        //}
+
+            //modelBuilder.Entity<SaveFile>(entity =>
+            //{
+            //    entity.HasOne(u => u.User)
+            //    .WithMany(s => s.SaveFiles)
+            //    .HasForeignKey(x => x.UserID)
+            //    .OnDelete(DeleteBehavior.Restrict)
+            //    .HasConstraintName("FK_User_SaveFile");
+
+            //entity.HasOne(pc => pc.Character)
+            //    .WithOne(s => s.Save)
+            //    .HasForeignKey<PlayerCharacter>(x => x.ID);
+            //});
+        }
 
     }
 }

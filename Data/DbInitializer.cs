@@ -313,14 +313,14 @@ namespace DTpureback.Data
                 LifeTimeCurrency = 0,
                 CurrentCurrency = 0,
                 Level = 4,
-                Backpack = backpack,
-                //EquippedItems = null,
+                Items = backpack,
+                
                 Strength = 13,
                 Dexterity = 15,
                 Intelligence = 13,
                 Constitution = 16,
 
-                Weapon = scythe,
+                HandItemID = scythe.ID,
 
                 CurrentHP = 31,
                 CurrentMP = 25,

@@ -8,10 +8,10 @@ namespace DTpureback.Models
     {
         // Items and Currency
         public int LifeTimeCurrency { get; set; }
-        public ICollection<Item>? Backpack { get; set; }
-        [NotMapped]
-        public IEquipment? EquippedItems { get; set; }
-        public Item? Weapon { get; set; }
+        public ICollection<Item>? Items { get; set; }
+        public int? HeadItemID { get; set; }
+        public int? BodyItemID { get; set; }
+        public int? HandItemID { get; set; }
 
         // EXP Counters Alpha
         public int StrengthXP { get; set; } = 0;
@@ -26,7 +26,7 @@ namespace DTpureback.Models
         public int CurrentHP { get; set; }
         public int CurrentMP { get; set; }
 
-        public string? CurrentLocation { get; set; }
+        public string? CurrentLocation { get; set; } = "T";
 
         public int KratabsFollyExplored { get; set; } = 0;
 

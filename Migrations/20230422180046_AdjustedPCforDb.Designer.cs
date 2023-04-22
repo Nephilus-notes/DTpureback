@@ -3,6 +3,7 @@ using System;
 using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    partial class DragonsTailContextModelSnapshot : ModelSnapshot
+    [Migration("20230422180046_AdjustedPCforDb")]
+    partial class AdjustedPCforDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,9 +37,6 @@ namespace DTpureback.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("ArmorValue")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("BodyItemID")
                         .HasColumnType("integer");
 
                     b.Property<bool>("Burning")
@@ -124,12 +124,6 @@ namespace DTpureback.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("GraithsGrottoExplored")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("HandItemID")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("HeadItemID")
                         .HasColumnType("integer");
 
                     b.Property<bool>("HitByWind")
