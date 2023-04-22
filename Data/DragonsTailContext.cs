@@ -31,17 +31,22 @@ namespace DTpureback.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var IntValueConverter = new PCItemIDConverter();
+            var valueComparer = new ValueComparer<ICollection<Item>>(
+                (c1, c2) => c1.SequenceEqual(c2),
+                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                c => c.ToList());
 
-            modelBuilder.Entity<PlayerCharacter>()
-                .Property(x => x.Items)
-                .HasConversion(JsonICollectionConverter);
-                
-                ;
+            var ItemConverter = new JsonICollectionConverter();
+
+            //modelBuilder.Entity<PlayerCharacter>()
+            //    .Property(x => x.Items)
+            //    .HasConversion(ItemConverter)
+            //    .Metadata.SetValueComparer(valueComparer);
+
+
 
             //    .Property(x => x.Items)
-            //.HasConversion(IntValueConverter)
-            //    .Metadata.SetValueComparer();
+            //.HasConversion(IntValueConverter);
 
         }
     }

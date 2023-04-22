@@ -320,7 +320,7 @@ namespace DTpureback.Data
                 Intelligence = 13,
                 Constitution = 16,
 
-                HandItem = scythe,
+                //HandItem = scythe,
 
                 CurrentHP = 31,
                 CurrentMP = 25,
