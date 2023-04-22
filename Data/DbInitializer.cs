@@ -303,8 +303,8 @@ namespace DTpureback.Data
 
             context.NPC.AddRange(NPCs);
 
-            var backpack = new int[] {
-                dagger.ID, majHealthPot.ID
+            var backpack = new Item[] {
+                dagger, majHealthPot
             };
 
             var crae = new PlayerCharacter
@@ -313,14 +313,14 @@ namespace DTpureback.Data
                 LifeTimeCurrency = 0,
                 CurrentCurrency = 0,
                 Level = 4,
-                ItemIDs = backpack,
+                Items = backpack,
                 
                 Strength = 13,
                 Dexterity = 15,
                 Intelligence = 13,
                 Constitution = 16,
 
-                HandItemID = scythe.ID,
+                HandItem = scythe,
 
                 CurrentHP = 31,
                 CurrentMP = 25,

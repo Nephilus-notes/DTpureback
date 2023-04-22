@@ -34,35 +34,15 @@ namespace DTpureback.Data
             var IntValueConverter = new PCItemIDConverter();
 
             modelBuilder.Entity<PlayerCharacter>()
-                .Property(x => x.ItemIDs)
-            .HasConversion(IntValueConverter)
-                .Metadata.SetValueComparer();
+                .Property(x => x.Items)
+                .HasConversion(JsonICollectionConverter);
+                
+                ;
+
+            //    .Property(x => x.Items)
+            //.HasConversion(IntValueConverter)
+            //    .Metadata.SetValueComparer();
+
         }
-
-
-
-
-        //{
-        //    modelBuilder.Entity<PlayerCharacter>(Character =>
-        //    {
-        //        Character.HasMany(i => i.Items)
-        //        .WithMany(p => p.Character);
-        //    });
-
-
-            //modelBuilder.Entity<SaveFile>(entity =>
-            //{
-            //    entity.HasOne(u => u.User)
-            //    .WithMany(s => s.SaveFiles)
-            //    .HasForeignKey(x => x.UserID)
-            //    .OnDelete(DeleteBehavior.Restrict)
-            //    .HasConstraintName("FK_User_SaveFile");
-
-            //entity.HasOne(pc => pc.Character)
-            //    .WithOne(s => s.Save)
-            //    .HasForeignKey<PlayerCharacter>(x => x.ID);
-            //});
-        
-
     }
 }
