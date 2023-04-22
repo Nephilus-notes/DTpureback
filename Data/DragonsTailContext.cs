@@ -7,6 +7,7 @@ using DTpureback.Models;
 using DTpureback.Models.Resources;
 using DTpureback.Converters;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using DTpureback.Interfaces;
 
 namespace DTpureback.Data
 {
@@ -36,10 +37,12 @@ namespace DTpureback.Data
                 c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
                 c => c.ToList());
 
-            //var singleValueComparer = new ValueComparer<Item>(
+            //var singleValueComparer = new ValueComparer<IEquipment>(
             //    (c1, c2) => c1.SequenceEqual(c2),
             //    c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-            //    c => c.ToList());
+            //   c => c.ToList());
+
+            var equipmentConverter = new JsonEquippedItemsConverter();
 
             var ItemsConverter = new JsonICollectionConverter();
 
@@ -51,14 +54,19 @@ namespace DTpureback.Data
                 .Metadata.SetValueComparer(iCollectionValueComparer);
 
             modelBuilder.Entity<PlayerCharacter>()
-                .Property(x => x.HeadItem).HasConversion(SingleItemConverter);
-                //.Metadata.SetValueComparer(singleValueComparer)/*;*/
+                .Property(x => x.EquippedItems)
+                .HasConversion(equipmentConverter);
+                //.Metadata.SetValueComparer(iCollectionValueComparer);
 
-            modelBuilder.Entity<PlayerCharacter>()
-                .Property(x => x.HandItem).HasConversion(SingleItemConverter);
-                //.Metadata.SetValueComparer(singleValueComparer);
-            modelBuilder.Entity<PlayerCharacter>()
-                .Property(x => x.BodyItem).HasConversion(SingleItemConverter);
+            //modelBuilder.Entity<PlayerCharacter>()
+            //    .Property(x => x.HeadItem).HasConversion(SingleItemConverter);
+            //    //.Metadata.SetValueComparer(singleValueComparer)/*;*/
+
+            //modelBuilder.Entity<PlayerCharacter>()
+            //    .Property(x => x.HandItem).HasConversion(SingleItemConverter);
+            //    //.Metadata.SetValueComparer(singleValueComparer);
+            //modelBuilder.Entity<PlayerCharacter>()
+            //    .Property(x => x.BodyItem).HasConversion(SingleItemConverter);
         }
     }
 }

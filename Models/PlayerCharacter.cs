@@ -9,9 +9,10 @@ namespace DTpureback.Models
         // Items and Currency
         public int LifeTimeCurrency { get; set; }
         public ICollection<Item>? Items { get; set; }
-        public Item? HeadItem { get; set; }
-        public Item? BodyItem { get; set; }
-        public Item? HandItem { get; set; }
+        //public Item? HeadItem { get; set; }
+        //public Item? BodyItem { get; set; }
+        //public Item? HandItem { get; set; }
+        public IEquipment EquippedItems { get; set; }
 
         // EXP Counters Alpha
         public int StrengthXP { get; set; } = 0;

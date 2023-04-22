@@ -2,7 +2,7 @@
 
 namespace DTpureback.Interfaces
 {
-    public interface IEquipment
+    public class IEquipment
     {
         public Item Head { get; set; }
         public Item Body { get; set; }

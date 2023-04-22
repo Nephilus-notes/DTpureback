@@ -20,6 +20,7 @@ using System.Security.Policy;
 using System.Threading;
 using DTpureback.Models.Resources;
 using Newtonsoft.Json;
+using DTpureback.Interfaces;
 
 namespace DTpureback.Data
 {
@@ -27,12 +28,12 @@ namespace DTpureback.Data
     {
         public static void Initialize(DragonsTailContext context)
         {
-            if(context.PlayerCharacters.Any())
+            if (context.PlayerCharacters.Any())
             {
                 return;
             }
 
-            
+
 
             var scythe = new Item
             {
@@ -119,7 +120,7 @@ namespace DTpureback.Data
                 Slot = "body",
                 Description = "Plates of steel bolted onto a leather and chain tunic, this armor gives almost unparellelled protection" +
                 " without sacrificing mobility or size."
-                
+
             };
             var bone = new Item
             {
@@ -138,17 +139,17 @@ namespace DTpureback.Data
                 axe,
                 scythe,
 
-                leather, 
-                chainmail, 
+                leather,
+                chainmail,
                 brigandine,
-                bone, 
+                bone,
                 minHealthPot,
                 HealthPot,
                 majHealthPot
 
             };
 
-            for (var i = 0; i < items.Length;i++)
+            for (var i = 0; i < items.Length; i++)
             {
                 context.Items.Add(items[i]);
                 context.SaveChanges();
@@ -480,8 +481,8 @@ namespace DTpureback.Data
             try
             {
 
-            context.SaveChanges();
-            } 
+                context.SaveChanges();
+            }
             catch
             {
                 throw (new Exception("NPC's failed"));
@@ -493,6 +494,14 @@ namespace DTpureback.Data
                 majHealthPot
             };
 
+            var EQ = new IEquipment
+            {
+                Head=null,
+                    Body= null,
+                    Hand= scythe
+            };
+
+
             var crae = new PlayerCharacter
             {
                 Name = "Craelios",
@@ -500,13 +509,13 @@ namespace DTpureback.Data
                 CurrentCurrency = 0,
                 Level = 4,
                 Items = backpack,
-                
+
                 Strength = 13,
                 Dexterity = 15,
                 Intelligence = 13,
                 Constitution = 16,
 
-                HandItem = scythe,
+                EquippedItems = EQ,
 
                 CurrentHP = 31,
                 CurrentMP = 25,
