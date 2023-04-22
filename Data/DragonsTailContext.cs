@@ -29,25 +29,36 @@ namespace DTpureback.Data
         public DbSet<SaveFile> SaveFiles { get; set; }
         public DbSet<NPC> NPC { get; set; }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    var valueComparer = new ValueComparer<ICollection<Item>>(
-        //        (c1, c2) => c1.SequenceEqual(c2),
-        //        c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-        //        c => c.ToList());
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var iCollectionValueComparer = new ValueComparer<ICollection<Item>>(
+                (c1, c2) => c1.SequenceEqual(c2),
+                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                c => c.ToList());
 
-        //    var ItemConverter = new JsonICollectionConverter();
+            //var singleValueComparer = new ValueComparer<Item>(
+            //    (c1, c2) => c1.SequenceEqual(c2),
+            //    c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+            //    c => c.ToList());
 
-            //modelBuilder.Entity<PlayerCharacter>()
-            //    .Property(x => x.Items)
-            //    .HasConversion(ItemConverter)
-            //    .Metadata.SetValueComparer(valueComparer);
+            var ItemsConverter = new JsonICollectionConverter();
 
+            var SingleItemConverter = new JsonItemConverter();
 
+            modelBuilder.Entity<PlayerCharacter>()
+                .Property(x => x.Items)
+                .HasConversion(ItemsConverter)
+                .Metadata.SetValueComparer(iCollectionValueComparer);
 
-            //    .Property(x => x.Items)
-            //.HasConversion(IntValueConverter);
+            modelBuilder.Entity<PlayerCharacter>()
+                .Property(x => x.HeadItem).HasConversion(SingleItemConverter);
+                //.Metadata.SetValueComparer(singleValueComparer)/*;*/
 
-        //}
+            modelBuilder.Entity<PlayerCharacter>()
+                .Property(x => x.HandItem).HasConversion(SingleItemConverter);
+                //.Metadata.SetValueComparer(singleValueComparer);
+            modelBuilder.Entity<PlayerCharacter>()
+                .Property(x => x.BodyItem).HasConversion(SingleItemConverter);
+        }
     }
 }

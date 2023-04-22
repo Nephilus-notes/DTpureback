@@ -19,6 +19,7 @@ using NuGet.Protocol.Plugins;
 using System.Security.Policy;
 using System.Threading;
 using DTpureback.Models.Resources;
+using Newtonsoft.Json;
 
 namespace DTpureback.Data
 {
@@ -488,7 +489,8 @@ namespace DTpureback.Data
 
 
             var backpack = new Item[] {
-                dagger, majHealthPot
+              dagger,
+                majHealthPot
             };
 
             var crae = new PlayerCharacter
@@ -497,14 +499,14 @@ namespace DTpureback.Data
                 LifeTimeCurrency = 0,
                 CurrentCurrency = 0,
                 Level = 4,
-                //Items = backpack,
+                Items = backpack,
                 
                 Strength = 13,
                 Dexterity = 15,
                 Intelligence = 13,
                 Constitution = 16,
 
-                //HandItem = scythe,
+                HandItem = scythe,
 
                 CurrentHP = 31,
                 CurrentMP = 25,
