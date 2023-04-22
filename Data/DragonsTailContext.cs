@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DTpureback.Models;
 using DTpureback.Models.Resources;
+using DTpureback.Converters;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace DTpureback.Data
 {
@@ -29,11 +31,23 @@ namespace DTpureback.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PlayerCharacter>(Character =>
-            {
-                Character.HasMany(i => i.Items)
-                .WithMany(p => p.Character);
-            });
+            var IntValueConverter = new PCItemIDConverter();
+
+            modelBuilder.Entity<PlayerCharacter>()
+                .Property(x => x.ItemIDs)
+            .HasConversion(IntValueConverter)
+                .Metadata.SetValueComparer();
+        }
+
+
+
+
+        //{
+        //    modelBuilder.Entity<PlayerCharacter>(Character =>
+        //    {
+        //        Character.HasMany(i => i.Items)
+        //        .WithMany(p => p.Character);
+        //    });
 
 
             //modelBuilder.Entity<SaveFile>(entity =>
@@ -48,7 +62,7 @@ namespace DTpureback.Data
             //    .WithOne(s => s.Save)
             //    .HasForeignKey<PlayerCharacter>(x => x.ID);
             //});
-        }
+        
 
     }
 }

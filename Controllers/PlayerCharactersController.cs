@@ -42,7 +42,7 @@ namespace DTpureback.Controllers
           }
             var playerCharacter = await _context.PlayerCharacters.FindAsync(id);
 
-            if (playerCharacter.Items == null)
+            if (playerCharacter.ItemIDs == null)
             {
                 //playerCharacter.Backpack == 
             }

@@ -3,6 +3,7 @@ using System;
 using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    partial class DragonsTailContextModelSnapshot : ModelSnapshot
+    [Migration("20230422181913_FinalPCAdjust")]
+    partial class FinalPCAdjust
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,12 +144,6 @@ namespace DTpureback.Migrations
                     b.Property<int>("IntelligenceXP")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("ItemID")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("ItemIDs")
-                        .HasColumnType("text");
-
                     b.Property<int>("KratabsFollyExplored")
                         .HasColumnType("integer");
 
@@ -221,8 +218,6 @@ namespace DTpureback.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("ItemID");
 
                     b.ToTable("PlayerCharacters");
                 });
@@ -500,11 +495,19 @@ namespace DTpureback.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
+            modelBuilder.Entity("ItemPlayerCharacter", b =>
                 {
-                    b.HasOne("DTpureback.Models.Resources.Item", null)
-                        .WithMany("Character")
-                        .HasForeignKey("ItemID");
+                    b.Property<int>("CharacterID")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ItemsID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("CharacterID", "ItemsID");
+
+                    b.HasIndex("ItemsID");
+
+                    b.ToTable("ItemPlayerCharacter");
                 });
 
             modelBuilder.Entity("DTpureback.Models.SaveFile", b =>
@@ -518,9 +521,19 @@ namespace DTpureback.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DTpureback.Models.Resources.Item", b =>
+            modelBuilder.Entity("ItemPlayerCharacter", b =>
                 {
-                    b.Navigation("Character");
+                    b.HasOne("DTpureback.Models.PlayerCharacter", null)
+                        .WithMany()
+                        .HasForeignKey("CharacterID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DTpureback.Models.Resources.Item", null)
+                        .WithMany()
+                        .HasForeignKey("ItemsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DTpureback.Models.User", b =>

@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DTpureback.Models
 {
-    public class PlayerCharacter : Character
+    public class PlayerCharacterDTO : Character
     {
         // Items and Currency
         public int LifeTimeCurrency { get; set; }
-        public IEnumerable<int>? ItemIDs { get; set; }
-        public int? HeadItemID { get; set; }
-        public int? BodyItemID { get; set; }
-        public int? HandItemID { get; set; }
+        public ICollection<Item>? Items { get; set; }
+        public int? HeadItem { get; set; }
+        public int? BodyItem { get; set; }
+        public int? HandItem { get; set; }
 
         // EXP Counters Alpha
         public int StrengthXP { get; set; } = 0;
