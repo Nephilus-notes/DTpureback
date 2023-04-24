@@ -20,10 +20,6 @@ namespace DTpureback.Data
           Configuration = configuration;
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder options)
-        //{
-        //    options.UseNpgsql(Configuration.GetConnectionString("ConnectionString"));
-        //}
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get;set; }
         public DbSet<PlayerCharacter> PlayerCharacters { get; set; }
