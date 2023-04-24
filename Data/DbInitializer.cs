@@ -33,6 +33,66 @@ namespace DTpureback.Data
                 return;
             }
 
+            var naka = new CharacterDefault
+            {
+                ID = "B",
+                Name = "Nakat'th",
+                Strength = 12,
+                Dexterity = 8,
+                Constitution = 10,
+                Intelligence = 8,
+                Job = "Blacksmith",
+                AbilityID = "S"
+            };
+
+
+            var clich = new CharacterDefault
+            {
+                ID = "S",
+                Name = "Clichtka",
+                Strength = 8,
+                Dexterity = 12,
+                Constitution = 10,
+                Intelligence = 8,
+                Job = "Scavenger",
+                AbilityID = "E"
+            };
+
+            var bort = new CharacterDefault
+            {
+                ID = "E",
+                Name = "Bortorb",
+                Strength = 8,
+                Dexterity = 10,
+                Constitution = 12,
+                Intelligence = 8,
+                 Job = "Explorer",
+                 AbilityID = "D"
+            };
+
+            var grag = new CharacterDefault
+            {
+                ID = "A",
+                Name = "Gragta'th",
+                Strength = 8,
+                Dexterity = 10,
+                Constitution = 8,
+                Intelligence = 12,
+                Job = "Herbalist",
+                AbilityID = "A"
+            };
+
+            var characterDefaults = new CharacterDefault[]
+            {
+                naka,
+                bort,
+                grag,
+                clich
+            };
+
+            context.AddRange(characterDefaults);
+            context.SaveChanges();
+
 
 
             var scythe = new Item

@@ -65,5 +65,9 @@ namespace DTpureback.Data
             //modelBuilder.Entity<PlayerCharacter>()
             //    .Property(x => x.BodyItem).HasConversion(SingleItemConverter);
         }
+
+        public DbSet<DTpureback.Models.Resources.CharacterDefault>? CharacterDefault { get; set; }
+
+        public DbSet<DTpureback.Models.Resources.Ability>? Ability { get; set; }
     }
 }
