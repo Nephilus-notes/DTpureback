@@ -3,6 +3,7 @@ using System;
 using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    partial class DragonsTailContextModelSnapshot : ModelSnapshot
+    [Migration("20230422222108_FunWithJSon")]
+    partial class FunWithJSon
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,6 +38,9 @@ namespace DTpureback.Migrations
 
                     b.Property<int>("ArmorValue")
                         .HasColumnType("integer");
+
+                    b.Property<string>("BodyItem")
+                        .HasColumnType("text");
 
                     b.Property<bool>("Burning")
                         .HasColumnType("boolean");
@@ -96,10 +102,6 @@ namespace DTpureback.Migrations
                     b.Property<int>("DrippingDeathExplored")
                         .HasColumnType("integer");
 
-                    b.Property<string>("EquippedItems")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("EvadePercentage")
                         .HasColumnType("integer");
 
@@ -126,6 +128,12 @@ namespace DTpureback.Migrations
 
                     b.Property<int>("GraithsGrottoExplored")
                         .HasColumnType("integer");
+
+                    b.Property<string>("HandItem")
+                        .HasColumnType("text");
+
+                    b.Property<string>("HeadItem")
+                        .HasColumnType("text");
 
                     b.Property<bool>("HitByWind")
                         .HasColumnType("boolean");

@@ -3,6 +3,7 @@ using System;
 using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    partial class DragonsTailContextModelSnapshot : ModelSnapshot
+    [Migration("20230422213409_RemovedNullableOnNPC")]
+    partial class RemovedNullableOnNPC
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,10 +99,6 @@ namespace DTpureback.Migrations
                     b.Property<int>("DrippingDeathExplored")
                         .HasColumnType("integer");
 
-                    b.Property<string>("EquippedItems")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("EvadePercentage")
                         .HasColumnType("integer");
 
@@ -136,9 +135,6 @@ namespace DTpureback.Migrations
                     b.Property<int>("IntelligenceXP")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Items")
-                        .HasColumnType("text");
-
                     b.Property<int>("KratabsFollyExplored")
                         .HasColumnType("integer");
 
@@ -174,6 +170,9 @@ namespace DTpureback.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<int>("SlowedRounds")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
                         .HasColumnType("integer");
 
                     b.Property<bool>("StoneArmored")
@@ -390,6 +389,9 @@ namespace DTpureback.Migrations
                     b.Property<int>("SlowedRounds")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
                     b.Property<bool>("StoneArmored")
                         .HasColumnType("boolean");
 
@@ -437,6 +439,9 @@ namespace DTpureback.Migrations
                     b.Property<int>("PlayerCharacterID")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
                     b.Property<int>("UserID")
                         .HasColumnType("integer");
 
@@ -472,6 +477,9 @@ namespace DTpureback.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
 
                     b.HasKey("ID");
 

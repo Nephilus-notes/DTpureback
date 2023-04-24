@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    [Migration("20230420155225_simplified DB")]
-    partial class simplifiedDB
+    [Migration("20230422212307_removedExcessNotMapped")]
+    partial class removedExcessNotMapped
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -205,15 +205,10 @@ namespace DTpureback.Migrations
                     b.Property<int>("VulnerableRounds")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("WeaponID")
-                        .HasColumnType("integer");
-
                     b.Property<int>("WebOfDepthsExplored")
                         .HasColumnType("integer");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("WeaponID");
 
                     b.ToTable("PlayerCharacters");
                 });
@@ -496,19 +491,10 @@ namespace DTpureback.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
-                {
-                    b.HasOne("DTpureback.Models.Resources.Item", "Weapon")
-                        .WithMany()
-                        .HasForeignKey("WeaponID");
-
-                    b.Navigation("Weapon");
-                });
-
             modelBuilder.Entity("DTpureback.Models.Resources.Item", b =>
                 {
                     b.HasOne("DTpureback.Models.PlayerCharacter", null)
-                        .WithMany("Backpack")
+                        .WithMany("Items")
                         .HasForeignKey("PlayerCharacterID");
                 });
 
@@ -525,7 +511,7 @@ namespace DTpureback.Migrations
 
             modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
                 {
-                    b.Navigation("Backpack");
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("DTpureback.Models.User", b =>

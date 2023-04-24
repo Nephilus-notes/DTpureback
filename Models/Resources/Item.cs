@@ -8,5 +8,6 @@
         public int Price { get; set; }
         public string Slot { get; set; }
         public string Description { get; set; }
+        //public ICollection<PlayerCharacter> Character { get; set; }
     }
 }
