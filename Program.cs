@@ -2,10 +2,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using DTpureback.Models;
 using DTpureback.Data;
+using Microsoft.Data.SqlClient;
+using Npgsql;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
+
+var conStrBuilder = new NpgsqlConnectionStringBuilder(
+        builder.Configuration.GetConnectionString("LocalDragonsTailContext"));
+conStrBuilder.Password = builder.Configuration["LocalDragonsTailContext:DbPassword"];
+var connection = conStrBuilder.ConnectionString;
 
 builder.Services.AddCors(options =>
 {
@@ -17,13 +24,11 @@ builder.Services.AddCors(options =>
                                 .AllowAnyMethod(); 
         });
 });
-    
-// Add services to the container.
 
+// Add services to the container
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DragonsTailContext>(opt =>
-    opt.UseNpgsql(builder.Configuration.GetConnectionString("LocalDragonsTailContext")
-    ?? throw new InvalidOperationException("Connection string 'LocalDragonsTailContext' not found.")));
+    opt.UseNpgsql(connection));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -43,6 +48,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     var context = services.GetRequiredService<DragonsTailContext>();
+    
     DbInitializer.Initialize(context);
 }
 

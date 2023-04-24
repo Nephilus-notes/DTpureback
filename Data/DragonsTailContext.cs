@@ -8,21 +8,22 @@ using DTpureback.Models.Resources;
 using DTpureback.Converters;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using DTpureback.Interfaces;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace DTpureback.Data
 {
     public class DragonsTailContext: DbContext
     {
         protected readonly IConfiguration Configuration;
-        public DragonsTailContext(IConfiguration configuration)
+        public DragonsTailContext(IConfiguration configuration, DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
           Configuration = configuration;
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            options.UseNpgsql(Configuration.GetConnectionString("LocalDragonsTailContext"));
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //{
+        //    options.UseNpgsql(Configuration.GetConnectionString("ConnectionString"));
+        //}
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get;set; }
         public DbSet<PlayerCharacter> PlayerCharacters { get; set; }
