@@ -59,14 +59,14 @@
         public bool Stunned { get; set; } = false;
 
         // Incrementors 
-        public int DefendingFounds { get; set; } = 0;
+        public int DefendingRounds { get; set; } = 0;
         public int EvadingRounds { get; set; } = 0;
         public int FleeingRounds { get; set; } = 0;
         // Unused Currently
         public int SlowedRounds { get; set; } = 0;
         public int VulnerableRounds { get; set; } = 0;
         public int StoneArmoredRounds { get; set; } = 0;
-        public int DoubledArmedRounds { get; set; } = 0;
+        public int DoubleArmedRounds { get; set; } = 0;
         public int BurningBladesRounds { get; set; } = 0;
         public int BurningRounds { get; set; } = 0;
         public int PoisonedRounds { get; set; } = 0;

@@ -52,7 +52,7 @@ namespace DTpureback.Controllers
 
         // GET: api/SaveFiles/user/5
         [HttpGet("user/{id}")]
-        public async Task<ActionResult<IEnumerable<SaveFile>>> GetSaveFileByUser(int id)
+        public async Task<ActionResult<IEnumerable<SaveFile>>> GetSaveFileByUser(string id)
         {
             if (_context.SaveFiles == null)
             {

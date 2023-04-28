@@ -614,13 +614,13 @@ namespace DTpureback.Data
 
                 var save1 = new SaveFile
             {
-                UserID = 1,
+                UserID = "google-oauth2|113473413986135090152",
                 PlayerCharacterID = 1,
                 LocationID = "T"
             };
             var save2 = new SaveFile
             {
-                UserID = 1,
+                UserID = "google-oauth2|113473413986135090152",
                 PlayerCharacterID = 1,
                 LocationID = "I"
             };

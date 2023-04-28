@@ -3,6 +3,7 @@ using System;
 using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    partial class DragonsTailContextModelSnapshot : ModelSnapshot
+    [Migration("20230426192841_madeSlotsNullable")]
+    partial class madeSlotsNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,7 +81,7 @@ namespace DTpureback.Migrations
                     b.Property<bool>("Defended")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("DefendingRounds")
+                    b.Property<int>("DefendingFounds")
                         .HasColumnType("integer");
 
                     b.Property<int>("Dexterity")
@@ -90,7 +93,7 @@ namespace DTpureback.Migrations
                     b.Property<bool>("DoubleArmed")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("DoubleArmedRounds")
+                    b.Property<int>("DoubledArmedRounds")
                         .HasColumnType("integer");
 
                     b.Property<int>("DrippingDeathExplored")
@@ -396,7 +399,7 @@ namespace DTpureback.Migrations
                     b.Property<bool>("Defended")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("DefendingRounds")
+                    b.Property<int>("DefendingFounds")
                         .HasColumnType("integer");
 
                     b.Property<int>("Dexterity")
@@ -405,7 +408,7 @@ namespace DTpureback.Migrations
                     b.Property<bool>("DoubleArmed")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("DoubleArmedRounds")
+                    b.Property<int>("DoubledArmedRounds")
                         .HasColumnType("integer");
 
                     b.Property<int>("EvadePercentage")
@@ -504,16 +507,12 @@ namespace DTpureback.Migrations
                     b.Property<int>("PlayerCharacterID")
                         .HasColumnType("integer");
 
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("UserID1")
+                    b.Property<int>("UserID")
                         .HasColumnType("integer");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("UserID1");
+                    b.HasIndex("UserID");
 
                     b.ToTable("SaveFiles");
                 });
@@ -553,7 +552,7 @@ namespace DTpureback.Migrations
                 {
                     b.HasOne("DTpureback.Models.User", "User")
                         .WithMany("SaveFiles")
-                        .HasForeignKey("UserID1")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
