@@ -21,6 +21,7 @@ using System.Threading;
 using DTpureback.Models.Resources;
 using Newtonsoft.Json;
 using DTpureback.Interfaces;
+using Azure;
 
 namespace DTpureback.Data
 {
@@ -35,51 +36,59 @@ namespace DTpureback.Data
 
             var naka = new CharacterDefault
             {
-                ID = "B",
+                ID = "PC_B",
                 Name = "Nakat'th",
                 Strength = 12,
                 Dexterity = 8,
                 Constitution = 10,
                 Intelligence = 8,
                 Job = "Blacksmith",
-                AbilityID = "S"
+                AbilityID = "S",
+                Description = "Toughened by years of heating metal and bone to melting, you are strong " + 
+                "and willing to put your body on the line for your people. [Increased Strength and Constitution]"
             };
 
 
             var clich = new CharacterDefault
             {
-                ID = "S",
+                ID = "PC_S",
                 Name = "Clichtka",
                 Strength = 8,
                 Dexterity = 12,
                 Constitution = 10,
                 Intelligence = 8,
                 Job = "Scavenger",
-                AbilityID = "E"
+                AbilityID = "E",
+                Description = " Years of hiding from the predators in your home tunnels have made you quick and agile, faster than many of the creatures " +
+                "that roam the dark. [Increased Dexterity and Constitution]"
             };
 
             var bort = new CharacterDefault
             {
-                ID = "E",
+                ID = "PC_E",
                 Name = "Bortorb",
                 Strength = 8,
                 Dexterity = 10,
                 Constitution = 12,
                 Intelligence = 8,
                  Job = "Explorer",
-                 AbilityID = "D"
+                 AbilityID = "D",
+                Description = "Few have gone as far into the darkness as you, and even fewer have ventured as far into the light.You are a hardy explorer, " +
+                "often using the rivers both above and belowground as highways. [Increased Constitution and Dexterity]"
             };
 
             var grag = new CharacterDefault
             {
-                ID = "A",
+                ID = "PC_A",
                 Name = "Gragta'th",
                 Strength = 8,
                 Dexterity = 10,
                 Constitution = 8,
                 Intelligence = 12,
                 Job = "Herbalist",
-                AbilityID = "A"
+                AbilityID = "A",
+                Description = "As an apprentice to Naer'shob, the town healer, you have learned much about herbs and magic. " +
+                "Practical applications are much harder but it will come in time. [Increased Intelligence and Dexterity]"
             };
 
             var characterDefaults = new CharacterDefault[]
@@ -214,6 +223,44 @@ namespace DTpureback.Data
                 context.Items.Add(items[i]);
                 context.SaveChanges();
             }
+            var otherList = new List<int>();
+
+            otherList.Add(1);
+            otherList.Add(2);
+            otherList.Add(3);
+
+            var gameStart = new Location
+            {
+                ID = "SG",
+                Name = "GameStart",
+                EnterText = "Many years ago the Goblins lived peacefully above ground, in harmony with nature and the gods. " +
+
+                    "But then there was a Reckoning when the gods turned their backs on us, sending the Graith'Gesh, " +
+                    "unnaturals trees that could live in stone, walk, and even kill. They savaged our " +
+                    "people and forced them into the darkness of the tunnels. " +
+
+                    "We did not despair, for we found a light in the darkness. A light within ourselves " +
+                    "that grew to encompass almost all of us.  That light we call the God's Glow, the " +
+                    "surest sign that we will one day return to the land of the light. " +
+
+                    "And I think you may be the one to lead us. " +
+
+                    "Humble beginnings for someone who will do so much. " +
+                "What were they again?",
+                MiddleText = "Apprentice Alchemist(A), Apprentice Blacksmith(B), Tunnel Explorer(E), or Tunnel Scavenger(S)",
+                ExitText = "\"And the task you have chosen for your Enlightening?\" Elder Gragta'th rumbles.\r\n\r\n\"To find our brothers and sisters to the north."+
+                "To reunite us with our lost people.\"\r\nYour words surprise you, but they feel right.\r\n\r\nWhispers erupt"+
+                "from the gathered Goblins before Bortorb silences them and asks, \r\n\"Are you sure? There are many other ways to prove your worth."+
+                "Many shorter paths.\"\r\nYou see the worry in his eyes as you nod, not trusting yourself to speak.\r\n\r\n\"Very well then!\" Nakat'th cuts in,"+
+                "\"If that is your goal I will grant you access to me\r\nand my forge as if you were a true Goblin.  "+
+                "Anyone with the guts enough to take on the \r\nGraith are going to need some help.\"\r\n\r\n\"You may also avail yourself of my knowledge "+
+                "and potions in your endeavors.\" Gragta'th\r\ngrowls gently, his light swirling slightly."+
+                "\r\n\r\n\"Then may the gods bless this quest that will bring us so much closer to them.\" \r\nBortorb entoned, " +
+                "continuing with the ritual.\r\n\r\nIn the end you don't feel that different but you have a new goal:\r\nTo travel through the Shining Forest, "+
+                "in a world full of light and terrible bloodthirsty creatures,\r\nto bring your people up from the Dragon's Tail." ,
+                MoveOptions = "A,B,E,S",
+                OtherList = otherList
+            };
 
             //string[] moveOptions = { "B", "A", "I", "U", "S" };
             var town = new Location
@@ -364,6 +411,7 @@ namespace DTpureback.Data
             //{ id: "combat?", name: "Combat", enterText: "", exitText: "", options: [""], enemies: []}
             var locations = new Location[]
             {
+                gameStart,
                 town,
                 blacksmith,
                 inn,

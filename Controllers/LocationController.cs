@@ -48,7 +48,9 @@ namespace DTpureback.Controllers
                     ID = location.ID,
                     Name = location.Name,
                     EnterText = location.EnterText,
+                    MiddleText = location.MiddleText,
                     ExitText = location.ExitText,
+                    OtherText = location.OtherText,
                 };
 
             if(location.MoveOptions != null)
@@ -64,6 +66,10 @@ namespace DTpureback.Controllers
                     }
                 }
                 returnLocation.MoveOptions = moveOptions;
+            }
+            if(location.OtherList != null)
+            {
+                returnLocation.OtherList = location.OtherList;
             }
 
             if(location.Next != null)
