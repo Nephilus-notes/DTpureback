@@ -9,7 +9,6 @@ public class SaveFile : BaseEntity
     public string UserID { get; set; }
     public int PlayerCharacterID { get; set; }
     public string LocationID { get; set; }
-    public virtual User User { get; set; }
     //public virtual PlayerCharacter Character { get; set; }
 }
 

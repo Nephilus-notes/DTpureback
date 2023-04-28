@@ -634,33 +634,6 @@ namespace DTpureback.Data
             context.SaveFiles.AddRange(saves);
   
 
-                var charles = new User
-            {
-                Name = "Charles",
-                Email = "Cmhmcc@gmail.com",
-                Password = "Sup",
-                SaveFiles = new List<SaveFile>
-                { 
-                    save1, 
-                    save2 
-                }
-
-            };
-
-            var shawn = new User
-            {
-                Name = "Shawn",
-                Email = "smoethin@s.com",
-                Password = "Sup",
-            };
-
-            var users = new User[]
-            {
-                charles,
-                shawn
-            };
-
-            context.Users.AddRange(users);
             context.SaveChanges();
         }
     }

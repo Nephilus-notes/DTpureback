@@ -20,7 +20,6 @@ namespace DTpureback.Data
           Configuration = configuration;
         }
 
-        public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get;set; }
         public DbSet<PlayerCharacter> PlayerCharacters { get; set; }
         public DbSet<Location> Locations { get; set; }
