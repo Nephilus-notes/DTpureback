@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace DTpureback.Converters;
 
-public class PCItemIDConverter : ValueConverter<IEnumerable<int>, string>
+public class IntToStringIDConverter : ValueConverter<IEnumerable<int>, string>
 {
-public PCItemIDConverter() : base(le => ListToString(le), (s => StringToList(s)))
+public IntToStringIDConverter() : base(le => ListToString(le), (s => StringToList(s)))
 {
 
 }

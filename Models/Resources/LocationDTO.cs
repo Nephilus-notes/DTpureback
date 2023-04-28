@@ -7,6 +7,8 @@ namespace DTpureback.Models.Resources
         public string ID { get; set; }
         public string Name { get; set; }
         public string EnterText { get; set; }
+        public string? MiddleText { get; set; }
+
         public string ExitText { get; set; }
         public List<string>? MoveOptions { get; set; }
         public int? CommonNPC { get; set; }
@@ -16,5 +18,7 @@ namespace DTpureback.Models.Resources
         public int? SecretNPC { get; set; }
 
         public string? Next { get; set; }
+        public string? OtherText { get; set; }
+        public IEnumerable<int> OtherList { get; set; }
     }
 }
