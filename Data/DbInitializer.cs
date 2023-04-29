@@ -283,6 +283,7 @@ namespace DTpureback.Data
                 "The blacksmith's face shines at you from over the counter.",
                 ExitText = "",
                 MoveOptions = "T,S",
+                Next = "T"
             };
 
             var alchemist = new Location
@@ -294,6 +295,8 @@ namespace DTpureback.Data
                 "something with a pestle. Looking up he flashes his sharp teeth in a smile.",
                 ExitText = "",
                 MoveOptions = "T,S",
+                Next = "T"
+
             };
 
             var inn = new Location
@@ -312,7 +315,11 @@ namespace DTpureback.Data
                 EnterText = "You enter the Underbelly and wend your way through the crevasses and crags of Thagrag's Hope.",
                 ExitText = "",
                 MoveOptions = "T,C",
-                Next = "W"
+                Next = "W",
+                CommonNPC = 2,
+                UncommonNPC = 1,
+                RareNPC = 3,
+                SecretNPC = 9
             };
 
             var webOfDepths = new Location
@@ -323,7 +330,11 @@ namespace DTpureback.Data
                 "Every surface is slick with moisture in this series of interwoven tunnels created by underground rivers.",
                 ExitText = "",
                 MoveOptions = "T,C",
-                Next = "G"
+                Next = "G",
+                CommonNPC = 2,
+                UncommonNPC = 3,
+                RareNPC = 4,
+                SecretNPC = 9
             };
 
             var graithsGrotto = new Location
@@ -334,7 +345,11 @@ namespace DTpureback.Data
                 "Home to the lizards your people have learned to domesticate, none you might find here will be friendly.",
                 ExitText = "",
                 MoveOptions = "T,C",
-                Next = "Q"
+                Next = "Q",
+                CommonNPC = 3,
+                UncommonNPC = 4,
+                RareNPC = 4,
+                SecretNPC = 9
             };
             var graithQueensLair = new Location
             {
@@ -346,6 +361,10 @@ namespace DTpureback.Data
                 "as the walls close in around you and you enter the Graith Queen's Lair.",
                 ExitText = "",
                 MoveOptions = "T",
+                CommonNPC = 4,
+                UncommonNPC = 5,
+                RareNPC = 2,
+                SecretNPC = 9
             };
             var kratabsFolly = new Location
             {
@@ -357,7 +376,11 @@ namespace DTpureback.Data
                 "It will take some time before you can appreciate the savage beauty of the mountaintops as you do the roots of the mountain.",
                 ExitText = "",
                 MoveOptions = "T,C",
-                Next = "D"
+                Next = "D",
+                 CommonNPC = 2,
+                UncommonNPC = 1,
+                RareNPC = 6,
+                SecretNPC = 9
             };
 
             var drippingDeath = new Location
@@ -373,7 +396,11 @@ namespace DTpureback.Data
                 "How long til the Graith Trees come for you? ",
                 ExitText = "",
                 MoveOptions = "T,C",
-                Next = "P"
+                Next = "P",
+                CommonNPC = 3,
+                UncommonNPC = 6,
+                RareNPC = 7,
+                SecretNPC = 9
             };
             var playersRespite = new Location
             {
@@ -388,7 +415,11 @@ namespace DTpureback.Data
                 "feels like a godsend,even if it holds demons.",
                 ExitText = "",
                 MoveOptions = "T,C",
-                Next = "TTD"
+                Next = "TTD",
+                CommonNPC = 3,
+                UncommonNPC = 6,
+                RareNPC = 7,
+                SecretNPC = 9
             };
 
             var tailOfTheDragon = new Location
@@ -406,6 +437,10 @@ namespace DTpureback.Data
                 "with bright red fruits that wink out like malevolent eyes from under its leaves.",
                 ExitText = "",
                 MoveOptions = "T,C",
+                CommonNPC = 8,
+                UncommonNPC = 8,
+                RareNPC = 8,
+                SecretNPC = 8
             };
 
             //{ id: "combat?", name: "Combat", enterText: "", exitText: "", options: [""], enemies: []}
@@ -543,7 +578,7 @@ namespace DTpureback.Data
             };
             var graithAppleTree = new NPC
             {
-                Name = "Grakta Wolf",
+                Name = "Graith Apple Tree",
                 Level = 6,
                 CurrentCurrency = 0,
                 Strength = 18,
