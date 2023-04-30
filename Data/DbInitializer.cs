@@ -377,8 +377,8 @@ namespace DTpureback.Data
                 ExitText = "",
                 MoveOptions = "T,C",
                 Next = "D",
-                 CommonNPC = 2,
-                UncommonNPC = 1,
+                 CommonNPC = 1,
+                UncommonNPC = 3,
                 RareNPC = 6,
                 SecretNPC = 9
             };
