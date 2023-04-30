@@ -267,9 +267,11 @@ namespace DTpureback.Data
             {
                 ID = "T",
                 Name = "Town",
-                EnterText = "You have arrived back home in Grik'tath.  You can hear the beating of iron coming from the blacksmith, " +
-                "smell grass and sky coming from the dark windows of the alchemist's shop, and see the calming glow of people in the " +
-                "inn.  There's also a path deeper underground into The Underbelly, or the tunnel outside to the Shining Forest. ",
+                EnterText = "You have arrived back home in Grik'tath.  You can hear the beating of iron coming from the blacksmith(B), " +
+                "smell grass and sky coming from the dark windows of the alchemist's shop(A), and see the calming glow of people in the " +
+                "inn(I).  There's also a path deeper underground into The Underbelly(U), or the tunnel outside to the Shining Forest(S). " +
+                "[To navigate the game use the input field below or the buttons in this sector.  Each option below will correspond to a character " +
+                " you can enter to navigate to a related part of the world. For example, T = Town]",
                 ExitText = "",
                 MoveOptions = "B,A,I,U,S",
             };
