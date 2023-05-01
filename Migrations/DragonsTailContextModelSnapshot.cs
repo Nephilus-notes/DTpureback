@@ -211,7 +211,7 @@ namespace DTpureback.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("PlayerCharacters");
+                    b.ToTable("PlayerCharacters", (string)null);
                 });
 
             modelBuilder.Entity("DTpureback.Models.Resources.Ability", b =>
@@ -244,7 +244,7 @@ namespace DTpureback.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Ability");
+                    b.ToTable("Ability", (string)null);
                 });
 
             modelBuilder.Entity("DTpureback.Models.Resources.CharacterDefault", b =>
@@ -281,7 +281,7 @@ namespace DTpureback.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("CharacterDefault");
+                    b.ToTable("CharacterDefault", (string)null);
                 });
 
             modelBuilder.Entity("DTpureback.Models.Resources.Item", b =>
@@ -312,7 +312,7 @@ namespace DTpureback.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Items");
+                    b.ToTable("Items", (string)null);
                 });
 
             modelBuilder.Entity("DTpureback.Models.Resources.Location", b =>
@@ -361,7 +361,7 @@ namespace DTpureback.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Locations");
+                    b.ToTable("Locations", (string)null);
                 });
 
             modelBuilder.Entity("DTpureback.Models.Resources.NPC", b =>
@@ -492,7 +492,7 @@ namespace DTpureback.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("NPC");
+                    b.ToTable("NPC", (string)null);
                 });
 
             modelBuilder.Entity("DTpureback.Models.SaveFile", b =>
@@ -522,7 +522,7 @@ namespace DTpureback.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("SaveFiles");
+                    b.ToTable("SaveFiles", (string)null);
                 });
 #pragma warning restore 612, 618
         }
