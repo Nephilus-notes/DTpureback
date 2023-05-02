@@ -4,10 +4,14 @@ using DTpureback.Models;
 using DTpureback.Data;
 using Microsoft.Data.SqlClient;
 using Npgsql;
+using Azure.Identity;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
+
+var keyVaultEndpoint = new Uri(Environment.GetEnvironmentVariable("VaultUri"));
+builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
 
 var conStrBuilder = new NpgsqlConnectionStringBuilder(
         builder.Configuration.GetConnectionString("LocalDragonsTailContext"));
