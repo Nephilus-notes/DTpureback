@@ -282,7 +282,7 @@ namespace DTpureback.Data
                 Name = "Blacksmith's Shop",
                 EnterText = "You step into a shop with black and silver shining at you from " +
                 "all around as arms and armor coat the walls. " +
-                "The blacksmith's face shines at you from over the counter.",
+                "The blacksmith's face shines at you from over the counter.  [T - Town, S - Shop]",
                 ExitText = "",
                 MoveOptions = "T,S",
                 Next = "T"
@@ -294,7 +294,7 @@ namespace DTpureback.Data
                 Name = "Alchemist's Shop",
                 EnterText = "You duck your head as you step into the alchemists shop.  Dried bundles of fungi, sticks, " +
                 "and even flowers festoon the walls and Garthak the Brewer is humming to himself as he grinds " +
-                "something with a pestle. Looking up he flashes his sharp teeth in a smile.",
+                "something with a pestle. Looking up he flashes his sharp teeth in a smile.  [T - Town, S - Shop]",
                 ExitText = "",
                 MoveOptions = "T,S",
                 Next = "T"
@@ -305,7 +305,11 @@ namespace DTpureback.Data
             {
                 ID = "I",
                 Name = "Inn",
-                EnterText = "Welcome to the inn",
+                EnterText = "A din of welcoming chatter washes over you as you enter the inn.  While the tunnels between buildings can " +
+                "be fairly cramped, the common room of the inn is wide open and full of goblins of various ages sprawled all over couches, " +
+                "chairs, and, occasionally, the tables. Here at the beating heart of your town you see your community. Friends and neighbors " +
+                "who watched you grow up, tiny children learning how to dim their skin's glow, and even elders watching their charges with hope " +
+                "and joy in their hearts. [T - Town, S - Shop]",
                 ExitText = "",
                 MoveOptions = "T,S",
             };
@@ -314,7 +318,7 @@ namespace DTpureback.Data
             {
                 ID = "U",
                 Name = "Thagrag's Hope",
-                EnterText = "You enter the Underbelly and wend your way through the crevasses and crags of Thagrag's Hope.",
+                EnterText = "You enter the Underbelly and wend your way through the crevasses and crags of Thagrag's Hope. [T - Town, C - Continue]",
                 ExitText = "",
                 MoveOptions = "T,C",
                 Next = "W",
@@ -329,7 +333,7 @@ namespace DTpureback.Data
                 ID = "W",
                 Name = "Web of Depths",
                 EnterText = "A waterfall deafens you as you enter the Web of the Depths. " +
-                "Every surface is slick with moisture in this series of interwoven tunnels created by underground rivers.",
+                "Every surface is slick with moisture in this series of interwoven tunnels created by underground rivers. [T - Town, C - Continue]",
                 ExitText = "",
                 MoveOptions = "T,C",
                 Next = "G",
@@ -344,7 +348,7 @@ namespace DTpureback.Data
                 ID = "G",
                 Name = "Graith's Grotto",
                 EnterText = "Out of range of any natural light you navigate purely by your own light as you enter Graith's Grotto. " +
-                "Home to the lizards your people have learned to domesticate, none you might find here will be friendly.",
+                "Home to the lizards your people have learned to domesticate, none you might find here will be friendly. [T - Town, C - Continue]",
                 ExitText = "",
                 MoveOptions = "T,C",
                 Next = "Q",
@@ -375,7 +379,7 @@ namespace DTpureback.Data
                 EnterText = "You walk towards the surface, leaving behind the familiar tunnels as the crisp mountain air and afternoon sunlight hit your face. " +
                 "Your eyes take a moment to adjust before you can see the mountains of Kratab's Folly. " +
                 "Towering mountains feel almost familiar but their twisted peaks point upwards into the vastness of the brilliant blue sky. " +
-                "It will take some time before you can appreciate the savage beauty of the mountaintops as you do the roots of the mountain.",
+                "It will take some time before you can appreciate the savage beauty of the mountaintops as you do the roots of the mountain. [T - Town, C - Continue]",
                 ExitText = "",
                 MoveOptions = "T,C",
                 Next = "D",
@@ -395,7 +399,7 @@ namespace DTpureback.Data
                 "the rest of our brothers to the north.Where anything can hide and everything " +
                 "would be happy to make you a dead little Goblin. " +
                 "The hanging moss swaying in the breeze almost causing you to bolt. " +
-                "How long til the Graith Trees come for you? ",
+                "How long til the Graith Trees come for you? [T - Town, C - Continue]",
                 ExitText = "",
                 MoveOptions = "T,C",
                 Next = "P",
@@ -414,7 +418,7 @@ namespace DTpureback.Data
                 "A bold move considering the Graith Trees will have more camouflage when creeping up " +
                 "on you but after the dismal, " +
                 "glaring grey of the marsh the sunlit green of forest " +
-                "feels like a godsend,even if it holds demons.",
+                "feels like a godsend,even if it holds demons. [T - Town, C - Continue]",
                 ExitText = "",
                 MoveOptions = "T,C",
                 Next = "TTD",
@@ -436,7 +440,7 @@ namespace DTpureback.Data
                 "As wend your way to a pass you see a magnificent gnarled fruit tree spreading over the path. " +
                 "Your steps slow as you realize you haven't seen any other fruit trees in miles. " +
                 "Unfortunately there is no way around where the tree sits, its branches laden " +
-                "with bright red fruits that wink out like malevolent eyes from under its leaves.",
+                "with bright red fruits that wink out like malevolent eyes from under its leaves. [T - Town, C - Continue]",
                 ExitText = "",
                 MoveOptions = "T,C",
                 CommonNPC = 8,
