@@ -4,15 +4,17 @@ using DTpureback.Models;
 using DTpureback.Data;
 using Microsoft.Data.SqlClient;
 using Npgsql;
+using Microsoft.OpenApi.Models;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
-var conStrBuilder = new NpgsqlConnectionStringBuilder(
-        builder.Configuration.GetConnectionString("LocalDragonsTailContext"));
-conStrBuilder.Password = builder.Configuration["LocalDragonsTailContext:DbPassword"];
-var connection = conStrBuilder.ConnectionString;
+//var conStrBuilder = new NpgsqlConnectionStringBuilder(
+//        builder.Configuration.GetConnectionString("HOSTED_DB_URL"));
+//conStrBuilder.Password = builder.Configuration["HOSTED_DB:DbPassword"];
+var connection = Environment.GetEnvironmentVariable("HOSTED_DB_URL");
+
 
 builder.Services.AddCors(options =>
 {
@@ -33,7 +35,6 @@ builder.Services.AddDbContext<DragonsTailContext>(opt =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -51,7 +52,6 @@ using (var scope = app.Services.CreateScope())
     
     DbInitializer.Initialize(context);
 }
-
 
 app.UseHttpsRedirection();
 

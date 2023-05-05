@@ -6,7 +6,8 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "Local_db_connection": "Server=localhost;Database=DT2.3;Port=5432;User ID=postgres;Password=TuskedBeak"
+        "Local_db_connection": "Server=localhost;Database=DT2.3;Port=5432;User ID=postgres;Password=TuskedBeak",
+        "HOSTED_DB_URL": "Host=lallah.db.elephantsql.com;Port=5432;Database=tuxxuwdd;Username=tuxxuwdd;Password=uKp2YXHLcQ0JMdMbuIL4FIdoEI7L_YQX"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7212;http://localhost:5203"
@@ -16,7 +17,8 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "HOSTED_DB_URL": "Host=lallah.db.elephantsql.com;Port=5432;Database=tuxxuwdd;Username=tuxxuwdd;Password=uKp2YXHLcQ0JMdMbuIL4FIdoEI7L_YQX"
       }
     }
   },
