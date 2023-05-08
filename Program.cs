@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 //        builder.Configuration.GetConnectionString("HOSTED_DB_URL"));
 //conStrBuilder.Password = builder.Configuration["HOSTED_DB:DbPassword"];
 var connection = Environment.GetEnvironmentVariable("HOSTED_DB_URL");
+Console.WriteLine(connection);
 
 
 builder.Services.AddCors(options =>
@@ -34,15 +35,15 @@ builder.Services.AddDbContext<DragonsTailContext>(opt =>
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+//app.UseSwagger();
+//app.UseSwaggerUI();
 
 using (var scope = app.Services.CreateScope())
 {
