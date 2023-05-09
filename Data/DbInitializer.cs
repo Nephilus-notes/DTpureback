@@ -708,18 +708,10 @@ namespace DTpureback.Data
                 LocationID = "T",
                 CharacterName = "Craelios"
             };
-            var save2 = new SaveFile
-            {
-                UserID = "google-oauth2|113473413986135090152",
-                PlayerCharacterID = 1,
-                LocationID = "I",
-                CharacterName = "Craelios"
-            };
 
             var saves = new SaveFile[]
             {
             save1,
-            save2
             };
 
             context.SaveFiles.AddRange(saves);

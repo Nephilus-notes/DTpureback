@@ -42,13 +42,9 @@ namespace DTpureback.Models
         public int GraithsGrottoExplored { get; set; } = 0;
         public int GraithQueensLairExplored { get; set; } = 0;
 
-        // Do I need this? ??
-        //public List<string>? AttributeList { get; set; }
-
         // Abilities 
         //public List<string>? Abilities { get; set; }
 
-        //public SaveFile? Save { get; set; }
 
 
     }
