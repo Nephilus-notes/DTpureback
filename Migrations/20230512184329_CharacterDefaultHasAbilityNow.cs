@@ -7,50 +7,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     /// <inheritdoc />
-    public partial class NukedDBForIDChangeAbility : Migration
+    public partial class CharacterDefaultHasAbilityNow : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Ability",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Effect = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
-                    AffectedAttribute = table.Column<string>(type: "text", nullable: false),
-                    Duration = table.Column<int>(type: "integer", nullable: false),
-                    Type = table.Column<string>(type: "text", nullable: false),
-                    Cost = table.Column<int>(type: "integer", nullable: false),
-                    Modifier = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ability", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CharacterDefault",
-                columns: table => new
-                {
-                    ID = table.Column<string>(type: "text", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Strength = table.Column<int>(type: "integer", nullable: false),
-                    Dexterity = table.Column<int>(type: "integer", nullable: false),
-                    Intelligence = table.Column<int>(type: "integer", nullable: false),
-                    Constitution = table.Column<int>(type: "integer", nullable: false),
-                    Job = table.Column<string>(type: "text", nullable: false),
-                    AbilityID = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CharacterDefault", x => x.ID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Items",
                 columns: table => new
@@ -230,14 +191,83 @@ namespace DTpureback.Migrations
                 {
                     table.PrimaryKey("PK_SaveFiles", x => x.ID);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Ability",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Effect = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    AffectedAttribute = table.Column<string>(type: "text", nullable: false),
+                    Duration = table.Column<int>(type: "integer", nullable: false),
+                    Type = table.Column<string>(type: "text", nullable: false),
+                    Cost = table.Column<int>(type: "integer", nullable: false),
+                    Modifier = table.Column<int>(type: "integer", nullable: false),
+                    NPCID = table.Column<int>(type: "integer", nullable: true),
+                    PlayerCharacterID = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ability", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Ability_NPC_NPCID",
+                        column: x => x.NPCID,
+                        principalTable: "NPC",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Ability_PlayerCharacters_PlayerCharacterID",
+                        column: x => x.PlayerCharacterID,
+                        principalTable: "PlayerCharacters",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CharacterDefault",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Strength = table.Column<int>(type: "integer", nullable: false),
+                    Dexterity = table.Column<int>(type: "integer", nullable: false),
+                    Intelligence = table.Column<int>(type: "integer", nullable: false),
+                    Constitution = table.Column<int>(type: "integer", nullable: false),
+                    Job = table.Column<string>(type: "text", nullable: false),
+                    AbilityID = table.Column<int>(type: "integer", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CharacterDefault", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_CharacterDefault_Ability_AbilityID",
+                        column: x => x.AbilityID,
+                        principalTable: "Ability",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ability_NPCID",
+                table: "Ability",
+                column: "NPCID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ability_PlayerCharacterID",
+                table: "Ability",
+                column: "PlayerCharacterID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CharacterDefault_AbilityID",
+                table: "CharacterDefault",
+                column: "AbilityID");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Ability");
-
             migrationBuilder.DropTable(
                 name: "CharacterDefault");
 
@@ -248,13 +278,16 @@ namespace DTpureback.Migrations
                 name: "Locations");
 
             migrationBuilder.DropTable(
+                name: "SaveFiles");
+
+            migrationBuilder.DropTable(
+                name: "Ability");
+
+            migrationBuilder.DropTable(
                 name: "NPC");
 
             migrationBuilder.DropTable(
                 name: "PlayerCharacters");
-
-            migrationBuilder.DropTable(
-                name: "SaveFiles");
         }
     }
 }

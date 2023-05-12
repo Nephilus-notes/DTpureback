@@ -34,74 +34,6 @@ namespace DTpureback.Data
                 return;
             }
 
-            var naka = new CharacterDefault
-            {
-                ID = "PC_B",
-                Name = "Nakat'th",
-                Strength = 12,
-                Dexterity = 8,
-                Constitution = 10,
-                Intelligence = 8,
-                Job = "Blacksmith",
-                AbilityID = "S",
-                Description = "Toughened by years of heating metal and bone to melting, you are strong " + 
-                "and willing to put your body on the line for your people. [Increased Strength and Constitution]"
-            };
-
-
-            var clich = new CharacterDefault
-            {
-                ID = "PC_S",
-                Name = "Clichtka",
-                Strength = 8,
-                Dexterity = 12,
-                Constitution = 10,
-                Intelligence = 8,
-                Job = "Scavenger",
-                AbilityID = "E",
-                Description = " Years of hiding from the predators in your home tunnels have made you quick and agile, faster than many of the creatures " +
-                "that roam the dark. [Increased Dexterity and Constitution]"
-            };
-
-            var bort = new CharacterDefault
-            {
-                ID = "PC_E",
-                Name = "Bortorb",
-                Strength = 8,
-                Dexterity = 10,
-                Constitution = 12,
-                Intelligence = 8,
-                 Job = "Explorer",
-                 AbilityID = "D",
-                Description = "Few have gone as far into the darkness as you, and even fewer have ventured as far into the light.You are a hardy explorer, " +
-                "often using the rivers both above and belowground as highways. [Increased Constitution and Dexterity]"
-            };
-
-            var grag = new CharacterDefault
-            {
-                ID = "PC_A",
-                Name = "Gragta'th",
-                Strength = 8,
-                Dexterity = 10,
-                Constitution = 8,
-                Intelligence = 12,
-                Job = "Herbalist",
-                AbilityID = "A",
-                Description = "As an apprentice to Naer'shob, the town healer, you have learned much about herbs and magic. " +
-                "Practical applications are much harder but it will come in time. [Increased Intelligence and Dexterity]"
-            };
-
-            var characterDefaults = new CharacterDefault[]
-            {
-                naka,
-                bort,
-                grag,
-                clich
-            };
-
-            context.AddRange(characterDefaults);
-            context.SaveChanges();
-
 
             var attack = new Ability
             {
@@ -175,18 +107,88 @@ namespace DTpureback.Data
 
             var abilities = new Ability[]
             {
-                attack, 
+                attack,
                 flee,
                 strengthen,
-                evade, 
+                evade,
                 defend,
                 aim
             };
+
             for (var i = 0; i < abilities.Length; i++)
             {
                 context.Ability.Add(abilities[i]);
                 context.SaveChanges();
             }
+
+
+            var naka = new CharacterDefault
+            {
+                ID = "PC_B",
+                Name = "Nakat'th",
+                Strength = 12,
+                Dexterity = 8,
+                Constitution = 10,
+                Intelligence = 8,
+                Job = "Blacksmith",
+                Ability = strengthen,
+                Description = "Toughened by years of heating metal and bone to melting, you are strong " + 
+                "and willing to put your body on the line for your people. [Increased Strength and Constitution]"
+            };
+
+
+            var clich = new CharacterDefault
+            {
+                ID = "PC_S",
+                Name = "Clichtka",
+                Strength = 8,
+                Dexterity = 12,
+                Constitution = 10,
+                Intelligence = 8,
+                Job = "Scavenger",
+                Ability = evade,
+                Description = " Years of hiding from the predators in your home tunnels have made you quick and agile, faster than many of the creatures " +
+                "that roam the dark. [Increased Dexterity and Constitution]"
+            };
+
+            var bort = new CharacterDefault
+            {
+                ID = "PC_E",
+                Name = "Bortorb",
+                Strength = 8,
+                Dexterity = 10,
+                Constitution = 12,
+                Intelligence = 8,
+                 Job = "Explorer",
+                 Ability = defend,
+                Description = "Few have gone as far into the darkness as you, and even fewer have ventured as far into the light.You are a hardy explorer, " +
+                "often using the rivers both above and belowground as highways. [Increased Constitution and Dexterity]"
+            };
+
+            var grag = new CharacterDefault
+            {
+                ID = "PC_A",
+                Name = "Gragta'th",
+                Strength = 8,
+                Dexterity = 10,
+                Constitution = 8,
+                Intelligence = 12,
+                Job = "Herbalist",
+                Ability = aim,
+                Description = "As an apprentice to Naer'shob, the town healer, you have learned much about herbs and magic. " +
+                "Practical applications are much harder but it will come in time. [Increased Intelligence and Dexterity]"
+            };
+
+            var characterDefaults = new CharacterDefault[]
+            {
+                naka,
+                bort,
+                grag,
+                clich
+            };
+
+            context.AddRange(characterDefaults);
+            context.SaveChanges();
 
             var scythe = new Item
             {

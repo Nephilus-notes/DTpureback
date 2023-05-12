@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DTpureback.Data;
 using DTpureback.Models;
+using DTpureback.Models.Resources;
+using AutoMapper;
 
 namespace DTpureback.Controllers
 {
@@ -15,10 +17,12 @@ namespace DTpureback.Controllers
     public class PlayerCharactersController : ControllerBase
     {
         private readonly DragonsTailContext _context;
+        private readonly IMapper _mapper;
 
-        public PlayerCharactersController(DragonsTailContext context)
+        public PlayerCharactersController(DragonsTailContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/PlayerCharacters
@@ -34,24 +38,20 @@ namespace DTpureback.Controllers
 
         // GET: api/PlayerCharacters/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PlayerCharacter>> GetPlayerCharacter(int id)
+        public async Task<ActionResult<PlayerCharacterDTO>> GetPlayerCharacter(int id)
         {
-          if (_context.PlayerCharacters == null)
-          {
-              return NotFound();
-          }
-            var playerCharacter = await _context.PlayerCharacters.FindAsync(id);
+            var playerCharacter = await _context.PlayerCharacters
+                .Include(pc => pc.Abilities)
+                .FirstOrDefaultAsync(pc => pc.ID == id);
 
-            //if (playerCharacter.Items == null)
-            //{
-            //    //playerCharacter.Backpack == 
-            //}
             if (playerCharacter == null)
             {
                 return NotFound();
             }
 
-            return playerCharacter;
+            var playerCharacterDto = _mapper.Map<PlayerCharacterDTO>(playerCharacter);
+
+            return playerCharacterDto;
         }
 
         // PUT: api/PlayerCharacters/5

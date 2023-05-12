@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    [Migration("20230512175153_NukedDBForIDChangeAbility")]
-    partial class NukedDBForIDChangeAbility
+    [Migration("20230512184329_CharacterDefaultHasAbilityNow")]
+    partial class CharacterDefaultHasAbilityNow
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -246,15 +246,25 @@ namespace DTpureback.Migrations
                     b.Property<int>("Modifier")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("NPCID")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int?>("PlayerCharacterID")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("NPCID");
+
+                    b.HasIndex("PlayerCharacterID");
 
                     b.ToTable("Ability");
                 });
@@ -264,9 +274,8 @@ namespace DTpureback.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("text");
 
-                    b.Property<string>("AbilityID")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("AbilityID")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Constitution")
                         .HasColumnType("integer");
@@ -292,6 +301,8 @@ namespace DTpureback.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("AbilityID");
 
                     b.ToTable("CharacterDefault");
                 });
@@ -539,6 +550,38 @@ namespace DTpureback.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("SaveFiles");
+                });
+
+            modelBuilder.Entity("DTpureback.Models.Resources.Ability", b =>
+                {
+                    b.HasOne("DTpureback.Models.Resources.NPC", null)
+                        .WithMany("Abilities")
+                        .HasForeignKey("NPCID");
+
+                    b.HasOne("DTpureback.Models.PlayerCharacter", null)
+                        .WithMany("Abilities")
+                        .HasForeignKey("PlayerCharacterID");
+                });
+
+            modelBuilder.Entity("DTpureback.Models.Resources.CharacterDefault", b =>
+                {
+                    b.HasOne("DTpureback.Models.Resources.Ability", "Ability")
+                        .WithMany()
+                        .HasForeignKey("AbilityID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ability");
+                });
+
+            modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
+                {
+                    b.Navigation("Abilities");
+                });
+
+            modelBuilder.Entity("DTpureback.Models.Resources.NPC", b =>
+                {
+                    b.Navigation("Abilities");
                 });
 #pragma warning restore 612, 618
         }

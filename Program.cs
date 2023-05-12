@@ -5,14 +5,20 @@ using DTpureback.Data;
 using Microsoft.Data.SqlClient;
 using Npgsql;
 using Microsoft.OpenApi.Models;
+using AutoMapper;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
+//var conStrBuilder = new NpgsqlConnectionStringBuilder(
+//        builder.Configuration["HOSTED_DB:ConnectionString"]);
+//conStrBuilder.Password = builder.Configuration["HOSTED_DB:DbPassword"];
+//var connection = conStrBuilder.ConnectionString;
+
 var conStrBuilder = new NpgsqlConnectionStringBuilder(
-        builder.Configuration["HOSTED_DB:ConnectionString"]);
-conStrBuilder.Password = builder.Configuration["HOSTED_DB:DbPassword"];
+        builder.Configuration["LocalDragonsTailContext:ConnectionString"]);
+conStrBuilder.Password = builder.Configuration["LocalDragonsTailContext:DbPassword"];
 var connection = conStrBuilder.ConnectionString;
 
 //var connection = Environment.GetEnvironmentVariable("HOSTED_DB_URL");
@@ -34,6 +40,18 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DragonsTailContext>(opt =>
     opt.UseNpgsql(connection));
+
+builder.Services.AddAutoMapper(typeof(Program));
+
+// Configure AutoMapper mappings
+var mapperConfig = new MapperConfiguration(config =>
+{
+    config.CreateMap<PlayerCharacter, PlayerCharacterDTO>();
+    // Add other mappings as needed
+});
+
+var mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
