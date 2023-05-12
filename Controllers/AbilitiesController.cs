@@ -53,7 +53,7 @@ namespace DTpureback.Controllers
         // PUT: api/Abilities/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAbility(string id, Ability ability)
+        public async Task<IActionResult> PutAbility(int id, Ability ability)
         {
             if (id != ability.ID)
             {
@@ -112,7 +112,7 @@ namespace DTpureback.Controllers
 
         // DELETE: api/Abilities/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAbility(string id)
+        public async Task<IActionResult> DeleteAbility(int id)
         {
             if (_context.Ability == null)
             {
@@ -130,7 +130,7 @@ namespace DTpureback.Controllers
             return NoContent();
         }
 
-        private bool AbilityExists(string id)
+        private bool AbilityExists(int id)
         {
             return (_context.Ability?.Any(e => e.ID == id)).GetValueOrDefault();
         }
