@@ -103,6 +103,7 @@ namespace DTpureback.Data
 
             var heal = new Ability
             {
+                ID = 10,
                 Name = "Heal I",
                 Effect = "heal",
                 Description = "heals the target.",
@@ -121,11 +122,11 @@ namespace DTpureback.Data
                 aim
             };
 
-            //for (var i = 0; i < abilities.Length; i++)
-            //{
-            //    context.Ability.Add(abilities[i]);
-            //    context.SaveChanges();
-            //}
+            for (var i = 0; i < abilities.Length; i++)
+            {
+                context.Ability.Add(abilities[i]);
+                context.SaveChanges();
+            }
 
 
             var naka = new CharacterDefault
@@ -742,6 +743,15 @@ namespace DTpureback.Data
                     Hand= scythe
             };
 
+            var craeAbil = new Ability[]
+            {
+                heal,
+                attack,
+                defend,
+                evade,
+                aim,
+                strengthen
+            };
 
             var crae = new PlayerCharacter
             {
@@ -750,7 +760,7 @@ namespace DTpureback.Data
                 CurrentCurrency = 0,
                 Level = 4,
                 Items = backpack,
-
+                Abilities = craeAbil,
                 Strength = 13,
                 Dexterity = 15,
                 Intelligence = 13,

@@ -8,7 +8,6 @@ namespace DTpureback.Models
     {
         // Items and Currency
         public int LifeTimeCurrency { get; set; }
-        public ICollection<Item>? Items { get; set; }
         //public Item? HeadItem { get; set; }
         //public Item? BodyItem { get; set; }
         //public Item? HandItem { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace DTpureback.Models.Resources
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DTpureback.Models.Resources
 {
     public class Character : BaseEntity
     {
@@ -8,6 +10,9 @@
         public int CurrentCurrency { get; set; }
 
         public int Level { get; set; }
+        [NotMapped]
+        public ICollection<Item>? Items { get; set; }
+
 
         // Stats
         // I can remove armor from the DB and instead calculate it in browser based on equipment
@@ -19,12 +24,7 @@
         public int Constitution { get; set; }
 
 
-        // Weapon Damage and damage also does not need to be a separate field
-
-
-        //public int Damage { get; set; }
-        //public int WeaponDamage { get; set; } = 0;
-
+        [NotMapped]
         public ICollection<Ability> Abilities { get; set; }
 
         // Persistent mutable stats
@@ -72,32 +72,9 @@
         public int PoisonedRounds { get; set; } = 0;
         public int FocusingRounds { get; set; } = 0;
 
-        public static int Attack(Character self, Character target)
-        {
-            Random rnd = new Random();
-            int attack = rnd.Next(0, 100);
+        public List<CharacterAbility> CharacterAbilities { get; set; }
+        public List<CharacterItem> CharacterItems { get; set; }
 
-            if (attack == 100)
-            {
-                int damage = self.DamageValue * 2;
-                return damage;
-            }
-            else if (attack > target.EvadePercentage)
-            {
-                int totalDamage = self.DamageValue - target.ArmorValue;
-                if (totalDamage > 0)
-                {
-                    return totalDamage;
-                }
-                else
-                {
-                    return 1;
-                }
-            }
-            else
-            {
-                return 0;
-            }
-        }
     }
 }
+

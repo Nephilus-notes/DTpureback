@@ -7,28 +7,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     /// <inheritdoc />
-    public partial class CharacterDefaultHasAbilityNow : Migration
+    public partial class NewSlateAgain : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Items",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "text", nullable: false),
-                    ItemStat = table.Column<int>(type: "integer", nullable: false),
-                    Price = table.Column<int>(type: "integer", nullable: false),
-                    Slot = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Items", x => x.ID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
@@ -110,7 +93,6 @@ namespace DTpureback.Migrations
                     ID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     LifeTimeCurrency = table.Column<int>(type: "integer", nullable: false),
-                    Items = table.Column<string>(type: "text", nullable: true),
                     EquippedItems = table.Column<string>(type: "text", nullable: false),
                     StrengthXP = table.Column<int>(type: "integer", nullable: false),
                     DexterityXP = table.Column<int>(type: "integer", nullable: false),
@@ -196,8 +178,7 @@ namespace DTpureback.Migrations
                 name: "Ability",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ID = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Effect = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
@@ -206,8 +187,7 @@ namespace DTpureback.Migrations
                     Type = table.Column<string>(type: "text", nullable: false),
                     Cost = table.Column<int>(type: "integer", nullable: false),
                     Modifier = table.Column<int>(type: "integer", nullable: false),
-                    NPCID = table.Column<int>(type: "integer", nullable: true),
-                    PlayerCharacterID = table.Column<int>(type: "integer", nullable: true)
+                    NPCID = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -218,8 +198,29 @@ namespace DTpureback.Migrations
                         principalTable: "NPC",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_Ability_PlayerCharacters_PlayerCharacterID",
-                        column: x => x.PlayerCharacterID,
+                        name: "FK_Ability_PlayerCharacters_ID",
+                        column: x => x.ID,
+                        principalTable: "PlayerCharacters",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Items",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "integer", nullable: false),
+                    name = table.Column<string>(type: "text", nullable: false),
+                    ItemStat = table.Column<int>(type: "integer", nullable: false),
+                    Price = table.Column<int>(type: "integer", nullable: false),
+                    Slot = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Items", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Items_PlayerCharacters_ID",
+                        column: x => x.ID,
                         principalTable: "PlayerCharacters",
                         principalColumn: "ID");
                 });
@@ -253,11 +254,6 @@ namespace DTpureback.Migrations
                 name: "IX_Ability_NPCID",
                 table: "Ability",
                 column: "NPCID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ability_PlayerCharacterID",
-                table: "Ability",
-                column: "PlayerCharacterID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CharacterDefault_AbilityID",

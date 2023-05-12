@@ -214,7 +214,10 @@ namespace DTpureback.Migrations
             modelBuilder.Entity("DTpureback.Models.Resources.Ability", b =>
                 {
                     b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("AffectedAttribute")
                         .IsRequired()
@@ -244,6 +247,9 @@ namespace DTpureback.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("PlayerCharacterID")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
@@ -251,6 +257,8 @@ namespace DTpureback.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("NPCID");
+
+                    b.HasIndex("PlayerCharacterID");
 
                     b.ToTable("Ability");
                 });
@@ -296,13 +304,19 @@ namespace DTpureback.Migrations
             modelBuilder.Entity("DTpureback.Models.Resources.Item", b =>
                 {
                     b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("ItemStat")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("PlayerCharacterID")
                         .HasColumnType("integer");
 
                     b.Property<int>("Price")
@@ -317,6 +331,8 @@ namespace DTpureback.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("PlayerCharacterID");
 
                     b.ToTable("Items");
                 });
@@ -537,13 +553,13 @@ namespace DTpureback.Migrations
 
             modelBuilder.Entity("DTpureback.Models.Resources.Ability", b =>
                 {
-                    b.HasOne("DTpureback.Models.PlayerCharacter", null)
-                        .WithMany("Abilities")
-                        .HasForeignKey("ID");
-
                     b.HasOne("DTpureback.Models.Resources.NPC", null)
                         .WithMany("Abilities")
                         .HasForeignKey("NPCID");
+
+                    b.HasOne("DTpureback.Models.PlayerCharacter", null)
+                        .WithMany("Abilities")
+                        .HasForeignKey("PlayerCharacterID");
                 });
 
             modelBuilder.Entity("DTpureback.Models.Resources.CharacterDefault", b =>
@@ -561,7 +577,7 @@ namespace DTpureback.Migrations
                 {
                     b.HasOne("DTpureback.Models.PlayerCharacter", null)
                         .WithMany("Items")
-                        .HasForeignKey("ID");
+                        .HasForeignKey("PlayerCharacterID");
                 });
 
             modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>

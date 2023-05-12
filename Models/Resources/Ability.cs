@@ -11,5 +11,7 @@
         public string Type { get; set; } = "physical";
         public int Cost { get; set; } = 0;
         public int Modifier { get; set; } = 0;
+
+        public List<CharacterAbility> CharacterAbilities { get; set; }
     }
 }

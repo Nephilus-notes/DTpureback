@@ -28,6 +28,10 @@ namespace DTpureback.Data
         public DbSet<CharacterDefault> CharacterDefault { get; set; }
 
         public DbSet<Ability> Ability { get; set; }
+        public DbSet<CharacterAbility> PlayerCharacterAbilities { get; set; }
+        public DbSet<CharacterItem> PlayerCharacterItems { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -68,13 +72,11 @@ namespace DTpureback.Data
             modelBuilder.Entity<PlayerCharacter>()
          .HasMany(pc => pc.Items)
          .WithOne()
-         .HasForeignKey(item => item.ID)
           .IsRequired(false); 
 
             modelBuilder.Entity<PlayerCharacter>()
                 .HasMany(pc => pc.Abilities)
                 .WithOne()
-                .HasForeignKey(ability => ability.ID)
                 .IsRequired(false);
 
 
