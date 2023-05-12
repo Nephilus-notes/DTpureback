@@ -3,6 +3,7 @@ using System;
 using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    partial class DragonsTailContextModelSnapshot : ModelSnapshot
+    [Migration("20230512220635_trying to get th abilities and items configured")]
+    partial class tryingtogetthabilitiesanditemsconfigured
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,6 +117,10 @@ namespace DTpureback.Migrations
                     b.Property<int>("Dexterity")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<bool>("DoubleArmed")
                         .HasColumnType("boolean");
 
@@ -194,7 +201,9 @@ namespace DTpureback.Migrations
 
                     b.ToTable("Character");
 
-                    b.UseTptMappingStrategy();
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Character");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("DTpureback.Models.Resources.CharacterAbility", b =>
@@ -477,14 +486,14 @@ namespace DTpureback.Migrations
                     b.Property<int>("WebOfDepthsExplored")
                         .HasColumnType("integer");
 
-                    b.ToTable("PlayerCharacters", (string)null);
+                    b.HasDiscriminator().HasValue("PlayerCharacter");
                 });
 
             modelBuilder.Entity("DTpureback.Models.Resources.NPC", b =>
                 {
                     b.HasBaseType("DTpureback.Models.Resources.Character");
 
-                    b.ToTable("NPCs", (string)null);
+                    b.HasDiscriminator().HasValue("NPC");
                 });
 
             modelBuilder.Entity("DTpureback.Models.Resources.CharacterAbility", b =>
@@ -550,24 +559,6 @@ namespace DTpureback.Migrations
                     b.Navigation("Character");
 
                     b.Navigation("Item");
-                });
-
-            modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
-                {
-                    b.HasOne("DTpureback.Models.Resources.Character", null)
-                        .WithOne()
-                        .HasForeignKey("DTpureback.Models.PlayerCharacter", "ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("DTpureback.Models.Resources.NPC", b =>
-                {
-                    b.HasOne("DTpureback.Models.Resources.Character", null)
-                        .WithOne()
-                        .HasForeignKey("DTpureback.Models.Resources.NPC", "ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("DTpureback.Models.Resources.Ability", b =>

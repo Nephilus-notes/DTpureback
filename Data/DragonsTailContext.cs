@@ -46,45 +46,50 @@ namespace DTpureback.Data
             c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
            c => c.ToList());
 
-            ////var singleValueComparer = new ValueComparer<IEquipment>(
-            ////    (c1, c2) => c1.SequenceEqual(c2),
-            ////    c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-            ////   c => c.ToList());
 
             var intToStringIDConverter = new IntToStringIDConverter();
 
             var equipmentConverter = new JsonEquippedItemsConverter();
 
-            //var ItemsConverter = new JsonICollectionConverter();
+            modelBuilder.Entity<Character>()
+       .HasMany(c => c.Abilities)
+       .WithMany() // Assumes many-to-many relationship
+       .UsingEntity<CharacterAbility>(
+           j => j.HasOne(ca => ca.Ability).WithMany().HasForeignKey(ca => ca.AbilityID),
+           j => j.HasOne(ca => ca.Character).WithMany().HasForeignKey(ca => ca.CharacterID),
+           j => {
+               j.HasKey(ca => ca.ID);
+               j.Property(ca => ca.ID).ValueGeneratedOnAdd();
+           });
 
-            //var SingleItemConverter = new JsonItemConverter();
+            modelBuilder.Entity<Character>()
+        .HasMany(c => c.Items)
+        .WithMany()
+        .UsingEntity<CharacterItem>(
+            j => j.HasOne(ci => ci.Item).WithMany().HasForeignKey(ci => ci.ItemID),
+            j => j.HasOne(ci => ci.Character).WithMany().HasForeignKey(ci => ci.CharacterID),
+            j =>
+            {
+                j.HasKey(ci => ci.ID);
+                j.Property(ci => ci.ID).ValueGeneratedOnAdd();
+            });
 
-            //modelBuilder.Entity<PlayerCharacter>()
-            //    .Property(x => x.Items)
-            //    .HasConversion(ItemsConverter)
-            //    .Metadata.SetValueComparer(iCollectionValueComparer);
 
             modelBuilder.Entity<PlayerCharacter>()
                 .Property(x => x.EquippedItems)
                 .HasConversion(equipmentConverter);
-            // .Metadata.SetValueComparer(iCollectionValueComparer);
-
-            modelBuilder.Entity<PlayerCharacter>()
-         .HasMany(pc => pc.Items)
-         .WithOne()
-          .IsRequired(false); 
-
-            modelBuilder.Entity<PlayerCharacter>()
-                .HasMany(pc => pc.Abilities)
-                .WithOne()
-                .IsRequired(false);
 
 
             modelBuilder.Entity<Location>()
                 .Property(l => l.OtherList)
                 .HasConversion(intToStringIDConverter)
                 .Metadata.SetValueComparer(intToStringIDComparer);
-                
+
+            modelBuilder.Entity<NPC>()
+        .ToTable("NPCs");
+
+            modelBuilder.Entity<PlayerCharacter>()
+                .ToTable("PlayerCharacters");
         }
 
     }

@@ -42,12 +42,17 @@ namespace DTpureback.Controllers
         {
             var playerCharacter = await _context.PlayerCharacters
                 .Include(pc => pc.Abilities)
+                .Include(pc=> pc.Items)
                 .FirstOrDefaultAsync(pc => pc.ID == id);
 
             if (playerCharacter == null)
             {
                 return NotFound();
             }
+
+            ICollection<Item> items = playerCharacter.Items;
+
+            Console.WriteLine(items);
 
             var playerCharacterDto = _mapper.Map<PlayerCharacterDTO>(playerCharacter);
 

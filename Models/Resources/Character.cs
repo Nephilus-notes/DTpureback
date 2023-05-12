@@ -10,7 +10,6 @@ namespace DTpureback.Models.Resources
         public int CurrentCurrency { get; set; }
 
         public int Level { get; set; }
-        [NotMapped]
         public ICollection<Item>? Items { get; set; }
 
 
@@ -23,8 +22,6 @@ namespace DTpureback.Models.Resources
         public int Intelligence { get; set; }
         public int Constitution { get; set; }
 
-
-        [NotMapped]
         public ICollection<Ability> Abilities { get; set; }
 
         // Persistent mutable stats
