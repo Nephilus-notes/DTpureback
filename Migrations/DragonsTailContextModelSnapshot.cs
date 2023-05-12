@@ -216,8 +216,11 @@ namespace DTpureback.Migrations
 
             modelBuilder.Entity("DTpureback.Models.Resources.Ability", b =>
                 {
-                    b.Property<string>("ID")
-                        .HasColumnType("text");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("AffectedAttribute")
                         .IsRequired()
@@ -236,6 +239,9 @@ namespace DTpureback.Migrations
                     b.Property<string>("Effect")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Modifier")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .IsRequired()

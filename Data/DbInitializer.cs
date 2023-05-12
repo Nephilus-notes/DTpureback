@@ -103,6 +103,90 @@ namespace DTpureback.Data
             context.SaveChanges();
 
 
+            var attack = new Ability
+            {
+                Name = "Attack",
+                Effect = "damage",
+                Description = "strikes at",
+                AffectedAttribute = "",
+                Modifier = 1,
+                Duration = 0
+            };
+
+            var flee = new Ability
+            {
+                Name = "Flee",
+                Effect = "buff",
+                Description = "attempts to retreat from combat.",
+                AffectedAttribute = "",
+                Modifier = 0,
+                Duration = 0
+            };
+
+            var strengthen = new Ability
+            {
+                Name = "Strengthen",
+                Effect = "buff",
+                Description = "prepares to a massive strike",
+                AffectedAttribute = "damageValue",
+                Modifier = 0,
+                Duration = 0,
+            };
+
+            var evade = new Ability
+            {
+                Name = "Evade",
+                Effect = "buff",
+                Description = "focuses on footwork to increase evasion.",
+                AffectedAttribute = "evading",
+                Modifier = 0,
+                Duration = 0
+            };
+
+            var defend = new Ability
+            {
+                Name = "Defend",
+                Effect = "buff",
+                Description = "concentrates energy on deflecting attacks for 2 rounds, increasing armor.",
+                AffectedAttribute = "defending",
+                Modifier = 0,
+                Duration = 0,
+            };
+
+            var aim = new Ability
+            {
+                Name = "Aim",
+                Effect = "buff",
+                Description = "Focusing on footwork to increase evasion.",
+                AffectedAttribute = "focusing",
+                Modifier = 0,
+                Duration = 0,
+            };
+
+            var heal = new Ability
+            {
+                Name = "Heal I",
+                Effect = "heal",
+                Description = "heals the target.",
+                AffectedAttribute = "",
+                Modifier = 1,
+                Duration = 0,
+            };
+
+            var abilities = new Ability[]
+            {
+                attack, 
+                flee,
+                strengthen,
+                evade, 
+                defend,
+                aim
+            };
+            for (var i = 0; i < abilities.Length; i++)
+            {
+                context.Ability.Add(abilities[i]);
+                context.SaveChanges();
+            }
 
             var scythe = new Item
             {
