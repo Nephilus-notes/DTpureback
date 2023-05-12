@@ -37,6 +37,7 @@ namespace DTpureback.Data
 
             var attack = new Ability
             {
+                ID = 1,
                 Name = "Attack",
                 Effect = "damage",
                 Description = "strikes at",
@@ -47,6 +48,7 @@ namespace DTpureback.Data
 
             var flee = new Ability
             {
+                ID = 2,
                 Name = "Flee",
                 Effect = "buff",
                 Description = "attempts to retreat from combat.",
@@ -57,6 +59,7 @@ namespace DTpureback.Data
 
             var strengthen = new Ability
             {
+                ID = 3,
                 Name = "Strengthen",
                 Effect = "buff",
                 Description = "prepares to a massive strike",
@@ -67,6 +70,7 @@ namespace DTpureback.Data
 
             var evade = new Ability
             {
+                ID = 4,
                 Name = "Evade",
                 Effect = "buff",
                 Description = "focuses on footwork to increase evasion.",
@@ -77,6 +81,7 @@ namespace DTpureback.Data
 
             var defend = new Ability
             {
+                ID = 5,
                 Name = "Defend",
                 Effect = "buff",
                 Description = "concentrates energy on deflecting attacks for 2 rounds, increasing armor.",
@@ -87,6 +92,7 @@ namespace DTpureback.Data
 
             var aim = new Ability
             {
+                ID = 6,
                 Name = "Aim",
                 Effect = "buff",
                 Description = "Focusing on footwork to increase evasion.",
@@ -115,11 +121,11 @@ namespace DTpureback.Data
                 aim
             };
 
-            for (var i = 0; i < abilities.Length; i++)
-            {
-                context.Ability.Add(abilities[i]);
-                context.SaveChanges();
-            }
+            //for (var i = 0; i < abilities.Length; i++)
+            //{
+            //    context.Ability.Add(abilities[i]);
+            //    context.SaveChanges();
+            //}
 
 
             var naka = new CharacterDefault

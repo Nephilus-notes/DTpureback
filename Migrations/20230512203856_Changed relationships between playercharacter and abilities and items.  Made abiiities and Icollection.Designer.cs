@@ -3,6 +3,7 @@ using System;
 using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    partial class DragonsTailContextModelSnapshot : ModelSnapshot
+    [Migration("20230512203856_Changed relationships between playercharacter and abilities and items.  Made abiiities and Icollection")]
+    partial class ChangedrelationshipsbetweenplayercharacterandabilitiesanditemsMadeabiiitiesandIcollection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -539,7 +542,9 @@ namespace DTpureback.Migrations
                 {
                     b.HasOne("DTpureback.Models.PlayerCharacter", null)
                         .WithMany("Abilities")
-                        .HasForeignKey("ID");
+                        .HasForeignKey("ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DTpureback.Models.Resources.NPC", null)
                         .WithMany("Abilities")
@@ -561,7 +566,9 @@ namespace DTpureback.Migrations
                 {
                     b.HasOne("DTpureback.Models.PlayerCharacter", null)
                         .WithMany("Items")
-                        .HasForeignKey("ID");
+                        .HasForeignKey("ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>

@@ -25,7 +25,7 @@
         //public int Damage { get; set; }
         //public int WeaponDamage { get; set; } = 0;
 
-        public IEnumerable<Ability> Abilities { get; set; }
+        public ICollection<Ability> Abilities { get; set; }
 
         // Persistent mutable stats
         //public int CurrentHP { get; set; }

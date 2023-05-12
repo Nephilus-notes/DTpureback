@@ -31,16 +31,17 @@ namespace DTpureback.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //var iCollectionValueComparer = new ValueComparer<ICollection<Item>>(
-            //    (c1, c2) => c1.SequenceEqual(c2),
-            //    c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-            //    c => c.ToList());
+            var iCollectionValueComparer = new ValueComparer<ICollection<Item>>(
+                (c1, c2) => c1.SequenceEqual(c2),
+               c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                c => c.ToList());
 
 
             var intToStringIDComparer = new ValueComparer<IEnumerable<int>>(
             (c1, c2) => c1.SequenceEqual(c2),
             c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
            c => c.ToList());
+
             ////var singleValueComparer = new ValueComparer<IEquipment>(
             ////    (c1, c2) => c1.SequenceEqual(c2),
             ////    c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
@@ -48,7 +49,7 @@ namespace DTpureback.Data
 
             var intToStringIDConverter = new IntToStringIDConverter();
 
-            //var equipmentConverter = new JsonEquippedItemsConverter();
+            var equipmentConverter = new JsonEquippedItemsConverter();
 
             //var ItemsConverter = new JsonICollectionConverter();
 
@@ -59,19 +60,22 @@ namespace DTpureback.Data
             //    .HasConversion(ItemsConverter)
             //    .Metadata.SetValueComparer(iCollectionValueComparer);
 
-            //modelBuilder.Entity<PlayerCharacter>()
-            //    .Property(x => x.EquippedItems)
-            //    .HasConversion(equipmentConverter);
-            //.Metadata.SetValueComparer(iCollectionValueComparer);
+            modelBuilder.Entity<PlayerCharacter>()
+                .Property(x => x.EquippedItems)
+                .HasConversion(equipmentConverter);
+            // .Metadata.SetValueComparer(iCollectionValueComparer);
+
             modelBuilder.Entity<PlayerCharacter>()
          .HasMany(pc => pc.Items)
          .WithOne()
-         .HasForeignKey(item => item.ID);
+         .HasForeignKey(item => item.ID)
+          .IsRequired(false); 
 
             modelBuilder.Entity<PlayerCharacter>()
                 .HasMany(pc => pc.Abilities)
                 .WithOne()
-                .HasForeignKey(ability => ability.ID);
+                .HasForeignKey(ability => ability.ID)
+                .IsRequired(false);
 
 
             modelBuilder.Entity<Location>()
