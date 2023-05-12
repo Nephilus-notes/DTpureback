@@ -10,10 +10,12 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
-//var conStrBuilder = new NpgsqlConnectionStringBuilder(
-//        builder.Configuration.GetConnectionString("HOSTED_DB_URL"));
-//conStrBuilder.Password = builder.Configuration["HOSTED_DB:DbPassword"];
-var connection = Environment.GetEnvironmentVariable("HOSTED_DB_URL");
+var conStrBuilder = new NpgsqlConnectionStringBuilder(
+        builder.Configuration["HOSTED_DB:ConnectionString"]);
+conStrBuilder.Password = builder.Configuration["HOSTED_DB:DbPassword"];
+var connection = conStrBuilder.ConnectionString;
+
+//var connection = Environment.GetEnvironmentVariable("HOSTED_DB_URL");
 Console.WriteLine(connection);
 
 

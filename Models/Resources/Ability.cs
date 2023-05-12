@@ -9,5 +9,6 @@
         public string AffectedAttribute { get; set; }
         public int Duration { get; set; } = 0;
         public string Type { get; set; } = "physical";
+        public int Cost { get; set; } = 0;
     }
 }
