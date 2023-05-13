@@ -16,12 +16,12 @@ var builder = WebApplication.CreateBuilder(args);
 //conStrBuilder.Password = builder.Configuration["HOSTED_DB:DbPassword"];
 //var connection = conStrBuilder.ConnectionString;
 
-var conStrBuilder = new NpgsqlConnectionStringBuilder(
-        builder.Configuration["LocalDragonsTailContext:ConnectionString"]);
-conStrBuilder.Password = builder.Configuration["LocalDragonsTailContext:DbPassword"];
-var connection = conStrBuilder.ConnectionString;
+//var conStrBuilder = new NpgsqlConnectionStringBuilder(
+//        builder.Configuration["LocalDragonsTailContext:ConnectionString"]);
+//conStrBuilder.Password = builder.Configuration["LocalDragonsTailContext:DbPassword"];
+//var connection = conStrBuilder.ConnectionString;
 
-//var connection = Environment.GetEnvironmentVariable("HOSTED_DB_URL");
+var connection = Environment.GetEnvironmentVariable("HOSTED_DB_URL");
 //Console.WriteLine(connection);
 
 
@@ -48,15 +48,15 @@ builder.Services.AddScoped<Profile, MappingProfile>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseSwagger();
-app.UseSwaggerUI();
+//app.UseSwagger();
+//app.UseSwaggerUI();
 
 using (var scope = app.Services.CreateScope())
 {
