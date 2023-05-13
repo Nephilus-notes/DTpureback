@@ -581,8 +581,7 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 4,
                 Armor = 0,
-                EvadePercentage = 10,
-                DamageValue = 2,
+               
                 Resistance = 3
             };
 
@@ -596,8 +595,7 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 4,
                 Armor = 0,
-                EvadePercentage = 10,
-                DamageValue = 2,
+              
                 Resistance = 3
             };
 
@@ -611,8 +609,7 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 4,
                 Armor = 0,
-                EvadePercentage = 10,
-                DamageValue = 2,
+               
                 Resistance = 3
             };
 
@@ -626,8 +623,7 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 10,
                 Armor = 4,
-                EvadePercentage = 4,
-                DamageValue = 7,
+               
                 Resistance = 3
             };
 
@@ -641,8 +637,7 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 14,
                 Armor = 6,
-                EvadePercentage = 4,
-                DamageValue = 7,
+              
                 Resistance = 3
             };
 
@@ -656,8 +651,7 @@ namespace DTpureback.Data
                 Intelligence = 4,
                 Constitution = 10,
                 Armor = 6,
-                EvadePercentage = 4,
-                DamageValue = 7,
+               
                 Resistance = 3
             };
 
@@ -671,8 +665,7 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 14,
                 Armor = 4,
-                EvadePercentage = 4,
-                DamageValue = 7,
+               
                 Resistance = 1
             };
             var graithAppleTree = new NPC
@@ -685,8 +678,7 @@ namespace DTpureback.Data
                 Intelligence = 10,
                 Constitution = 18,
                 Armor = 4,
-                EvadePercentage = 18,
-                DamageValue = 7,
+               
                 Resistance = 3
             };
             var shadeFireFox = new NPC
@@ -699,8 +691,7 @@ namespace DTpureback.Data
                 Intelligence = 10,
                 Constitution = 10,
                 Armor = 3,
-                EvadePercentage = 4,
-                DamageValue = 7,
+               
                 Resistance = 6
             };
 
@@ -770,15 +761,9 @@ namespace DTpureback.Data
 
                 CurrentHP = 31,
                 CurrentMP = 25,
-                DamageValue = 21, 
-                ArmorValue = 0,
-                MaxMP = 26,  
+    MaxMP = 26,  
                 MaxHP = 32,
-                //ResistanceValue = 0,
-                //EvadePercentage = 15,
-                //AttackValue = 0,
-                //WeaponDamage = scythe.ItemStat,
-                //Damage = scythe.ItemStat + 6,               
+                   
             };
 
            var playerCharacters = new PlayerCharacter[]
