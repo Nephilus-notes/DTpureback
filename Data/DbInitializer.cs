@@ -146,7 +146,7 @@ namespace DTpureback.Data
                 Constitution = 10,
                 Intelligence = 8,
                 Job = "Blacksmith",
-                Ability = strengthen,
+                AbilityID = strengthen.ID,
                 Description = "Toughened by years of heating metal and bone to melting, you are strong " + 
                 "and willing to put your body on the line for your people. [Increased Strength and Constitution]"
             };
@@ -161,7 +161,7 @@ namespace DTpureback.Data
                 Constitution = 10,
                 Intelligence = 8,
                 Job = "Scavenger",
-                Ability = evade,
+                AbilityID = evade.ID,
                 Description = " Years of hiding from the predators in your home tunnels have made you quick and agile, faster than many of the creatures " +
                 "that roam the dark. [Increased Dexterity and Constitution]"
             };
@@ -175,7 +175,7 @@ namespace DTpureback.Data
                 Constitution = 12,
                 Intelligence = 8,
                  Job = "Explorer",
-                 Ability = defend,
+                 AbilityID = defend.ID,
                 Description = "Few have gone as far into the darkness as you, and even fewer have ventured as far into the light.You are a hardy explorer, " +
                 "often using the rivers both above and belowground as highways. [Increased Constitution and Dexterity]"
             };
@@ -189,7 +189,7 @@ namespace DTpureback.Data
                 Constitution = 8,
                 Intelligence = 12,
                 Job = "Herbalist",
-                Ability = aim,
+                AbilityID = aim.ID,
                 Description = "As an apprentice to Naer'shob, the town healer, you have learned much about herbs and magic. " +
                 "Practical applications are much harder but it will come in time. [Increased Intelligence and Dexterity]"
             };

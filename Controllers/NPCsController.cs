@@ -35,7 +35,7 @@ namespace DTpureback.Controllers
 
         // GET: api/NPCs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<NPC>> GetNPC(int id)
+        public async Task<ActionResult<NPCDTO>> GetNPC(int id)
         {
           if (_context.NPC == null)
           {
@@ -47,8 +47,12 @@ namespace DTpureback.Controllers
             {
                 return NotFound();
             }
+                List<Item> associatedItems = new List<Item>();
+            if (nPC.Items != null)
+            {
+                associatedItems = _context.Items.Where(i => nPC.Items.Contains(i.ID)).ToList();
+            }
 
-            var associatedItems = _context.Items.Where(i => nPC.Items.Contains(i.ID)).ToList();
             var associatedAbilities = _context.Ability.Where(i => nPC.Abilities.Contains(i.ID)).ToList();
 
             var npcDTO = new NPCDTO
