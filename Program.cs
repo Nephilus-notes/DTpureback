@@ -22,7 +22,7 @@ conStrBuilder.Password = builder.Configuration["LocalDragonsTailContext:DbPasswo
 var connection = conStrBuilder.ConnectionString;
 
 //var connection = Environment.GetEnvironmentVariable("HOSTED_DB_URL");
-Console.WriteLine(connection);
+//Console.WriteLine(connection);
 
 
 builder.Services.AddCors(options =>
@@ -42,16 +42,9 @@ builder.Services.AddDbContext<DragonsTailContext>(opt =>
     opt.UseNpgsql(connection));
 
 builder.Services.AddAutoMapper(typeof(Program));
+// Register your MappingProfile as a scoped service
+builder.Services.AddScoped<Profile, MappingProfile>();
 
-// Configure AutoMapper mappings
-var mapperConfig = new MapperConfiguration(config =>
-{
-    config.CreateMap<PlayerCharacter, PlayerCharacterDTO>();
-    // Add other mappings as needed
-});
-
-var mapper = mapperConfig.CreateMapper();
-builder.Services.AddSingleton(mapper);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -70,8 +63,10 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     var context = services.GetRequiredService<DragonsTailContext>();
-    
     DbInitializer.Initialize(context);
+
+    var mapper = services.GetRequiredService<IMapper>();
+    mapper.ConfigurationProvider.AssertConfigurationIsValid();
 }
 
 app.UseHttpsRedirection();

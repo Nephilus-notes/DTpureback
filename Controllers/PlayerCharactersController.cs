@@ -48,13 +48,47 @@ namespace DTpureback.Controllers
                 return NotFound();
             }
 
-            var playerCharacterDto = _mapper.Map<PlayerCharacterDTO>(playerCharacter);
+            // var playerCharacterDto = _mapper.Map<PlayerCharacterDTO>(playerCharacter);
 
             var associatedItems = _context.Items.Where(i => playerCharacter.Items.Contains(i.ID)).ToList();
             var associatedAbilities = _context.Ability.Where(i => playerCharacter.Abilities.Contains(i.ID)).ToList();
 
-            playerCharacterDto.Abilities = associatedAbilities;
-            playerCharacterDto.Items = associatedItems;
+            var playerCharacterDto = new PlayerCharacterDTO
+            {
+                ID = playerCharacter.ID,
+                Name = playerCharacter.Name,
+                CurrentCurrency = playerCharacter.CurrentCurrency,
+                MaxHP = playerCharacter.MaxHP,
+                MaxMP = playerCharacter.MaxMP,
+                CurrentHP= playerCharacter.CurrentHP,
+                CurrentMP= playerCharacter.CurrentMP,
+                CurrentLocation= playerCharacter.CurrentLocation,
+                LifeTimeCurrency= playerCharacter.LifeTimeCurrency,
+                Armor = playerCharacter.Armor,
+                Resistance = playerCharacter.Resistance,
+                Strength = playerCharacter.Strength,
+                StrengthXP = playerCharacter.StrengthXP,
+                Dexterity = playerCharacter.Dexterity,
+                DexterityXP = playerCharacter.DexterityXP,
+                Constitution = playerCharacter.Constitution,
+                ConstitutionXP = playerCharacter.ConstitutionXP,
+                Intelligence= playerCharacter.Intelligence,
+                IntelligenceXP= playerCharacter.IntelligenceXP,
+                DateAdded= playerCharacter.DateAdded,
+                DateUpdated= playerCharacter.DateUpdated,
+                DrippingDeathExplored= playerCharacter.DrippingDeathExplored,
+                TailOfTheDragonExplored= playerCharacter.TailOfTheDragonExplored,
+                WebOfDepthsExplored= playerCharacter.WebOfDepthsExplored,
+                EquippedItems = playerCharacter.EquippedItems,
+                GraithQueensLairExplored= playerCharacter.GraithQueensLairExplored,
+                GraithsGrottoExplored= playerCharacter.GraithsGrottoExplored,
+                KratabsFollyExplored= playerCharacter.KratabsFollyExplored,
+                PlayersRespiteExplored= playerCharacter.PlayersRespiteExplored,
+                ThagragsHopeExplored= playerCharacter.ThagragsHopeExplored,
+                Level = playerCharacter.Level,
+                Items = associatedItems,
+                Abilities = associatedAbilities,
+            };
 
 
             return playerCharacterDto;

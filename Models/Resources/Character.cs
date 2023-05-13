@@ -4,6 +4,11 @@ namespace DTpureback.Models.Resources
 {
     public class Character : BaseEntity
     {
+        /**
+         * Name, CurrentCurrency, Level, Items, Armor, Resistane, Streangth, Dexterity, Constitution, Intelligence
+         * Abilities
+         * 
+         */
         public string Name { get; set; }
 
         // Items and Currency
@@ -22,7 +27,7 @@ namespace DTpureback.Models.Resources
         public int Intelligence { get; set; }
         public int Constitution { get; set; }
 
-        public IEnumerable<int> Abilities { get; set; }
+        public IEnumerable<int> Abilities { get; set; } = new List<int> { 1};
 
 
         //public List<CharacterAbility> CharacterAbilities { get; set; }

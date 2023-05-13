@@ -122,11 +122,19 @@ namespace DTpureback.Data
                 aim
             };
 
+            try
+            {
             for (var i = 0; i < abilities.Length; i++)
             {
                 context.Ability.Add(abilities[i]);
                 context.SaveChanges();
             }
+            }
+            catch
+            {
+                Console.WriteLine("Abilities failed. Maybe they already exist?");
+            }
+            
 
 
             var naka = new CharacterDefault
@@ -195,7 +203,15 @@ namespace DTpureback.Data
             };
 
             context.AddRange(characterDefaults);
+            try
+            {
+
             context.SaveChanges();
+            }
+            catch
+            {
+                throw (new Exception("character templates already exist"));
+            }
 
             var scythe = new Item
             {
@@ -311,11 +327,20 @@ namespace DTpureback.Data
 
             };
 
-            for (var i = 0; i < items.Length; i++)
+            try
+            {
+ for (var i = 0; i < items.Length; i++)
             {
                 context.Items.Add(items[i]);
                 context.SaveChanges();
             }
+            }
+            catch
+            {
+                Console.WriteLine("Items failed. Maybe they already exist?");
+
+            }
+
             var otherList = new List<int>();
 
             otherList.Add(1);
@@ -568,7 +593,8 @@ namespace DTpureback.Data
             }
             catch
             {
-                throw (new Exception("location's failed"));
+                Console.WriteLine("Locations failed. Maybe they already exist?");
+
             }
 
             var kraktRat = new NPC
@@ -581,7 +607,8 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 4,
                 Armor = 0,
-               
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
 
@@ -595,7 +622,8 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 4,
                 Armor = 0,
-              
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
 
@@ -609,7 +637,8 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 4,
                 Armor = 0,
-               
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
 
@@ -623,7 +652,8 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 10,
                 Armor = 4,
-               
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
 
@@ -637,7 +667,8 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 14,
                 Armor = 6,
-              
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
 
@@ -651,7 +682,8 @@ namespace DTpureback.Data
                 Intelligence = 4,
                 Constitution = 10,
                 Armor = 6,
-               
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
 
@@ -665,7 +697,8 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 14,
                 Armor = 4,
-               
+                Abilities = new List<int> { 1 },
+
                 Resistance = 1
             };
             var graithAppleTree = new NPC
@@ -678,7 +711,8 @@ namespace DTpureback.Data
                 Intelligence = 10,
                 Constitution = 18,
                 Armor = 4,
-               
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
             var shadeFireFox = new NPC
@@ -691,11 +725,11 @@ namespace DTpureback.Data
                 Intelligence = 10,
                 Constitution = 10,
                 Armor = 3,
-               
-                Resistance = 6
+                Abilities = new List<int> { 1 },
+            Resistance = 6
             };
 
-
+            Console.WriteLine(kraktRat);
 
             var NPCs = new NPC[]
             {
@@ -713,18 +747,19 @@ namespace DTpureback.Data
             context.NPC?.AddRange(NPCs);
             try
             {
-
                 context.SaveChanges();
+
             }
             catch
             {
-                throw (new Exception("NPC's failed"));
+                Console.WriteLine("NPCs failed. Maybe they already exist?");
+
             }
 
 
-            var backpack = new Item[] {
-              dagger,
-                majHealthPot
+            var backpack = new int[] {
+              dagger.ID,
+                majHealthPot.ID
             };
 
             var EQ = new IEquipment
@@ -734,14 +769,14 @@ namespace DTpureback.Data
                     Hand= scythe
             };
 
-            var craeAbil = new Ability[]
+            var craeAbil = new int[]
             {
-                heal,
-                attack,
-                defend,
-                evade,
-                aim,
-                strengthen
+                heal.ID,
+                attack.ID,
+                defend.ID,
+                evade.ID,
+                aim.ID,
+                strengthen.ID
             };
 
             var crae = new PlayerCharacter
@@ -779,40 +814,41 @@ namespace DTpureback.Data
             }
             catch
             {
-                throw (new Exception("PC's failed"));
+                Console.WriteLine("PCs failed. Maybe they already exist?");
+
             }
 
 
-          
 
-                //System.Diagnostics.Debug.WriteLine(blues);
-                //System.Diagnostics.Debug.WriteLine(closer);
 
-                var save1 = new SaveFile
+            //System.Diagnostics.Debug.WriteLine(blues);
+            //System.Diagnostics.Debug.WriteLine(closer);
+
+            var save1 = new SaveFile
             {
                 UserID = "google-oauth2|113473413986135090152",
                 PlayerCharacterID = 1,
                 LocationID = "T",
                 CharacterName = "Craelios"
             };
-            var save2 = new SaveFile
-            {
-                UserID = "google-oauth2|113473413986135090152",
-                PlayerCharacterID = 1,
-                LocationID = "I",
-                CharacterName = "Craelios"
-            };
+
 
             var saves = new SaveFile[]
             {
             save1,
-            save2
             };
 
             context.SaveFiles.AddRange(saves);
   
+            try
+            {
 
             context.SaveChanges();
+            }
+            catch
+            {
+                Console.WriteLine("Some kindof error");
+            }
         }
     }
 }
