@@ -11,12 +11,10 @@ public IntToStringIDConverter() : base(le => ListToString(le), (s => StringToLis
 }
 public static string ListToString(IEnumerable<int> value)
 {
-    if (value == null || value.Any() == true)
+    if (value == null)
     {
         return null;
     }
-
-    value = value.Cast<int>().ToList();
 
         return String.Join(",", value);
 }

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DTpureback.Data;
 using DTpureback.Models;
+using DTpureback.Models.Resources;
+using AutoMapper;
 
 namespace DTpureback.Controllers
 {
@@ -15,10 +17,12 @@ namespace DTpureback.Controllers
     public class PlayerCharactersController : ControllerBase
     {
         private readonly DragonsTailContext _context;
+        private readonly IMapper _mapper;
 
-        public PlayerCharactersController(DragonsTailContext context)
+        public PlayerCharactersController(DragonsTailContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/PlayerCharacters
@@ -34,24 +38,60 @@ namespace DTpureback.Controllers
 
         // GET: api/PlayerCharacters/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PlayerCharacter>> GetPlayerCharacter(int id)
+        public async Task<ActionResult<PlayerCharacterDTO>> GetPlayerCharacter(int id)
         {
-          if (_context.PlayerCharacters == null)
-          {
-              return NotFound();
-          }
-            var playerCharacter = await _context.PlayerCharacters.FindAsync(id);
+            var playerCharacter = await _context.PlayerCharacters
+                .FirstOrDefaultAsync(pc => pc.ID == id);
 
-            //if (playerCharacter.Items == null)
-            //{
-            //    //playerCharacter.Backpack == 
-            //}
             if (playerCharacter == null)
             {
                 return NotFound();
             }
 
-            return playerCharacter;
+            // var playerCharacterDto = _mapper.Map<PlayerCharacterDTO>(playerCharacter);
+
+            var associatedItems = _context.Items.Where(i => playerCharacter.Items.Contains(i.ID)).ToList();
+            var associatedAbilities = _context.Ability.Where(i => playerCharacter.Abilities.Contains(i.ID)).ToList();
+
+            var playerCharacterDto = new PlayerCharacterDTO
+            {
+                ID = playerCharacter.ID,
+                Name = playerCharacter.Name,
+                CurrentCurrency = playerCharacter.CurrentCurrency,
+                MaxHP = playerCharacter.MaxHP,
+                MaxMP = playerCharacter.MaxMP,
+                CurrentHP= playerCharacter.CurrentHP,
+                CurrentMP= playerCharacter.CurrentMP,
+                CurrentLocation= playerCharacter.CurrentLocation,
+                LifeTimeCurrency= playerCharacter.LifeTimeCurrency,
+                Armor = playerCharacter.Armor,
+                Resistance = playerCharacter.Resistance,
+                Strength = playerCharacter.Strength,
+                StrengthXP = playerCharacter.StrengthXP,
+                Dexterity = playerCharacter.Dexterity,
+                DexterityXP = playerCharacter.DexterityXP,
+                Constitution = playerCharacter.Constitution,
+                ConstitutionXP = playerCharacter.ConstitutionXP,
+                Intelligence= playerCharacter.Intelligence,
+                IntelligenceXP= playerCharacter.IntelligenceXP,
+                DateAdded= playerCharacter.DateAdded,
+                DateUpdated= playerCharacter.DateUpdated,
+                DrippingDeathExplored= playerCharacter.DrippingDeathExplored,
+                TailOfTheDragonExplored= playerCharacter.TailOfTheDragonExplored,
+                WebOfDepthsExplored= playerCharacter.WebOfDepthsExplored,
+                EquippedItems = playerCharacter.EquippedItems,
+                GraithQueensLairExplored= playerCharacter.GraithQueensLairExplored,
+                GraithsGrottoExplored= playerCharacter.GraithsGrottoExplored,
+                KratabsFollyExplored= playerCharacter.KratabsFollyExplored,
+                PlayersRespiteExplored= playerCharacter.PlayersRespiteExplored,
+                ThagragsHopeExplored= playerCharacter.ThagragsHopeExplored,
+                Level = playerCharacter.Level,
+                Items = associatedItems,
+                Abilities = associatedAbilities,
+            };
+
+
+            return playerCharacterDto;
         }
 
         // PUT: api/PlayerCharacters/5

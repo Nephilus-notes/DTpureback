@@ -23,13 +23,43 @@ namespace DTpureback.Controllers
 
         // GET: api/CharacterDefaults
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CharacterDefault>>> GetCharacterDefault()
+        public async Task<ActionResult<IEnumerable<CharacterDefaultDTO>>> GetCharacterDefault()
         {
-          if (_context.CharacterDefault == null)
-          {
-              return NotFound();
-          }
-            return await _context.CharacterDefault.ToListAsync();
+            if (_context.CharacterDefault == null)
+            {
+                return NotFound();
+            }
+
+            var characterDefaultDTOs = new List<CharacterDefaultDTO>();
+
+            var templates = await _context.CharacterDefault.ToListAsync();
+
+            foreach (var template in templates)
+            {
+                var associatedAbility = await _context.Ability.FindAsync(template.AbilityID);
+                if (associatedAbility != null)
+                {
+                    var characterDefaultDTO = new CharacterDefaultDTO
+                    {
+                        // Copy properties from template to characterDefaultDTO
+                        // For example:
+                        ID = template.ID,
+                        Name = template.Name,
+                        Strength = template.Strength,
+                        Dexterity   = template.Dexterity,
+                        Constitution = template.Constitution,
+                        Intelligence = template.Intelligence,
+                        Description= template.Description,
+                        Job = template.Job,
+                        // Assign the retrieved ability
+                        Ability = associatedAbility
+                    };
+
+                    characterDefaultDTOs.Add(characterDefaultDTO);
+                }
+            }
+
+            return characterDefaultDTOs;
         }
 
         // GET: api/CharacterDefaults/5

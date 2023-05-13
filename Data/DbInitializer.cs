@@ -34,6 +34,109 @@ namespace DTpureback.Data
                 return;
             }
 
+
+            var attack = new Ability
+            {
+                ID = 1,
+                Name = "Attack",
+                Effect = "damage",
+                Description = "strikes at",
+                AffectedAttribute = "",
+                Modifier = 1,
+                Duration = 0
+            };
+
+            var flee = new Ability
+            {
+                ID = 2,
+                Name = "Flee",
+                Effect = "buff",
+                Description = "attempts to retreat from combat.",
+                AffectedAttribute = "",
+                Modifier = 0,
+                Duration = 0
+            };
+
+            var strengthen = new Ability
+            {
+                ID = 3,
+                Name = "Strengthen",
+                Effect = "buff",
+                Description = "prepares to a massive strike",
+                AffectedAttribute = "damageValue",
+                Modifier = 0,
+                Duration = 0,
+            };
+
+            var evade = new Ability
+            {
+                ID = 4,
+                Name = "Evade",
+                Effect = "buff",
+                Description = "focuses on footwork to increase evasion.",
+                AffectedAttribute = "evading",
+                Modifier = 0,
+                Duration = 0
+            };
+
+            var defend = new Ability
+            {
+                ID = 5,
+                Name = "Defend",
+                Effect = "buff",
+                Description = "concentrates energy on deflecting attacks for 2 rounds, increasing armor.",
+                AffectedAttribute = "defending",
+                Modifier = 0,
+                Duration = 0,
+            };
+
+            var aim = new Ability
+            {
+                ID = 6,
+                Name = "Aim",
+                Effect = "buff",
+                Description = "Focusing on footwork to increase evasion.",
+                AffectedAttribute = "focusing",
+                Modifier = 0,
+                Duration = 0,
+            };
+
+            var heal = new Ability
+            {
+                ID = 10,
+                Name = "Heal I",
+                Effect = "heal",
+                Description = "heals the target.",
+                AffectedAttribute = "",
+                Modifier = 1,
+                Duration = 0,
+            };
+
+            var abilities = new Ability[]
+            {
+                attack,
+                flee,
+                strengthen,
+                evade,
+                defend,
+                aim
+            };
+
+            try
+            {
+            for (var i = 0; i < abilities.Length; i++)
+            {
+                context.Ability.Add(abilities[i]);
+                context.SaveChanges();
+            }
+            }
+            catch
+            {
+                Console.WriteLine("Abilities failed. Maybe they already exist?");
+            }
+            
+
+
             var naka = new CharacterDefault
             {
                 ID = "PC_B",
@@ -43,7 +146,7 @@ namespace DTpureback.Data
                 Constitution = 10,
                 Intelligence = 8,
                 Job = "Blacksmith",
-                AbilityID = "S",
+                AbilityID = strengthen.ID,
                 Description = "Toughened by years of heating metal and bone to melting, you are strong " + 
                 "and willing to put your body on the line for your people. [Increased Strength and Constitution]"
             };
@@ -58,7 +161,7 @@ namespace DTpureback.Data
                 Constitution = 10,
                 Intelligence = 8,
                 Job = "Scavenger",
-                AbilityID = "E",
+                AbilityID = evade.ID,
                 Description = " Years of hiding from the predators in your home tunnels have made you quick and agile, faster than many of the creatures " +
                 "that roam the dark. [Increased Dexterity and Constitution]"
             };
@@ -72,7 +175,7 @@ namespace DTpureback.Data
                 Constitution = 12,
                 Intelligence = 8,
                  Job = "Explorer",
-                 AbilityID = "D",
+                 AbilityID = defend.ID,
                 Description = "Few have gone as far into the darkness as you, and even fewer have ventured as far into the light.You are a hardy explorer, " +
                 "often using the rivers both above and belowground as highways. [Increased Constitution and Dexterity]"
             };
@@ -86,7 +189,7 @@ namespace DTpureback.Data
                 Constitution = 8,
                 Intelligence = 12,
                 Job = "Herbalist",
-                AbilityID = "A",
+                AbilityID = aim.ID,
                 Description = "As an apprentice to Naer'shob, the town healer, you have learned much about herbs and magic. " +
                 "Practical applications are much harder but it will come in time. [Increased Intelligence and Dexterity]"
             };
@@ -100,9 +203,15 @@ namespace DTpureback.Data
             };
 
             context.AddRange(characterDefaults);
+            try
+            {
+
             context.SaveChanges();
-
-
+            }
+            catch
+            {
+                throw (new Exception("character templates already exist"));
+            }
 
             var scythe = new Item
             {
@@ -218,11 +327,20 @@ namespace DTpureback.Data
 
             };
 
-            for (var i = 0; i < items.Length; i++)
+            try
+            {
+ for (var i = 0; i < items.Length; i++)
             {
                 context.Items.Add(items[i]);
                 context.SaveChanges();
             }
+            }
+            catch
+            {
+                Console.WriteLine("Items failed. Maybe they already exist?");
+
+            }
+
             var otherList = new List<int>();
 
             otherList.Add(1);
@@ -475,7 +593,8 @@ namespace DTpureback.Data
             }
             catch
             {
-                throw (new Exception("location's failed"));
+                Console.WriteLine("Locations failed. Maybe they already exist?");
+
             }
 
             var kraktRat = new NPC
@@ -488,8 +607,8 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 4,
                 Armor = 0,
-                EvadePercentage = 10,
-                DamageValue = 2,
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
 
@@ -503,8 +622,8 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 4,
                 Armor = 0,
-                EvadePercentage = 10,
-                DamageValue = 2,
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
 
@@ -518,8 +637,8 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 4,
                 Armor = 0,
-                EvadePercentage = 10,
-                DamageValue = 2,
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
 
@@ -533,8 +652,8 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 10,
                 Armor = 4,
-                EvadePercentage = 4,
-                DamageValue = 7,
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
 
@@ -548,8 +667,8 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 14,
                 Armor = 6,
-                EvadePercentage = 4,
-                DamageValue = 7,
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
 
@@ -563,8 +682,8 @@ namespace DTpureback.Data
                 Intelligence = 4,
                 Constitution = 10,
                 Armor = 6,
-                EvadePercentage = 4,
-                DamageValue = 7,
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
 
@@ -578,8 +697,8 @@ namespace DTpureback.Data
                 Intelligence = 0,
                 Constitution = 14,
                 Armor = 4,
-                EvadePercentage = 4,
-                DamageValue = 7,
+                Abilities = new List<int> { 1 },
+
                 Resistance = 1
             };
             var graithAppleTree = new NPC
@@ -592,8 +711,8 @@ namespace DTpureback.Data
                 Intelligence = 10,
                 Constitution = 18,
                 Armor = 4,
-                EvadePercentage = 18,
-                DamageValue = 7,
+                Abilities = new List<int> { 1 },
+
                 Resistance = 3
             };
             var shadeFireFox = new NPC
@@ -606,12 +725,11 @@ namespace DTpureback.Data
                 Intelligence = 10,
                 Constitution = 10,
                 Armor = 3,
-                EvadePercentage = 4,
-                DamageValue = 7,
-                Resistance = 6
+                Abilities = new List<int> { 1 },
+            Resistance = 6
             };
 
-
+            Console.WriteLine(kraktRat);
 
             var NPCs = new NPC[]
             {
@@ -629,18 +747,19 @@ namespace DTpureback.Data
             context.NPC?.AddRange(NPCs);
             try
             {
-
                 context.SaveChanges();
+
             }
             catch
             {
-                throw (new Exception("NPC's failed"));
+                Console.WriteLine("NPCs failed. Maybe they already exist?");
+
             }
 
 
-            var backpack = new Item[] {
-              dagger,
-                majHealthPot
+            var backpack = new int[] {
+              dagger.ID,
+                majHealthPot.ID
             };
 
             var EQ = new IEquipment
@@ -650,6 +769,15 @@ namespace DTpureback.Data
                     Hand= scythe
             };
 
+            var craeAbil = new int[]
+            {
+                heal.ID,
+                attack.ID,
+                defend.ID,
+                evade.ID,
+                aim.ID,
+                strengthen.ID
+            };
 
             var crae = new PlayerCharacter
             {
@@ -658,7 +786,7 @@ namespace DTpureback.Data
                 CurrentCurrency = 0,
                 Level = 4,
                 Items = backpack,
-
+                Abilities = craeAbil,
                 Strength = 13,
                 Dexterity = 15,
                 Intelligence = 13,
@@ -668,15 +796,9 @@ namespace DTpureback.Data
 
                 CurrentHP = 31,
                 CurrentMP = 25,
-                DamageValue = 21, 
-                ArmorValue = 0,
-                MaxMP = 26,  
+    MaxMP = 26,  
                 MaxHP = 32,
-                //ResistanceValue = 0,
-                //EvadePercentage = 15,
-                //AttackValue = 0,
-                //WeaponDamage = scythe.ItemStat,
-                //Damage = scythe.ItemStat + 6,               
+                   
             };
 
            var playerCharacters = new PlayerCharacter[]
@@ -692,22 +814,24 @@ namespace DTpureback.Data
             }
             catch
             {
-                throw (new Exception("PC's failed"));
+                Console.WriteLine("PCs failed. Maybe they already exist?");
+
             }
 
 
-          
 
-                //System.Diagnostics.Debug.WriteLine(blues);
-                //System.Diagnostics.Debug.WriteLine(closer);
 
-                var save1 = new SaveFile
+            //System.Diagnostics.Debug.WriteLine(blues);
+            //System.Diagnostics.Debug.WriteLine(closer);
+
+            var save1 = new SaveFile
             {
                 UserID = "google-oauth2|113473413986135090152",
                 PlayerCharacterID = 1,
                 LocationID = "T",
                 CharacterName = "Craelios"
             };
+
 
             var saves = new SaveFile[]
             {
@@ -716,8 +840,15 @@ namespace DTpureback.Data
 
             context.SaveFiles.AddRange(saves);
   
+            try
+            {
 
             context.SaveChanges();
+            }
+            catch
+            {
+                Console.WriteLine("Some kindof error");
+            }
         }
     }
 }

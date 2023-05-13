@@ -25,54 +25,58 @@ namespace DTpureback.Data
         public DbSet<Location> Locations { get; set; }
         public DbSet<SaveFile> SaveFiles { get; set; }
         public DbSet<NPC> NPC { get; set; }
-        public DbSet<CharacterDefault>? CharacterDefault { get; set; }
+        public DbSet<CharacterDefault> CharacterDefault { get; set; }
 
-        public DbSet<Ability>? Ability { get; set; }
+        public DbSet<Ability> Ability { get; set; }
+        //public DbSet<CharacterAbility> PlayerCharacterAbilities { get; set; }
+        //public DbSet<CharacterItem> PlayerCharacterItems { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var iCollectionValueComparer = new ValueComparer<ICollection<Item>>(
                 (c1, c2) => c1.SequenceEqual(c2),
-                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+               c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
                 c => c.ToList());
 
 
             var intToStringIDComparer = new ValueComparer<IEnumerable<int>>(
             (c1, c2) => c1.SequenceEqual(c2),
             c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-            c => c.ToList());
-            //var singleValueComparer = new ValueComparer<IEquipment>(
-            //    (c1, c2) => c1.SequenceEqual(c2),
-            //    c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-            //   c => c.ToList());
+           c => c.ToList());
+
 
             var intToStringIDConverter = new IntToStringIDConverter();
 
             var equipmentConverter = new JsonEquippedItemsConverter();
 
-            var ItemsConverter = new JsonICollectionConverter();
+            modelBuilder.Entity<Character>()
+       .Property(c => c.Abilities)
+       .HasConversion(intToStringIDConverter)
+                .Metadata.SetValueComparer(intToStringIDComparer);
 
-            var SingleItemConverter = new JsonItemConverter();
+            modelBuilder.Entity<Character>()
+        .Property(c => c.Items)
+        .HasConversion(intToStringIDConverter)
+                .Metadata.SetValueComparer(intToStringIDComparer);
 
-            modelBuilder.Entity<PlayerCharacter>()
-                .Property(x => x.Items)
-                .HasConversion(ItemsConverter)
-                .Metadata.SetValueComparer(iCollectionValueComparer);
 
             modelBuilder.Entity<PlayerCharacter>()
                 .Property(x => x.EquippedItems)
                 .HasConversion(equipmentConverter);
-            //.Metadata.SetValueComparer(iCollectionValueComparer);
 
-            //modelBuilder.Entity<PlayerCharacter>()
-            //    .Property(x => x.HeadItem).HasConversion(SingleItemConverter);
-            //    //.Metadata.SetValueComparer(singleValueComparer)/*;*/
 
             modelBuilder.Entity<Location>()
                 .Property(l => l.OtherList)
                 .HasConversion(intToStringIDConverter)
                 .Metadata.SetValueComparer(intToStringIDComparer);
-                
+
+            modelBuilder.Entity<NPC>()
+        .ToTable("NPCs");
+
+            modelBuilder.Entity<PlayerCharacter>()
+                .ToTable("PlayerCharacters");
         }
 
     }
