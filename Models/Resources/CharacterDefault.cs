@@ -9,7 +9,7 @@
         public int Intelligence { get; set; }
         public int Constitution { get; set; }
         public string Job { get; set; }
-        public string AbilityID { get; set; }
+        public int AbilityID { get; set; }
         public string? Description { get; set;}
     }
 }

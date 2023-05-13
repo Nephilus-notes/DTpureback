@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DTpureback.Data;
 using DTpureback.Models.Resources;
+using DTpureback.Models;
 
 namespace DTpureback.Controllers
 {
@@ -34,7 +35,7 @@ namespace DTpureback.Controllers
 
         // GET: api/NPCs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<NPC>> GetNPC(int id)
+        public async Task<ActionResult<NPCDTO>> GetNPC(int id)
         {
           if (_context.NPC == null)
           {
@@ -46,8 +47,34 @@ namespace DTpureback.Controllers
             {
                 return NotFound();
             }
+                List<Item> associatedItems = new List<Item>();
+            if (nPC.Items != null)
+            {
+                associatedItems = _context.Items.Where(i => nPC.Items.Contains(i.ID)).ToList();
+            }
 
-            return nPC;
+            var associatedAbilities = _context.Ability.Where(i => nPC.Abilities.Contains(i.ID)).ToList();
+
+            var npcDTO = new NPCDTO
+            {
+                ID = nPC.ID,
+                Name = nPC.Name,
+                CurrentCurrency = nPC.CurrentCurrency,
+                Armor = nPC.Armor,
+                Resistance = nPC.Resistance,
+                Strength = nPC.Strength,
+                Dexterity = nPC.Dexterity,
+                Constitution = nPC.Constitution,
+                Intelligence = nPC.Intelligence,
+                DateAdded = nPC.DateAdded,
+                DateUpdated = nPC.DateUpdated,
+                Level = nPC.Level,
+                Items = associatedItems,
+                Abilities = associatedAbilities,
+            };
+
+
+            return npcDTO;
         }
 
         // PUT: api/NPCs/5

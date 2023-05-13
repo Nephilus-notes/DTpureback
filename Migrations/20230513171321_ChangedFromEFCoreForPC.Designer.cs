@@ -3,6 +3,7 @@ using System;
 using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    partial class DragonsTailContextModelSnapshot : ModelSnapshot
+    [Migration("20230513171321_ChangedFromEFCoreForPC")]
+    partial class ChangedFromEFCoreForPC
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,6 +123,29 @@ namespace DTpureback.Migrations
                     b.UseTptMappingStrategy();
                 });
 
+            modelBuilder.Entity("DTpureback.Models.Resources.CharacterAbility", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("AbilityID")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CharacterID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AbilityID");
+
+                    b.HasIndex("CharacterID");
+
+                    b.ToTable("CharacterAbility");
+                });
+
             modelBuilder.Entity("DTpureback.Models.Resources.CharacterDefault", b =>
                 {
                     b.Property<string>("ID")
@@ -152,6 +178,8 @@ namespace DTpureback.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("AbilityID");
 
                     b.ToTable("CharacterDefault");
                 });
@@ -342,6 +370,36 @@ namespace DTpureback.Migrations
                     b.ToTable("NPCs", (string)null);
                 });
 
+            modelBuilder.Entity("DTpureback.Models.Resources.CharacterAbility", b =>
+                {
+                    b.HasOne("DTpureback.Models.Resources.Ability", "Ability")
+                        .WithMany("CharacterAbilities")
+                        .HasForeignKey("AbilityID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DTpureback.Models.Resources.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ability");
+
+                    b.Navigation("Character");
+                });
+
+            modelBuilder.Entity("DTpureback.Models.Resources.CharacterDefault", b =>
+                {
+                    b.HasOne("DTpureback.Models.Resources.Ability", "Ability")
+                        .WithMany()
+                        .HasForeignKey("AbilityID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ability");
+                });
+
             modelBuilder.Entity("DTpureback.Models.PlayerCharacter", b =>
                 {
                     b.HasOne("DTpureback.Models.Resources.Character", null)
@@ -358,6 +416,11 @@ namespace DTpureback.Migrations
                         .HasForeignKey("DTpureback.Models.Resources.NPC", "ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DTpureback.Models.Resources.Ability", b =>
+                {
+                    b.Navigation("CharacterAbilities");
                 });
 #pragma warning restore 612, 618
         }
