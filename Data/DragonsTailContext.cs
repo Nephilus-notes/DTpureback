@@ -28,8 +28,8 @@ namespace DTpureback.Data
         public DbSet<CharacterDefault> CharacterDefault { get; set; }
 
         public DbSet<Ability> Ability { get; set; }
-        public DbSet<CharacterAbility> PlayerCharacterAbilities { get; set; }
-        public DbSet<CharacterItem> PlayerCharacterItems { get; set; }
+        //public DbSet<CharacterAbility> PlayerCharacterAbilities { get; set; }
+        //public DbSet<CharacterItem> PlayerCharacterItems { get; set; }
 
 
 
@@ -52,27 +52,14 @@ namespace DTpureback.Data
             var equipmentConverter = new JsonEquippedItemsConverter();
 
             modelBuilder.Entity<Character>()
-       .HasMany(c => c.Abilities)
-       .WithMany() // Assumes many-to-many relationship
-       .UsingEntity<CharacterAbility>(
-           j => j.HasOne(ca => ca.Ability).WithMany().HasForeignKey(ca => ca.AbilityID),
-           j => j.HasOne(ca => ca.Character).WithMany().HasForeignKey(ca => ca.CharacterID),
-           j => {
-               j.HasKey(ca => ca.ID);
-               j.Property(ca => ca.ID).ValueGeneratedOnAdd();
-           });
+       .Property(c => c.Abilities)
+       .HasConversion(intToStringIDConverter)
+                .Metadata.SetValueComparer(intToStringIDComparer);
 
             modelBuilder.Entity<Character>()
-        .HasMany(c => c.Items)
-        .WithMany()
-        .UsingEntity<CharacterItem>(
-            j => j.HasOne(ci => ci.Item).WithMany().HasForeignKey(ci => ci.ItemID),
-            j => j.HasOne(ci => ci.Character).WithMany().HasForeignKey(ci => ci.CharacterID),
-            j =>
-            {
-                j.HasKey(ci => ci.ID);
-                j.Property(ci => ci.ID).ValueGeneratedOnAdd();
-            });
+        .Property(c => c.Items)
+        .HasConversion(intToStringIDConverter)
+                .Metadata.SetValueComparer(intToStringIDComparer);
 
 
             modelBuilder.Entity<PlayerCharacter>()

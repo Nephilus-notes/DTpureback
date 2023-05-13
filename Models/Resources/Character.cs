@@ -10,7 +10,7 @@ namespace DTpureback.Models.Resources
         public int CurrentCurrency { get; set; }
 
         public int Level { get; set; }
-        public ICollection<Item>? Items { get; set; }
+        public IEnumerable<int>? Items { get; set; }
 
 
         // Stats
@@ -22,7 +22,7 @@ namespace DTpureback.Models.Resources
         public int Intelligence { get; set; }
         public int Constitution { get; set; }
 
-        public ICollection<Ability> Abilities { get; set; }
+        public IEnumerable<int> Abilities { get; set; }
 
 
         //public List<CharacterAbility> CharacterAbilities { get; set; }

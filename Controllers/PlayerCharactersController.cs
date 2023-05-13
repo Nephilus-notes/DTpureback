@@ -41,8 +41,6 @@ namespace DTpureback.Controllers
         public async Task<ActionResult<PlayerCharacterDTO>> GetPlayerCharacter(int id)
         {
             var playerCharacter = await _context.PlayerCharacters
-                .Include(pc => pc.Abilities)
-                .Include(pc=> pc.Items)
                 .FirstOrDefaultAsync(pc => pc.ID == id);
 
             if (playerCharacter == null)
@@ -50,11 +48,14 @@ namespace DTpureback.Controllers
                 return NotFound();
             }
 
-            ICollection<Item> items = playerCharacter.Items;
-
-            Console.WriteLine(items);
-
             var playerCharacterDto = _mapper.Map<PlayerCharacterDTO>(playerCharacter);
+
+            var associatedItems = _context.Items.Where(i => playerCharacter.Items.Contains(i.ID)).ToList();
+            var associatedAbilities = _context.Ability.Where(i => playerCharacter.Abilities.Contains(i.ID)).ToList();
+
+            playerCharacterDto.Abilities = associatedAbilities;
+            playerCharacterDto.Items = associatedItems;
+
 
             return playerCharacterDto;
         }
