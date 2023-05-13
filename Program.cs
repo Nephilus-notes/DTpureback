@@ -11,17 +11,28 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
-//var conStrBuilder = new NpgsqlConnectionStringBuilder(
-//        builder.Configuration["HOSTED_DB:ConnectionString"]);
+var isDevelopment = builder.Environment.IsDevelopment();
+
+string connection = "";
+if (isDevelopment)
+{
+    //var conStrBuilder = new NpgsqlConnectionStringBuilder(
+      //  builder.Configuration["HOSTED_DB:ConnectionString"]);
 //conStrBuilder.Password = builder.Configuration["HOSTED_DB:DbPassword"];
-//var connection = conStrBuilder.ConnectionString;
+//connection = conStrBuilder.ConnectionString;
+//
 
-//var conStrBuilder = new NpgsqlConnectionStringBuilder(
-//        builder.Configuration["LocalDragonsTailContext:ConnectionString"]);
-//conStrBuilder.Password = builder.Configuration["LocalDragonsTailContext:DbPassword"];
-//var connection = conStrBuilder.ConnectionString;
+var conStrBuilder = new NpgsqlConnectionStringBuilder(
+       builder.Configuration["LocalDragonsTailContext:ConnectionString"]);
+conStrBuilder.Password = builder.Configuration["LocalDragonsTailContext:DbPassword"];
+ connection = conStrBuilder.ConnectionString;
+}
+else
+{
+ connection = Environment.GetEnvironmentVariable("HOSTED_DB_URL");
+}
 
-var connection = Environment.GetEnvironmentVariable("HOSTED_DB_URL");
+
 //Console.WriteLine(connection);
 
 
@@ -48,6 +59,7 @@ builder.Services.AddScoped<Profile, MappingProfile>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 //builder.Services.AddSwaggerGen();
 
 

@@ -51,12 +51,12 @@ namespace DTpureback.Data
 
             var equipmentConverter = new JsonEquippedItemsConverter();
 
-            modelBuilder.Entity<Character>()
+            modelBuilder.Entity<PlayerCharacter>()
        .Property(c => c.Abilities)
        .HasConversion(intToStringIDConverter)
                 .Metadata.SetValueComparer(intToStringIDComparer);
 
-            modelBuilder.Entity<Character>()
+            modelBuilder.Entity<PlayerCharacter>()
         .Property(c => c.Items)
         .HasConversion(intToStringIDConverter)
                 .Metadata.SetValueComparer(intToStringIDComparer);
@@ -71,12 +71,15 @@ namespace DTpureback.Data
                 .Property(l => l.OtherList)
                 .HasConversion(intToStringIDConverter)
                 .Metadata.SetValueComparer(intToStringIDComparer);
+            modelBuilder.Entity<NPC>()
+       .Property(c => c.Abilities)
+       .HasConversion(intToStringIDConverter)
+                .Metadata.SetValueComparer(intToStringIDComparer);
 
             modelBuilder.Entity<NPC>()
-        .ToTable("NPCs");
-
-            modelBuilder.Entity<PlayerCharacter>()
-                .ToTable("PlayerCharacters");
+        .Property(c => c.Items)
+        .HasConversion(intToStringIDConverter)
+                .Metadata.SetValueComparer(intToStringIDComparer);
         }
 
     }
