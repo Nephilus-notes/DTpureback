@@ -10,7 +10,7 @@ namespace DTpureback.Models.Resources
         public string? MiddleText { get; set; }
 
         public string ExitText { get; set; }
-        public List<string>? MoveOptions { get; set; }
+        public List<Location>? MoveOptions { get; set; }
         public int? CommonNPC { get; set; }
         public int? UncommonNPC { get; set; }
 

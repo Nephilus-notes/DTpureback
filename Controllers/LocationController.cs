@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DTpureback.Data;
 using Microsoft.AspNetCore.Cors;
 using DTpureback.Models.Resources;
+using DTpureback.Models;
 
 namespace DTpureback.Controllers
 {
@@ -57,15 +58,16 @@ namespace DTpureback.Controllers
             {
 
                 List<string> list = new List<string>();
-                var moveOptions = list;
+                var moveOptionsStrings = list;
                     foreach ( var moveOption in location.MoveOptions )
                 {
                     if(moveOption != ',')
                     {
-                        moveOptions.Add(moveOption.ToString());
+                        moveOptionsStrings.Add(moveOption.ToString());
                     }
                 }
-                returnLocation.MoveOptions = moveOptions;
+                returnLocation.MoveOptions =  _context.Locations.Where(l => moveOptionsStrings.Contains(l.ID)).ToList();
+                ;
             }
             if(location.OtherList != null)
             {
