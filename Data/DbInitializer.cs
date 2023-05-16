@@ -402,8 +402,8 @@ namespace DTpureback.Data
                 "all around as arms and armor coat the walls. " +
                 "The blacksmith's face shines at you from over the counter.  [T - Town, S - Shop]",
                 ExitText = "",
-                MoveOptions = "T,S",
-                Next = "T"
+                MoveOptions = "T",
+                Next = "S"
             };
 
             var alchemist = new Location
@@ -414,8 +414,8 @@ namespace DTpureback.Data
                 "and even flowers festoon the walls and Garthak the Brewer is humming to himself as he grinds " +
                 "something with a pestle. Looking up he flashes his sharp teeth in a smile.  [T - Town, S - Shop]",
                 ExitText = "",
-                MoveOptions = "T,S",
-                Next = "T"
+                MoveOptions = "T",
+                Next = "S"
 
             };
 
@@ -429,7 +429,8 @@ namespace DTpureback.Data
                 "who watched you grow up, tiny children learning how to dim their skin's glow, and even elders watching their charges with hope " +
                 "and joy in their hearts. [T - Town, S - Shop]",
                 ExitText = "",
-                MoveOptions = "T,S",
+                MoveOptions = "T",
+                Next = "S"
             };
 
             var thagragsHope = new Location
