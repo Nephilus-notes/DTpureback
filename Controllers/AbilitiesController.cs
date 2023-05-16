@@ -34,7 +34,7 @@ namespace DTpureback.Controllers
 
         // GET: api/Abilities/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Ability>> GetAbility(string id)
+        public async Task<ActionResult<Ability>> GetAbility(int id)
         {
           if (_context.Ability == null)
           {

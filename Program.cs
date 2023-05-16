@@ -67,7 +67,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 //app.UseSwagger();
-//app.UseSwaggerUI();
+// app.UseSwaggerUI();
 
 using (var scope = app.Services.CreateScope())
 {
