@@ -49,8 +49,12 @@ namespace DTpureback.Controllers
             }
 
             // var playerCharacterDto = _mapper.Map<PlayerCharacterDTO>(playerCharacter);
+            var associatedItems = new List<Item>();
 
-            var associatedItems = _context.Items.Where(i => playerCharacter.Items.Contains(i.ID)).ToList();
+            if (playerCharacter.Items != null)
+            associatedItems = _context.Items.Where(i => playerCharacter.Items.Contains(i.ID)).ToList();
+            {
+            }
             var associatedAbilities = _context.Ability.Where(i => playerCharacter.Abilities.Contains(i.ID)).ToList();
 
             var playerCharacterDto = new PlayerCharacterDTO
