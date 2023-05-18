@@ -97,13 +97,61 @@ namespace DTpureback.Controllers
         // PUT: api/PlayerCharacters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPatch("{id}")]
-        public async Task<IActionResult> PutPlayerCharacter(int id, PlayerCharacter playerCharacter)
+        public async Task<IActionResult> PatchPlayerCharacter(int id, PlayerCharacterDTO playerCharacterDTO)
         {
-            if (id != playerCharacter.ID)
+            if (id != playerCharacterDTO.ID)
             {
                 return BadRequest();
             }
+            var associatedItems = new List<int>();
+            foreach (var item in playerCharacterDTO.Items)
+            {
+                associatedItems.Add(item.ID);
+            }
+            var associatedAbilities = new List<int>();
+            foreach (var ability in playerCharacterDTO.Abilities)
+            {
+                associatedAbilities.Add(ability.ID);
+            }
 
+            var playerCharacter = new PlayerCharacter
+            {
+                ID = playerCharacterDTO.ID,
+                Name = playerCharacterDTO.Name,
+                CurrentCurrency = playerCharacterDTO.CurrentCurrency,
+                MaxHP = playerCharacterDTO.MaxHP,
+                MaxMP = playerCharacterDTO.MaxMP,
+                CurrentHP = playerCharacterDTO.CurrentHP,
+                CurrentMP = playerCharacterDTO.CurrentMP,
+                CurrentLocation = playerCharacterDTO.CurrentLocation,
+                LifeTimeCurrency = playerCharacterDTO.LifeTimeCurrency,
+                Armor = playerCharacterDTO.Armor,
+                Resistance = playerCharacterDTO.Resistance,
+                Strength = playerCharacterDTO.Strength,
+                StrengthXP = playerCharacterDTO.StrengthXP,
+                Dexterity = playerCharacterDTO.Dexterity,
+                DexterityXP = playerCharacterDTO.DexterityXP,
+                Constitution = playerCharacterDTO.Constitution,
+                ConstitutionXP = playerCharacterDTO.ConstitutionXP,
+                Intelligence = playerCharacterDTO.Intelligence,
+                IntelligenceXP = playerCharacterDTO.IntelligenceXP,
+                DateAdded = playerCharacterDTO.DateAdded,
+                DateUpdated = playerCharacterDTO.DateUpdated,
+                DrippingDeathExplored = playerCharacterDTO.DrippingDeathExplored,
+                TailOfTheDragonExplored = playerCharacterDTO.TailOfTheDragonExplored,
+                WebOfDepthsExplored = playerCharacterDTO.WebOfDepthsExplored,
+                EquippedItems = playerCharacterDTO.EquippedItems,
+                GraithQueensLairExplored = playerCharacterDTO.GraithQueensLairExplored,
+                GraithsGrottoExplored = playerCharacterDTO.GraithsGrottoExplored,
+                KratabsFollyExplored = playerCharacterDTO.KratabsFollyExplored,
+                PlayersRespiteExplored = playerCharacterDTO.PlayersRespiteExplored,
+                ThagragsHopeExplored = playerCharacterDTO.ThagragsHopeExplored,
+                Level = playerCharacterDTO.Level,
+                Items = associatedItems,
+                Abilities = associatedAbilities,
+            };
+            _context.PlayerCharacters.Add(playerCharacter);
+           
             _context.Entry(playerCharacter).State = EntityState.Modified;
 
             try
@@ -128,12 +176,59 @@ namespace DTpureback.Controllers
         // POST: api/PlayerCharacters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<PlayerCharacter>> PostPlayerCharacter(PlayerCharacter playerCharacter)
+        public async Task<ActionResult<PlayerCharacter>> PostPlayerCharacter(PlayerCharacterDTO playerCharacterDTO)
         {
           if (_context.PlayerCharacters == null)
           {
               return Problem("Entity set 'DragonsTailContext.PlayerCharacters'  is null.");
           }
+            var associatedItems = new List<int>();
+            foreach (var item in playerCharacterDTO.Items)
+            {
+                associatedItems.Add(item.ID);
+            }
+            var associatedAbilities = new List<int>();
+            foreach (var ability in playerCharacterDTO.Abilities)
+            {
+                associatedAbilities.Add(ability.ID);
+            }
+
+            var playerCharacter = new PlayerCharacter
+            {
+                ID = playerCharacterDTO.ID,
+                Name = playerCharacterDTO.Name,
+                CurrentCurrency = playerCharacterDTO.CurrentCurrency,
+                MaxHP = playerCharacterDTO.MaxHP,
+                MaxMP = playerCharacterDTO.MaxMP,
+                CurrentHP = playerCharacterDTO.CurrentHP,
+                CurrentMP = playerCharacterDTO.CurrentMP,
+                CurrentLocation = playerCharacterDTO.CurrentLocation,
+                LifeTimeCurrency = playerCharacterDTO.LifeTimeCurrency,
+                Armor = playerCharacterDTO.Armor,
+                Resistance = playerCharacterDTO.Resistance,
+                Strength = playerCharacterDTO.Strength,
+                StrengthXP = playerCharacterDTO.StrengthXP,
+                Dexterity = playerCharacterDTO.Dexterity,
+                DexterityXP = playerCharacterDTO.DexterityXP,
+                Constitution = playerCharacterDTO.Constitution,
+                ConstitutionXP = playerCharacterDTO.ConstitutionXP,
+                Intelligence = playerCharacterDTO.Intelligence,
+                IntelligenceXP = playerCharacterDTO.IntelligenceXP,
+                DateAdded = playerCharacterDTO.DateAdded,
+                DateUpdated = playerCharacterDTO.DateUpdated,
+                DrippingDeathExplored = playerCharacterDTO.DrippingDeathExplored,
+                TailOfTheDragonExplored = playerCharacterDTO.TailOfTheDragonExplored,
+                WebOfDepthsExplored = playerCharacterDTO.WebOfDepthsExplored,
+                EquippedItems = playerCharacterDTO.EquippedItems,
+                GraithQueensLairExplored = playerCharacterDTO.GraithQueensLairExplored,
+                GraithsGrottoExplored = playerCharacterDTO.GraithsGrottoExplored,
+                KratabsFollyExplored = playerCharacterDTO.KratabsFollyExplored,
+                PlayersRespiteExplored = playerCharacterDTO.PlayersRespiteExplored,
+                ThagragsHopeExplored = playerCharacterDTO.ThagragsHopeExplored,
+                Level = playerCharacterDTO.Level,
+                Items = associatedItems,
+                Abilities = associatedAbilities,
+            };
             _context.PlayerCharacters.Add(playerCharacter);
             await _context.SaveChangesAsync();
 
