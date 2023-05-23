@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DTpureback.Data;
 using DTpureback.Models.Resources;
+using DTpureback.Models;
 
 namespace DTpureback.Controllers
 {
@@ -47,13 +48,28 @@ namespace DTpureback.Controllers
                 return NotFound();
             }
 
+            var abilityDescendants = new List<Ability>();
+
+            if (ability.Descendants != null)
+            {
+            foreach (var abilityDescendantID in ability.Descendants)
+            {
+                    abilityDescendants = _context.Ability.Where(a => ability.Descendants.Contains(a.ID)).ToList();
+            }
+            }
+
+            var abilityDTO = new AbilityDTO()
+            {
+
+            };
+
             return ability;
         }
 
         // PUT: api/Abilities/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAbility(int id, Ability ability)
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchAbility(int id, Ability ability)
         {
             if (id != ability.ID)
             {

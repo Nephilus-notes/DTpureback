@@ -22,6 +22,8 @@ using DTpureback.Models.Resources;
 using Newtonsoft.Json;
 using DTpureback.Interfaces;
 using Azure;
+using NuGet.ContentModel;
+using System.Net.NetworkInformation;
 
 namespace DTpureback.Data
 {
@@ -495,11 +497,9 @@ namespace DTpureback.Data
             {
                 ID = "S",
                 Name = "Kratab's Folly",
-                EnterText = "You walk towards the surface, leaving behind the familiar tunnels as the crisp mountain air and afternoon sunlight hit your face. " +
-                "Your eyes take a moment to adjust before you can see the mountains of Kratab's Folly. " +
-                "Towering mountains feel almost familiar but their twisted peaks point upwards into the vastness of the brilliant blue sky. " +
-                "It will take some time before you can appreciate the savage beauty of the mountaintops as you do the roots of the mountain. [T - Town, C - Continue]",
-                ExitText = "",
+                EnterText = "You walk towards the surface, leaving behind the familiar tunnels as the crisp mountain air and afternoon sunlight hit your face. Your eyes take a moment to adjust before you can see the mountains of Kratab's Folly. Towering mountains feel almost familiar but their twisted peaks point upwards into the vastness of the brilliant blue sky. It will take some time before you can appreciate the savage beauty of the mountaintops as you do the roots of the mountain.",
+                MiddleText = "You wind your way through the mountain passes, slowly adjusting to the brightness of the World Above.During the day the sun’s rays bring a warmth unlike anything you’ve ever experienced.At night however the cold bites almost as fiercely as back home and you often hear howls echoing through the valleys.",
+                ExitText = "You’re nearing the edge of the mountains.  It wasn’t as far as you thought but your unfamiliarity with the World Above has made the journey seem long.  From your vantage in the mountains you see a shining plain laid out before you, its mirror-like surface broken by twisted black shadows that look like spiders.  Shuddering at the idea of spiders of such a monstrous size, you weigh the decision to venture forth.",
                 MoveOptions = "T,C",
                 Next = "D",
                  CommonNPC = 1,
