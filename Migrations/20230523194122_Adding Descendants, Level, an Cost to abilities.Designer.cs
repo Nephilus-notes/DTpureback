@@ -3,6 +3,7 @@ using System;
 using DTpureback.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DTpureback.Migrations
 {
     [DbContext(typeof(DragonsTailContext))]
-    partial class DragonsTailContextModelSnapshot : ModelSnapshot
+    [Migration("20230523194122_Adding Descendants, Level, an Cost to abilities")]
+    partial class AddingDescendantsLevelanCosttoabilities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,10 +167,6 @@ namespace DTpureback.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("FlavorText")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("Level")
                         .HasColumnType("integer");
 
@@ -242,10 +241,6 @@ namespace DTpureback.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Slot")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 

@@ -71,14 +71,20 @@ namespace DTpureback.Data
                 .Property(l => l.OtherList)
                 .HasConversion(intToStringIDConverter)
                 .Metadata.SetValueComparer(intToStringIDComparer);
+
             modelBuilder.Entity<NPC>()
-       .Property(c => c.Abilities)
-       .HasConversion(intToStringIDConverter)
+            .Property(c => c.Abilities)
+            .HasConversion(intToStringIDConverter)
                 .Metadata.SetValueComparer(intToStringIDComparer);
 
             modelBuilder.Entity<NPC>()
-        .Property(c => c.Items)
-        .HasConversion(intToStringIDConverter)
+                .Property(c => c.Items)
+                .HasConversion(intToStringIDConverter)
+                .Metadata.SetValueComparer(intToStringIDComparer);
+
+            modelBuilder.Entity<Ability>()
+            .Property(c => c.Descendants)
+            .HasConversion(intToStringIDConverter)
                 .Metadata.SetValueComparer(intToStringIDComparer);
         }
 
