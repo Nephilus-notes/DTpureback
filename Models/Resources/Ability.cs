@@ -13,7 +13,7 @@
         public int Cost { get; set; } = 0;
         public int Level { get; set; } = 0;
         public string FlavorText { get; set; } = "";
-        public IEnumerable<int> Descendants { get; set; } = Enumerable.Empty<int>();
+        public IEnumerable<int>? Descendants { get; set; } = Enumerable.Empty<int>();
 
         //public List<CharacterAbility> CharacterAbilities { get; set; }
     }

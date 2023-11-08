@@ -59,14 +59,14 @@ builder.Services.AddScoped<Profile, MappingProfile>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen();
+ builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseSwagger();
+ app.UseSwagger();
  app.UseSwaggerUI();
 
 using (var scope = app.Services.CreateScope())
