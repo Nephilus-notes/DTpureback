@@ -21,6 +21,8 @@ if (isDevelopment)
 conStrBuilder.Password = builder.Configuration["HOSTED_DB:DbPassword"];
 connection = conStrBuilder.ConnectionString;
 
+     app.UseSwagger();
+ app.UseSwaggerUI();
 
 //var conStrBuilder = new NpgsqlConnectionStringBuilder(
 //       builder.Configuration["LocalDragonsTailContext:ConnectionString"]);
@@ -66,8 +68,11 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
+if (isDevelopment)
+{
  app.UseSwagger();
  app.UseSwaggerUI();
+}
 
 using (var scope = app.Services.CreateScope())
 {
