@@ -21,8 +21,6 @@ if (isDevelopment)
 conStrBuilder.Password = builder.Configuration["HOSTED_DB:DbPassword"];
 connection = conStrBuilder.ConnectionString;
 
-     app.UseSwagger();
- app.UseSwaggerUI();
 
 //var conStrBuilder = new NpgsqlConnectionStringBuilder(
 //       builder.Configuration["LocalDragonsTailContext:ConnectionString"]);
